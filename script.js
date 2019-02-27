@@ -70,12 +70,13 @@ function startPokedex() {
     listaPokemon = new Button(300, 400, images[4], images[5], 235, 251, menuItems);
     addPoke = new Button(550, 400, images[6], images[7], 235, 251, menuItems);
     xmlDownload = new Button(800, 400, images[8], images[9], 235, 251, menuItems);
-    arrowDer = new Button(30, 275, images[10], images[11], 49, 50, pokegroup_der);
-    arrowIzq = new Button(226, 275, images[12], images[13], 49, 50, pokegroup_izq);
+    arrowDer = new ArrowButton(30, 275, images[10], images[11], 49, 50, pokegroup_der);
+    arrowIzq = new ArrowButton(226, 275, images[12], images[13], 49, 50, pokegroup_izq);
     btnAtras = new Button(315, 300, images[15], images[16], 76, 48, globalGroup);
     mainMenu = new State("mainMenu", images[3]);
     listMenu = new State("listMenu", images[14], mainMenu);
     pokeState = mainMenu;
+    nextPokeState = new State("empty");
     pokedex.start();
 }
 
@@ -113,7 +114,7 @@ var pokedex = {
                             pokeball_izq.cycleDone = false;
                             pokeball_der.cycleDone = false;
                             inAnimation = true;
-                            nextPokeState = mainMenu;
+                            nextPokeState = pokeState.father;
                         }
                         break;
                     default:

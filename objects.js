@@ -125,6 +125,34 @@ function Button(x, y, normalImage, hoverImage, width, height, group) {
     }
 }
 
+function ArrowButton(x, y, normalImage, hoverImage, width, height, group) {
+	Button.call(this, x, y, normalImage, hoverImage, width, height, group);
+	var alpha = 1.0;
+	this.update = function() { 
+        ctx = pokedex.context;
+        //Button Hover
+        if (pokedex.mouseX > this.x + this.group.x && pokedex.mouseX < this.x + this.group.x + this.width && pokedex.mouseY > this.y + this.group.y && pokedex.mouseY < this.y + this.group.y + this.height) {
+        	if (!inAnimation) this.img = hoverImage;
+        }
+        else {
+        	this.img = normalImage;
+        }
+        if (nextPokeState.name === "listMenu" && alpha > 0.0) {
+            alpha -= 0.01;
+            if (alpha < 0.01) {
+            	alpha = 0;
+            }
+        }
+        else if (nextPokeState.name === "mainMenu" && alpha < 1.0) {
+        	alpha += 0.01;
+        }
+        ctx.globalAlpha = alpha;
+        console.log(alpha);
+        ctx.drawImage(this.img, this.group.x + this.x, this.group.y + this.y); 
+        ctx.globalAlpha = 1.0;
+    }
+}
+
 function State(name, background, father) {
 	this.name = name;
 	this.background = background;
