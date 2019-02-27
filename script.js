@@ -15,20 +15,23 @@ function preload() {
 }
 
 preload(
-    "img/interfaz.png",
-    "img/pokeball_izq.png",
-    "img/pokeball_der.png",
-    "img/Fondo.png",
-    "img/Pokedex.png",
-    "img/PokedexHover.png",
-    "img/Add.png",
-    "img/AddHover.png",
-    "img/XML.png",
-    "img/XMLHover.png",
-    "img/arrow.png",
-    "img/arrowHover.png",
-    "img/arrowIzq.png",
-    "img/arrowHoverIzq.png"
+    "img/interfaz.png", //..........................0
+    "img/pokeball_izq.png", //______________________1
+    "img/pokeball_der.png", //......................2
+    "img/Fondo.png", //_____________________________3
+    "img/Pokedex.png", //...........................4
+    "img/PokedexHover.png", //______________________5
+    "img/Add.png", //...............................6
+    "img/AddHover.png", //__________________________7
+    "img/XML.png", //...............................8
+    "img/XMLHover.png", //__________________________9
+    "img/arrow.png", //.............................10
+    "img/arrowHover.png", //________________________11
+    "img/arrowIzq.png", //..........................12
+    "img/arrowHoverIzq.png", //_____________________13
+    "img/listaPokemon/FondoNaranja.png", //.........14
+    "img/listaPokemon/atras.png", //________________15
+    "img/listaPokemon/atrasHover.png" //............16
 )
 
 //Variables globales
@@ -44,24 +47,35 @@ var pokegroup_izq;
 var pokegroup_der;
 var arrowIzq;
 var arrowDer;
+var btnAtras;
 
 //Locks and Flags
 var inAnimation = false;
+
+//Estados/menus de la pokedex
+var mainMenu;
+var listMenu;
+var pokeState; //Estado/menu actual de la pokedex
+var nextPokeState; //Siguiente estado de la pokedex
 
 //inicialización de variables
 function startPokedex() {
     globalGroup = new Group(0, 0);
     pokegroup_izq = new Group(15, 200);
     pokegroup_der = new Group(1075, 200);
+    menuItems = new Group(0, 0);
     pokeball_izq = new Pokeball(0, 0, images[1], "right", pokegroup_izq); //Se posiciona a la izquierda pero mira hacia la derecha
     pokeball_der = new Pokeball(0, 0, images[2], "left", pokegroup_der); //Se posiciona a la derecha pero mira a la izquierda
-    background = new Decoration(255, 230, images[3], globalGroup);
-    menuItems = new Group(0, 0);
+    background = new Background();
     listaPokemon = new Button(300, 400, images[4], images[5], 235, 251, menuItems);
     addPoke = new Button(550, 400, images[6], images[7], 235, 251, menuItems);
     xmlDownload = new Button(800, 400, images[8], images[9], 235, 251, menuItems);
     arrowDer = new Button(30, 275, images[10], images[11], 49, 50, pokegroup_der);
     arrowIzq = new Button(226, 275, images[12], images[13], 49, 50, pokegroup_izq);
+    btnAtras = new Button(315, 300, images[15], images[16], 76, 48, globalGroup);
+    mainMenu = new State("mainMenu", images[3]);
+    listMenu = new State("listMenu", images[14], mainMenu);
+    pokeState = mainMenu;
     pokedex.start();
 }
 
@@ -83,11 +97,27 @@ var pokedex = {
             pokedex.clickY = e.pageY;
 
             if (!inAnimation) {
-                //ListaPokemon onClick
-                if (pokedex.clickX > listaPokemon.x + listaPokemon.group.x && pokedex.clickX < listaPokemon.x + listaPokemon.group.x + listaPokemon.width && pokedex.clickY > listaPokemon.y + listaPokemon.group.y && pokedex.clickY < listaPokemon.y + listaPokemon.group.y + listaPokemon.height) {
-                    pokeball_izq.cycleDone = false;
-                    pokeball_der.cycleDone = false;
-                    inAnimation = true;
+                //Dependiendo del estado/menu actual de la pokedex se comprobarán las funciones onclick de unos botones u otros
+                switch (pokeState.name) {
+                    case "mainMenu":
+                        //ListaPokemon onClick
+                        if (pokedex.clickX > listaPokemon.x + listaPokemon.group.x && pokedex.clickX < listaPokemon.x + listaPokemon.group.x + listaPokemon.width && pokedex.clickY > listaPokemon.y + listaPokemon.group.y && pokedex.clickY < listaPokemon.y + listaPokemon.group.y + listaPokemon.height) {
+                            pokeball_izq.cycleDone = false;
+                            pokeball_der.cycleDone = false;
+                            inAnimation = true;
+                            nextPokeState = listMenu;
+                        }
+                        break;
+                    case "listMenu":
+                        if (pokedex.clickX > btnAtras.x + btnAtras.group.x && pokedex.clickX < btnAtras.x + btnAtras.group.x + btnAtras.width && pokedex.clickY > btnAtras.y + btnAtras.group.y && pokedex.clickY < btnAtras.y + btnAtras.group.y + btnAtras.height) {
+                            pokeball_izq.cycleDone = false;
+                            pokeball_der.cycleDone = false;
+                            inAnimation = true;
+                            nextPokeState = mainMenu;
+                        }
+                        break;
+                    default:
+                        break;
                 }
             }        
         });
@@ -101,18 +131,28 @@ var pokedex = {
 function updatePokedex() {
     pokedex.clear();   
     background.update();
-    //Control de movimiento de los botones del menu mediante las flechas rojas arrowDer y arrowIzq
-    if (!inAnimation) {
-        if (pokedex.mouseX > arrowDer.x + arrowDer.group.x && pokedex.mouseX < arrowDer.x + arrowDer.group.x + arrowDer.width && pokedex.mouseY > arrowDer.y + arrowDer.group.y && pokedex.mouseY < arrowDer.y + arrowDer.group.y + arrowDer.height) {
-            if (menuItems.x > -500) menuItems.x -= 6;
-        }
-        else if (pokedex.mouseX > arrowIzq.x + arrowIzq.group.x && pokedex.mouseX < arrowIzq.x + arrowIzq.group.x + arrowIzq.width && pokedex.mouseY > arrowIzq.y + arrowIzq.group.y && pokedex.mouseX < arrowIzq.y + arrowIzq.group.y + arrowIzq.height) {
-            if (menuItems.x < 0) menuItems.x += 6;
-        }
+    //Dependiendo del estado/menu actual de la pokedex se renderizará una cosa u otra
+    switch (pokeState.name) {
+        case "mainMenu":
+            //Control de movimiento de los botones del menu mediante las flechas rojas arrowDer y arrowIzq
+            if (!inAnimation) {
+                if (pokedex.mouseX > arrowDer.x + arrowDer.group.x && pokedex.mouseX < arrowDer.x + arrowDer.group.x + arrowDer.width && pokedex.mouseY > arrowDer.y + arrowDer.group.y && pokedex.mouseY < arrowDer.y + arrowDer.group.y + arrowDer.height) {
+                    if (menuItems.x > -500) menuItems.x -= 6;
+                }
+                else if (pokedex.mouseX > arrowIzq.x + arrowIzq.group.x && pokedex.mouseX < arrowIzq.x + arrowIzq.group.x + arrowIzq.width && pokedex.mouseY > arrowIzq.y + arrowIzq.group.y && pokedex.mouseX < arrowIzq.y + arrowIzq.group.y + arrowIzq.height) {
+                    if (menuItems.x < 0) menuItems.x += 6;
+                }
+            }
+            listaPokemon.update();
+            addPoke.update();
+            xmlDownload.update();
+            break;
+        case "listMenu":
+            btnAtras.update();
+            break;
+        default:
+            break;
     }
-    listaPokemon.update();
-    addPoke.update();
-    xmlDownload.update();
     //Hasta que no se complete el ciclo de ida y retorno de cada pokeball, el update no deja de llamar a rightAndBack() y leftAndBack()
     if (!pokeball_izq.cycleDone) {
         pokeball_izq.rightAndBack();
@@ -128,4 +168,7 @@ function updatePokedex() {
     arrowIzq.update();
     arrowDer.update();
 }
-    
+
+function changeState() {
+    pokeState = nextPokeState; 
+}   

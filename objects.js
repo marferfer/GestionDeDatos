@@ -4,6 +4,13 @@ function Group(x, y) {
 	this.y = y;
 }
 
+function Background() {
+	this.update = function(){
+		ctx = pokedex.context;  
+        ctx.drawImage(pokeState.background, 255, 230);
+	}
+}
+
 function Decoration(x, y, image, group) {    
     this.group = group;
     this.x = x;
@@ -22,6 +29,7 @@ function Pokeball(x, y, image, direction, group) {
 	this.dir = direction;
 	this.cycleDone = true;
 	this.countdown = 15;
+	this.stateChanged = true; //flag para saber si ya se ha cambiado el estado
 	//Mueve la pokeball a la derecha hasta que llegue al centro, después la devuelve a su posición
 	this.rightAndBack = function() {
 		if (this.dir === "right") {			
@@ -29,6 +37,7 @@ function Pokeball(x, y, image, direction, group) {
 				this.group.x = 398;
 				this.speed = 0;
 				this.dir = "left";
+				this.stateChanged = false;
 			}
 			else {
 				this.speed += 0.5;
@@ -36,6 +45,10 @@ function Pokeball(x, y, image, direction, group) {
 			}
 		}
 		else {	
+			if (!this.stateChanged) {
+				changeState();
+				this.stateChanged = true;
+			}
 			if (this.countdown > 0)	{ //cuando llega al centro se para durante una fracción de segundo
 				this.countdown--;
 			}
@@ -110,4 +123,10 @@ function Button(x, y, normalImage, hoverImage, width, height, group) {
         }
         ctx.drawImage(this.img, this.group.x + this.x, this.group.y + this.y);    
     }
+}
+
+function State(name, background, father) {
+	this.name = name;
+	this.background = background;
+	this.father = father;
 }
