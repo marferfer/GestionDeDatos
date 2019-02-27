@@ -116,10 +116,10 @@ function Button(x, y, normalImage, hoverImage, width, height, group) {
         ctx = pokedex.context;
         //Button Hover
         if (pokedex.mouseX > this.x + this.group.x && pokedex.mouseX < this.x + this.group.x + this.width && pokedex.mouseY > this.y + this.group.y && pokedex.mouseY < this.y + this.group.y + this.height) {
-        	if (!inAnimation) this.img = hoverImage;
+        	if (!inAnimation) this.img = this.hover;
         }
         else {
-        	this.img = normalImage;
+        	this.img = this.normal;
         }
         ctx.drawImage(this.img, this.group.x + this.x, this.group.y + this.y);    
     }
