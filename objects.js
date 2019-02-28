@@ -125,9 +125,10 @@ function Button(x, y, normalImage, hoverImage, width, height, group) {
     }
 }
 
+//Hereda de button
 function ArrowButton(x, y, normalImage, hoverImage, width, height, group) {
 	Button.call(this, x, y, normalImage, hoverImage, width, height, group);
-	var alpha = 1.0;
+	var alpha = 0.0;
 	this.update = function() { 
         ctx = pokedex.context;
         //Button Hover
@@ -137,7 +138,7 @@ function ArrowButton(x, y, normalImage, hoverImage, width, height, group) {
         else {
         	this.img = normalImage;
         }
-        if (nextPokeState.name === "listMenu" && alpha > 0.0) {
+        if (nextPokeState.name != "mainMenu" && alpha > 0.0) {
             alpha -= 0.01;
             if (alpha < 0.01) {
             	alpha = 0;
@@ -147,9 +148,29 @@ function ArrowButton(x, y, normalImage, hoverImage, width, height, group) {
         	alpha += 0.01;
         }
         ctx.globalAlpha = alpha;
-        console.log(alpha);
         ctx.drawImage(this.img, this.group.x + this.x, this.group.y + this.y); 
         ctx.globalAlpha = 1.0;
+    }
+}
+
+function dbButton(x, y, normalImage, hoverImage, selectedImage, width, height, group, isSelected) {
+	Button.call(this, x, y, normalImage, hoverImage, width, height, group);
+	this.selected = selectedImage;
+	this.isSelected = isSelected;
+	this.update = function() { 
+        ctx = pokedex.context;
+        //Button selected
+        if (this.isSelected) {
+        	this.img = this.selected;
+        }
+        //Button Hover
+        else if (pokedex.mouseX > this.x + this.group.x && pokedex.mouseX < this.x + this.group.x + this.width && pokedex.mouseY > this.y + this.group.y && pokedex.mouseY < this.y + this.group.y + this.height) {
+        	if (!inAnimation) this.img = this.hover;
+        }
+        else {
+        	this.img = this.normal;
+        }
+        ctx.drawImage(this.img, this.group.x + this.x, this.group.y + this.y);    
     }
 }
 
