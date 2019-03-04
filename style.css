@@ -1,0 +1,143 @@
+/*Estilos de la lista de pokemon*/
+
+/*la marca que sale a la izquierda de todos los elmentos de la lista*/
+.imgLista {
+  list-style-image: url('img/pokeListMark.gif');
+}
+
+/*El div con scroll y la fuente*/
+.listaPokemon {
+	position: absolute;
+	top: 330px;
+	left: 350px;
+	width: 250px;
+	height: 300px;
+	margin: 50px auto;
+	padding: 20px;
+	background: #8945;
+	overflow: auto;
+	font-family: 'Pokemon Solid';
+	font-size: 17px;
+	color: white;
+	letter-spacing: 3px;
+	border-radius: 4px;
+}
+
+.listaPokemon hr {
+	background: #ff9d00;
+	width: 20%;
+	height: 5px;
+	border: none;
+	margin: 20px 0;
+	border-radius: 50px;
+}
+
+.listaPokemon img.marcador {
+	vertical-align: sub;
+}
+
+/*Contorno del texto para mejorar la legibilidad*/
+.listaPokemon span {
+	-webkit-text-stroke-width: 0.5px;
+  	-webkit-text-stroke-color: black;
+}
+
+/*personalizar la barra de scroll*/
+.listaPokemon::-webkit-scrollbar {
+	width: 7px;
+}
+
+.listaPokemon::-webkit-scrollbar-thumb {
+	background: #D7DF01;
+	border-radius: 5px;
+}
+
+/*Los estilos de los filtros de la lista pokemon*/
+	.multiselect {
+        width: 400px;
+        position:absolute;
+        left: 665px;
+        top: 450px;
+    }
+ 
+    .selectBox {
+        position: relative;
+    }
+ 
+    .selectBox select {
+        width: 100%;
+        background: #8945;
+	    border: none;
+	    font-family: 'Arial';
+		font-size: 15px;
+		color: white;
+		letter-spacing: 1px;
+	    height: 35px;
+	    padding: 10px;
+    }
+ 
+    .overSelect {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+    }
+ 
+    #checkboxes {
+        display: block;
+        border: 1px #D7DF01 solid;
+        position:absolute;
+        width:100%;
+        background-color:#8945;
+        box-sizing: border-box;
+        overflow-y:auto;
+        max-height:235px;
+    }
+    #checkboxes.hide {display:none;}
+ 
+ 	#checkboxes span{
+ 		font-family: 'Arial';
+ 		color: yellow;
+ 		font-size: 20px;
+ 		padding: 10px;
+ 	}
+
+    #checkboxes label {
+        display: block;
+        font-family: 'Arial';
+        color:white;
+    }
+ 
+    #checkboxes label:hover {
+        background-color: #1e90ff;
+    }
+
+    #checkboxes::-webkit-scrollbar {
+		width: 7px;
+	}
+
+	#checkboxes::-webkit-scrollbar-thumb {
+		background: #D7DF01;
+		border-radius: 5px;
+	}
+
+	.ordenLista {
+		position: absolute;
+		left: 665px;
+		top: 380px;
+	}
+
+	.ordenLista select {
+		color: white;
+		font-family: 'Arial';
+		padding: 10px;
+		background: #8945;
+	}
+
+	.ordenLista.opciones {
+		color: white;
+		font-family: 'Arial';
+		background: #8945;
+		padding: 10px;
+	}

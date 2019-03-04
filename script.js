@@ -228,3 +228,13 @@ function download(filename, text) {
 
   document.body.removeChild(element);
 }
+
+//para gestionar la apariencia de las checkboxes de los filtros de la lista de pokemon
+function showCheckboxes() {
+    var checkboxes = document.getElementById("checkboxes");
+    if(checkboxes.classList.contains("hide")) {
+        checkboxes.classList.remove("hide");
+    } else {
+        checkboxes.classList.add("hide");
+    }
+}
