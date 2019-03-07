@@ -48,7 +48,15 @@ preload(
     "img/BDD/mongodbSelected.png", //...............30
     "img/BDD/sqlite.png", //________________________31
     "img/BDD/sqliteHover.png", //...................32
-    "img/BDD/sqliteSelected.png" //_________________33
+    "img/BDD/sqliteSelected.png", //_________________33
+    "img/Anyadir/anyadirImg.png", //_________________34
+    "img/Anyadir/anyadirImgHover.png", //_________________35
+    "img/Anyadir/tipos.png", //_________________36
+    "img/Anyadir/tiposHover.png", //_________________37
+    "img/Anyadir/campos.png", //_________________38
+    "img/Anyadir/camposHover.png", //_________________39
+    "img/Anyadir/camposPequenyos.png", //_________________40
+    "img/Anyadir/camposPequenyosHover.png" //_________________41
 )
 
 //Variables globales
@@ -65,6 +73,10 @@ var pokegroup_der;
 var arrowIzq;
 var arrowDer;
 var btnAtras;
+var btnAddFoto;
+var btnTipos;
+var btnCampos;
+var btnCamposPequenyos;
 var bdd;
 var creditos;
 var creditosTexto;
@@ -76,6 +88,7 @@ var dbSelected = 'sqlite';
 //Estados/menus de la pokedex
 var mainMenu;
 var listMenu;
+var addMenu;
 var bddMenu;
 var creditsMenu;
 var pokeState; //Estado/menu actual de la pokedex
@@ -98,11 +111,16 @@ function startPokedex() {
     arrowDer = new ArrowButton(30, 275, images[10], images[11], 49, 50, pokegroup_der);
     arrowIzq = new ArrowButton(226, 275, images[12], images[13], 49, 50, pokegroup_izq);
     btnAtras = new Button(315, 300, images[15], images[16], 76, 48, globalGroup);
+    btnAddFoto = new Button(415, 300, images[34], images[35], 182, 182, menuItems);
+    btnTipos = new Button(415, 550, images[36], images[37], 132, 60, menuItems);
+    btnCampos = new Button(655, 300, images[38], images[39], 360, 90, menuItems);
+    btnCamposPequenyos = new Button(655, 350, images[40], images[41], 150, 125, menuItems);
     mongodb = new dbButton(440, 340, images[28], images[29], images[30], 231, 346, globalGroup, false);
     sqlite = new dbButton(740, 340, images[31], images[32], images[33], 231, 346, globalGroup, true);
     creditosTexto = new Decoration(400, 230, images[24], globalGroup);
     mainMenu = new State("mainMenu", images[3]);
     listMenu = new State("listMenu", images[14], mainMenu);
+    addMenu = new State("addMenu", images[14], mainMenu);
     bddMenu = new State("bddMenu", images[25], mainMenu);
     creditsMenu = new State("creditsMenu", images[21], mainMenu);
     pokeState = mainMenu;
@@ -147,6 +165,17 @@ var pokedex = {
                         btnAtras.normal = images[15];
                         btnAtras.hover = images[16];
                     }
+                    if (pokedex.clickX > addPoke.x + addPoke.group.x && pokedex.clickX < addPoke.x + addPoke.group.x + addPoke.width && pokedex.clickY > addPoke.y + addPoke.group.y && pokedex.clickY < addPoke.y + addPoke.group.y + addPoke.height) {
+                        pokeball_izq.cycleDone = false;
+                        pokeball_der.cycleDone = false;
+                        inAnimation = true;
+                        nextPokeState = addMenu;
+                        //Cambiar aspecto del boton atras para que coincida con el del menu
+                        btnAtras.normal = images[15];
+                        btnAtras.hover = images[16];
+                        btnAddFoto.normal = images[34];
+                        btnAddFoto.hover = images[35];
+                    }
                     //XML Download onClick
                     else if (pokedex.clickX > xmlDownload.x + xmlDownload.group.x && pokedex.clickX < xmlDownload.x + xmlDownload.group.x + xmlDownload.width && pokedex.clickY > xmlDownload.y + xmlDownload.group.y && pokedex.clickY < xmlDownload.y + xmlDownload.group.y + xmlDownload.height) {
                         download("prueba.xml","¡Capturalos a todos!");
@@ -182,6 +211,8 @@ var pokedex = {
                     }
                     switch (pokeState.name) {
                         case "listMenu":                            
+                            break;
+                        case "addMenu":                            
                             break;
                         case "bddMenu":  
                             if (pokedex.clickX > mongodb.x + mongodb.group.x && pokedex.clickX < mongodb.x + mongodb.group.x + mongodb.width && pokedex.clickY > mongodb.y + mongodb.group.y && pokedex.clickY < mongodb.y + mongodb.group.y + mongodb.height) {
@@ -231,6 +262,13 @@ function updatePokedex() {
             break;
         case "listMenu":
             btnAtras.update();
+            break;
+        case "addMenu":
+            btnAtras.update();
+            btnAddFoto.update();
+            btnTipos.update();
+            btnCampos.update();
+            btnCamposPequenyos.update();
             break;
         case "bddMenu":
             btnAtras.update();
