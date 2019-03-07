@@ -48,15 +48,15 @@ preload(
     "img/BDD/mongodbSelected.png", //...............30
     "img/BDD/sqlite.png", //________________________31
     "img/BDD/sqliteHover.png", //...................32
-    "img/BDD/sqliteSelected.png", //_________________33
-    "img/Anyadir/anyadirImg.png", //_________________34
-    "img/Anyadir/anyadirImgHover.png", //_________________35
-    "img/Anyadir/tipos.png", //_________________36
-    "img/Anyadir/tiposHover.png", //_________________37
-    "img/Anyadir/campos.png", //_________________38
-    "img/Anyadir/camposHover.png", //_________________39
-    "img/Anyadir/camposPequenyos.png", //_________________40
-    "img/Anyadir/camposPequenyosHover.png" //_________________41
+    "img/BDD/sqliteSelected.png", //________________33
+    "img/Anyadir/anyadirImg.png", //................34
+    "img/Anyadir/anyadirImgHover.png", //___________35
+    "img/Anyadir/tipos.png", //.....................36
+    "img/Anyadir/tiposHover.png", //________________37
+    "img/Anyadir/campos.png", //....................38
+    "img/Anyadir/camposHover.png", //_______________39
+    "img/Anyadir/camposPequenyos.png", //...........40
+    "img/Anyadir/camposPequenyosHover.png" //_______41
 )
 
 //Variables globales
