@@ -8,6 +8,7 @@
 /*El div con scroll y la fuente*/
 .listaPokemon {
 	position: absolute;
+	visibility: hidden;
 	top: 330px;
 	left: 350px;
 	width: 250px;
@@ -36,12 +37,6 @@
 	vertical-align: sub;
 }
 
-/*Contorno del texto para mejorar la legibilidad*/
-.listaPokemon span {
-	-webkit-text-stroke-width: 0.5px;
-  	-webkit-text-stroke-color: black;
-}
-
 /*personalizar la barra de scroll*/
 .listaPokemon::-webkit-scrollbar {
 	width: 7px;
@@ -54,6 +49,7 @@
 
 /*Los estilos de los filtros de la lista pokemon*/
 	.multiselect {
+		visibility: hidden;
         width: 400px;
         position:absolute;
         left: 665px;
@@ -123,6 +119,7 @@
 	}
 
 	.ordenLista {
+		visibility: hidden;
 		position: absolute;
 		left: 665px;
 		top: 380px;

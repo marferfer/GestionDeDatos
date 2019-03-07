@@ -84,6 +84,7 @@ var creditosTexto;
 //Locks and Flags
 var inAnimation = false;
 var dbSelected = 'sqlite';
+var canShowList = false;
 
 //Estados/menus de la pokedex
 var mainMenu;
@@ -140,7 +141,7 @@ var pokedex = {
     canvas : document.createElement("canvas"),
     start : function() {
         this.canvas.width = 1400;
-        this.canvas.height = 1000;
+        this.canvas.height = 900;
         this.context = this.canvas.getContext("2d");
         document.body.insertBefore(this.canvas, document.body.childNodes[0]);
         this.interval = setInterval(updatePokedex, 20);
@@ -208,6 +209,10 @@ var pokedex = {
                         pokeball_der.cycleDone = false;
                         inAnimation = true;
                         nextPokeState = pokeState.father;
+                        document.getElementById("listaPokemon").style.visibility = "hidden";
+                        document.getElementById("multiselect").style.visibility = "hidden";
+                        document.getElementById("ordenLista").style.visibility = "hidden";
+                        canShowList = false;
                     }
                     switch (pokeState.name) {
                         case "listMenu":                            
@@ -262,6 +267,11 @@ function updatePokedex() {
             break;
         case "listMenu":
             btnAtras.update();
+            if (nextPokeState.name === "listMenu" && canShowList) {
+                document.getElementById("listaPokemon").style.visibility = "visible";
+                document.getElementById("multiselect").style.visibility = "visible";
+                document.getElementById("ordenLista").style.visibility = "visible";
+            }
             break;
         case "addMenu":
             btnAtras.update();
@@ -300,6 +310,11 @@ function updatePokedex() {
 
 function changeState() {
     pokeState = nextPokeState; 
+    if (nextPokeState.name === "listMenu") {
+        setTimeout(function() {
+            canShowList = true;
+        }, 1000);
+    }
 }   
 
 //By Carlos Delgado. https://ourcodeworld.com/articles/read/189/how-to-create-a-file-and-generate-a-download-with-javascript-in-the-browser-without-a-server
