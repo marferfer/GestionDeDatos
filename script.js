@@ -113,9 +113,25 @@ function startPokedex() {
     arrowIzq = new ArrowButton(226, 275, images[12], images[13], 49, 50, pokegroup_izq);
     btnAtras = new Button(315, 300, images[15], images[16], 76, 48, globalGroup);
     btnAddFoto = new Button(415, 300, images[34], images[35], 182, 182, menuItems);
-    btnTipos = new Button(415, 550, images[36], images[37], 132, 60, menuItems);
-    btnCampos = new Button(655, 300, images[38], images[39], 360, 90, menuItems);
-    btnCamposPequenyos = new Button(655, 350, images[40], images[41], 150, 125, menuItems);
+    btnTipos = new Button(365, 500, images[36], images[37], 132, 60, menuItems);
+    btnTipos1 = new Button(500, 500, images[36], images[37], 132, 60, menuItems);
+    
+    btnCampos = new Button(655, 300, images[38], images[39], 360, 90, menuItems); 
+    btnCamposPeso = new Button(670, 350, images[40], images[41], 150, 125, menuItems);
+    btnCamposNat = new Button(830, 350, images[40], images[41], 150, 125, menuItems);
+    btnCamposAta = new Button(670, 410, images[40], images[41], 150, 125, menuItems);
+    btnCamposAtaEsp = new Button(830, 410, images[40], images[41], 150, 125, menuItems);
+    btnCamposDef = new Button(670, 470, images[40], images[41], 150, 125, menuItems);
+    btnCamposDefEsp = new Button(830, 470, images[40], images[41], 150, 125, menuItems);
+    btnCamposVel = new Button(670, 530, images[40], images[41], 150, 125, menuItems);
+    btnCamposHP = new Button(830, 530, images[40], images[41], 150, 125, menuItems);
+    btnCamposItem = new Button(670, 600, images[38], images[39], 360, 90, menuItems);
+    btnCamposMov1 = new Button(330, 530, images[40], images[41], 150, 125, menuItems);
+    btnCamposMov2 = new Button(480, 530, images[40], images[41], 150, 125, menuItems);
+    btnCamposMov3 = new Button(330, 595, images[40], images[41], 150, 125, menuItems);
+    btnCamposMov4 = new Button(480, 595, images[40], images[41], 150, 125, menuItems);
+
+    btnAnyadir = new Button(630, 680, images[36], images[37], 132, 60, menuItems);
     mongodb = new dbButton(440, 340, images[28], images[29], images[30], 231, 346, globalGroup, false);
     sqlite = new dbButton(740, 340, images[31], images[32], images[33], 231, 346, globalGroup, true);
     creditosTexto = new Decoration(400, 230, images[24], globalGroup);
@@ -292,8 +308,22 @@ function updatePokedex() {
             btnAtras.update();
             btnAddFoto.update();
             btnTipos.update();
+            btnTipos1.update();
+            btnAnyadir.update();
             btnCampos.update();
-            btnCamposPequenyos.update();
+            btnCamposPeso.update();
+            btnCamposNat.update();
+            btnCamposAta.update();
+            btnCamposAtaEsp.update();
+            btnCamposDef.update();
+            btnCamposDefEsp.update();
+            btnCamposVel.update();
+            btnCamposHP.update();
+            btnCamposItem.update();
+            btnCamposMov1.update();
+            btnCamposMov2.update();
+            btnCamposMov3.update();
+            btnCamposMov4.update();
             break;
         case "bddMenu":
             btnAtras.update();
