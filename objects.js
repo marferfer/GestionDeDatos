@@ -115,7 +115,7 @@ function Button(x, y, normalImage, hoverImage, width, height, group) {
     this.update = function() { 
         ctx = pokedex.context;
         //Button Hover
-        if (pokedex.mouseX > this.x + this.group.x && pokedex.mouseX < this.x + this.group.x + this.width && pokedex.mouseY > this.y + this.group.y && pokedex.mouseY < this.y + this.group.y + this.height) {
+        if (pokedex.mouseX > this.x + this.group.x && pokedex.mouseX < this.x + this.group.x + this.width && pokedex.mouseY > this.y + this.group.y && pokedex.mouseY < this.y + this.group.y + this.height && pokedex.mouseX > 322 && pokedex.mouseX < 1090) {
         	if (!inAnimation) this.img = this.hover;
         }
         else {

@@ -25,38 +25,38 @@ preload(
     "img/AddHover.png", //__________________________7
     "img/XML.png", //...............................8
     "img/XMLHover.png", //__________________________9
-    "img/arrow.png", //.............................10
-    "img/arrowHover.png", //________________________11
-    "img/arrowIzq.png", //..........................12
-    "img/arrowHoverIzq.png", //_____________________13
-    "img/listaPokemon/FondoNaranja.png", //.........14
-    "img/listaPokemon/atras.png", //________________15
-    "img/listaPokemon/atrasHover.png", //...........16
-    "img/BDD.png", //_______________________________17
-    "img/BDDHover.png", //..........................18
-    "img/Creditos.png", //__________________________19
-    "img/CreditosHover.png", //.....................20
-    "img/creditos/FondoVerde.png", //_______________21
-    "img/creditos/atras.png", //....................22
-    "img/creditos/atrasHover.png", //_______________23
-    "img/creditos/creditos.png", //.................24
-    "img/BDD/FondoMorado.png", //___________________25
-    "img/BDD/atras.png", //.........................26
-    "img/BDD/atrasHover.png", //____________________27
-    "img/BDD/mongodb.png", //.......................28
-    "img/BDD/mongodbHover.png", //__________________29
-    "img/BDD/mongodbSelected.png", //...............30
-    "img/BDD/sqlite.png", //________________________31
-    "img/BDD/sqliteHover.png", //...................32
-    "img/BDD/sqliteSelected.png", //________________33
-    "img/Anyadir/anyadirImg.png", //................34
-    "img/Anyadir/anyadirImgHover.png", //___________35
-    "img/Anyadir/tipos.png", //.....................36
-    "img/Anyadir/tiposHover.png", //________________37
-    "img/Anyadir/campos.png", //....................38
-    "img/Anyadir/camposHover.png", //_______________39
-    "img/Anyadir/camposPequenyos.png", //...........40
-    "img/Anyadir/camposPequenyosHover.png" //_______41
+    "img/arrow.png", //............................10
+    "img/arrowHover.png", //_______________________11
+    "img/arrowIzq.png", //.........................12
+    "img/arrowHoverIzq.png", //____________________13
+    "img/listaPokemon/FondoNaranja.png", //........14
+    "img/listaPokemon/atras.png", //_______________15
+    "img/listaPokemon/atrasHover.png", //..........16
+    "img/BDD.png", //______________________________17
+    "img/BDDHover.png", //.........................18
+    "img/Creditos.png", //_________________________19
+    "img/CreditosHover.png", //....................20
+    "img/creditos/FondoVerde.png", //______________21
+    "img/creditos/atras.png", //...................22
+    "img/creditos/atrasHover.png", //______________23
+    "img/creditos/creditos.png", //................24
+    "img/BDD/FondoMorado.png", //__________________25
+    "img/BDD/atras.png", //........................26
+    "img/BDD/atrasHover.png", //___________________27
+    "img/BDD/mongodb.png", //......................28
+    "img/BDD/mongodbHover.png", //_________________29
+    "img/BDD/mongodbSelected.png", //..............30
+    "img/BDD/sqlite.png", //_______________________31
+    "img/BDD/sqliteHover.png", //..................32
+    "img/BDD/sqliteSelected.png", //_______________33
+    "img/Anyadir/anyadirImg.png", //...............34
+    "img/Anyadir/anyadirImgHover.png", //__________35
+    "img/Anyadir/tipos.png", //....................36
+    "img/Anyadir/tiposHover.png", //_______________37
+    "img/Anyadir/campos.png", //...................38
+    "img/Anyadir/camposHover.png", //______________39
+    "img/Anyadir/camposPequenyos.png", //..........40
+    "img/Anyadir/camposPequenyosHover.png" //______41
 )
 
 //Variables globales
@@ -169,7 +169,7 @@ var pokedex = {
             pokedex.clickX = e.pageX;
             pokedex.clickY = e.pageY;
 
-            if (!inAnimation) {
+            if (!inAnimation && pokedex.clickX > 322 && pokedex.clickX < 1090) {
                 //Dependiendo del estado/menu actual de la pokedex se comprobarán las funciones onclick de unos botones u otros
                 if (pokeState.name === "mainMenu") {
                     //ListaPokemon onClick
@@ -272,7 +272,7 @@ function updatePokedex() {
                 if (pokedex.mouseX > arrowDer.x + arrowDer.group.x && pokedex.mouseX < arrowDer.x + arrowDer.group.x + arrowDer.width && pokedex.mouseY > arrowDer.y + arrowDer.group.y && pokedex.mouseY < arrowDer.y + arrowDer.group.y + arrowDer.height) {
                     if (menuItems.x > -480) menuItems.x -= 6;
                 }
-                else if (pokedex.mouseX > arrowIzq.x + arrowIzq.group.x && pokedex.mouseX < arrowIzq.x + arrowIzq.group.x + arrowIzq.width && pokedex.mouseY > arrowIzq.y + arrowIzq.group.y && pokedex.mouseX < arrowIzq.y + arrowIzq.group.y + arrowIzq.height) {
+                else if (pokedex.mouseX > arrowIzq.x + arrowIzq.group.x && pokedex.mouseX < arrowIzq.x + arrowIzq.group.x + arrowIzq.width && pokedex.mouseY > arrowIzq.y + arrowIzq.group.y && pokedex.mouseY < arrowIzq.y + arrowIzq.group.y + arrowIzq.height) {
                     if (menuItems.x < 20) menuItems.x += 6;
                 }
             }
