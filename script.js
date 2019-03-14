@@ -111,7 +111,7 @@ function startPokedex() {
     creditos = new Button(1300, 400, images[19], images[20], 235, 251, menuItems);
     arrowDer = new ArrowButton(30, 275, images[10], images[11], 49, 50, pokegroup_der);
     arrowIzq = new ArrowButton(226, 275, images[12], images[13], 49, 50, pokegroup_izq);
-    btnAtras = new Button(315, 300, images[15], images[16], 76, 48, globalGroup);
+    btnAtras = new Button(315, 270, images[15], images[16], 76, 48, globalGroup);
     btnAddFoto = new Button(415, 300, images[34], images[35], 182, 182, menuItems);
     btnTipos = new Button(365, 500, images[36], images[37], 132, 60, menuItems);
     btnTipos1 = new Button(500, 500, images[36], images[37], 132, 60, menuItems);
@@ -136,10 +136,10 @@ function startPokedex() {
     sqlite = new dbButton(740, 340, images[31], images[32], images[33], 231, 346, globalGroup, true);
     creditosTexto = new Decoration(400, 230, images[24], globalGroup);
     mainMenu = new State("mainMenu", images[3]);
-    listMenu = new State("listMenu", images[14], mainMenu);
-    addMenu = new State("addMenu", images[14], mainMenu);
-    bddMenu = new State("bddMenu", images[25], mainMenu);
-    creditsMenu = new State("creditsMenu", images[21], mainMenu);
+    listMenu = new State("listMenu", images[3], mainMenu);
+    addMenu = new State("addMenu", images[3], mainMenu);
+    bddMenu = new State("bddMenu", images[3], mainMenu);
+    creditsMenu = new State("creditsMenu", images[3], mainMenu);
     pokeState = mainMenu;
     nextPokeState = mainMenu;
     pokedex.start();
@@ -178,20 +178,12 @@ var pokedex = {
                         pokeball_der.cycleDone = false;
                         inAnimation = true;
                         nextPokeState = listMenu;
-                        //Cambiar aspecto del boton atras para que coincida con el del menu
-                        btnAtras.normal = images[15];
-                        btnAtras.hover = images[16];
                     }
                     if (pokedex.clickX > addPoke.x + addPoke.group.x && pokedex.clickX < addPoke.x + addPoke.group.x + addPoke.width && pokedex.clickY > addPoke.y + addPoke.group.y && pokedex.clickY < addPoke.y + addPoke.group.y + addPoke.height) {
                         pokeball_izq.cycleDone = false;
                         pokeball_der.cycleDone = false;
                         inAnimation = true;
                         nextPokeState = addMenu;
-                        //Cambiar aspecto del boton atras para que coincida con el del menu
-                        btnAtras.normal = images[15];
-                        btnAtras.hover = images[16];
-                        btnAddFoto.normal = images[34];
-                        btnAddFoto.hover = images[35];
                     }
                     //XML Download onClick
                     else if (pokedex.clickX > xmlDownload.x + xmlDownload.group.x && pokedex.clickX < xmlDownload.x + xmlDownload.group.x + xmlDownload.width && pokedex.clickY > xmlDownload.y + xmlDownload.group.y && pokedex.clickY < xmlDownload.y + xmlDownload.group.y + xmlDownload.height) {
@@ -203,9 +195,6 @@ var pokedex = {
                         pokeball_der.cycleDone = false;
                         inAnimation = true;
                         nextPokeState = bddMenu;
-                        //Cambiar aspecto del boton atras para que coincida con el del menu
-                        btnAtras.normal = images[26];
-                        btnAtras.hover = images[27];
                     }
                     //Creditos onClick
                     if (pokedex.clickX > creditos.x + creditos.group.x && pokedex.clickX < creditos.x + creditos.group.x + creditos.width && pokedex.clickY > creditos.y + creditos.group.y && pokedex.clickY < creditos.y + creditos.group.y + creditos.height) {
@@ -213,9 +202,6 @@ var pokedex = {
                         pokeball_der.cycleDone = false;
                         inAnimation = true;
                         nextPokeState = creditsMenu;
-                        //Cambiar aspecto del boton atras para que coincida con el del menu
-                        btnAtras.normal = images[22];
-                        btnAtras.hover = images[23];
                     }
                 }
                 //El main menu va aparte

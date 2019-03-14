@@ -7,9 +7,16 @@
 
 .imgLista:hover .marcador{
 	cursor: default;
-    transform: rotate(360deg);
+    transform: rotate(-45deg);
     transition: all 0.3s ease-in-out 0s;
 }
+
+.marcador {
+	cursor: default;
+    transform: rotate(0deg);
+    transition: all 0.3s ease-in-out 0s;
+}
+
 
 /*///////////////////////////////////////////////////////////////////////*/
 /*///LISTA POKEMON //////////////////////////////////////////////////////*/
@@ -89,97 +96,97 @@
 /*///////////////////////////////////////////////////////////////////////*/
 
 /*Los estilos de los filtros de la lista pokemon*/
-	.multiselect {
-		visibility: hidden;
-        width: 400px;
-        position:absolute;
-        left: 665px;
-        top: 460px;
-    }
- 
-    .selectBox {
-        position: relative;
-    }
- 
-    .selectBox select {
-        width: 100%;
-        background: #8945;
-	    border: none;
-	    font-family: 'Arial';
-		font-size: 15px;
-		color: white;
-		letter-spacing: 1px;
-	    height: 35px;
-	    padding: 10px;
-    }
- 
-    .overSelect {
-        position: absolute;
-        left: 0;
-        right: 0;
-        top: 0;
-        bottom: 0;
-    }
- 
-    #checkboxes {
-        display: block;
-        border: 1px #D7DF01 solid;
-        position:absolute;
-        width:100%;
-        background-color:#8945;
-        box-sizing: border-box;
-        overflow-y:auto;
-        max-height:225px;
-    }
-    #checkboxes.hide {display:none;}
- 
- 	#checkboxes span{
- 		font-family: 'Arial';
- 		color: yellow;
- 		font-size: 20px;
- 		padding: 10px;
- 	}
+.multiselect {
+	visibility: hidden;
+    width: 400px;
+    position:absolute;
+    left: 665px;
+    top: 460px;
+}
 
-    #checkboxes label {
-        display: block;
-        font-family: 'Arial';
-        color:white;
-    }
- 
-    #checkboxes label:hover {
-        background-color: #1e90ff;
-    }
+.selectBox {
+    position: relative;
+}
 
-    #checkboxes::-webkit-scrollbar {
-		width: 7px;
-	}
+.selectBox select {
+    width: 100%;
+    background: #8945;
+    border: none;
+    font-family: 'Arial';
+	font-size: 15px;
+	color: white;
+	letter-spacing: 1px;
+    height: 35px;
+    padding: 10px;
+}
 
-	#checkboxes::-webkit-scrollbar-thumb {
-		background: #D7DF01;
-		border-radius: 5px;
-	}
+.overSelect {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+}
 
-	/*///////////////////////////////////////////////////////////////////////*/
-	/*///BOTON DE ORDEN /////////////////////////////////////////////////////*/
-	/*///////////////////////////////////////////////////////////////////////*/
+#checkboxes {
+    display: block;
+    border: 1px #D7DF01 solid;
+    position:absolute;
+    width:100%;
+    background-color:#8945;
+    box-sizing: border-box;
+    overflow-y:auto;
+    max-height:225px;
+}
+#checkboxes.hide {display:none;}
 
-	.ordenLista {
-		visibility: hidden;
-		position: absolute;
-		left: 665px;
-		top: 380px;
-	}
-
-	.ordenLista select {
-		color: white;
+	#checkboxes span{
 		font-family: 'Arial';
-		padding: 10px;
-		background: #8945;
-	}
-
-	.ordenLista.opciones {
-		color: white;
-		font-family: 'Arial';
-		background: #8945;
+		color: yellow;
+		font-size: 20px;
 		padding: 10px;
 	}
+
+#checkboxes label {
+    display: block;
+    font-family: 'Arial';
+    color:white;
+}
+
+#checkboxes label:hover {
+    background-color: #1e90ff;
+}
+
+#checkboxes::-webkit-scrollbar {
+	width: 7px;
+}
+
+#checkboxes::-webkit-scrollbar-thumb {
+	background: #D7DF01;
+	border-radius: 5px;
+}
+
+/*///////////////////////////////////////////////////////////////////////*/
+/*///BOTON DE ORDEN /////////////////////////////////////////////////////*/
+/*///////////////////////////////////////////////////////////////////////*/
+
+.ordenLista {
+	visibility: hidden;
+	position: absolute;
+	left: 665px;
+	top: 380px;
+}
+
+.ordenLista select {
+	color: white;
+	font-family: 'Arial';
+	padding: 10px;
+	background: #8945;
+}
+
+.ordenLista.opciones {
+	color: white;
+	font-family: 'Arial';
+	background: #8945;
+	padding: 10px;
+}
