@@ -5,6 +5,12 @@
   list-style-image: url('img/pokeListMark.gif');
 }
 
+.imgLista:hover .marcador{
+	cursor: default;
+    transform: rotate(360deg);
+    transition: all 0.3s ease-in-out 0s;
+}
+
 /*///////////////////////////////////////////////////////////////////////*/
 /*///LISTA POKEMON //////////////////////////////////////////////////////*/
 /*///////////////////////////////////////////////////////////////////////*/
@@ -21,10 +27,10 @@
 	padding: 20px;
 	background: #8945;
 	overflow: auto;
-	font-family: 'Pokemon Solid';
+	font-family: 'Sniglet';
 	font-size: 17px;
 	color: white;
-	letter-spacing: 3px;
+	letter-spacing: 2px;
 	border-radius: 4px;
 }
 
@@ -49,6 +55,33 @@
 .listaPokemon::-webkit-scrollbar-thumb {
 	background: #D7DF01;
 	border-radius: 5px;
+}
+
+/* Under */
+.under {
+  display: inline-block;
+  vertical-align: middle;
+  transform: perspective(1px);
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+
+.under:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 100%;
+  bottom: 0;
+  background: red;
+  height: 2px;
+  transition-property: right;
+  transition-duration: 0.2s;
+  transition-timing-function: ease-out;
+}
+
+.under:hover:before, .under:focus:before, .under:active:before {
+  right: 0;
 }
 
 /*///////////////////////////////////////////////////////////////////////*/
