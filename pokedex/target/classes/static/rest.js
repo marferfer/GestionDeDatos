@@ -2,7 +2,6 @@ function loadPokemons(callback) {
     $.ajax({
         url: 'http://localhost:8080/pokemon/'
     }).done(function (pokemons) {
-        ////console.log('Items loaded: ' + JSON.stringify(items));
         callback(pokemons);
     })
 }
@@ -11,54 +10,36 @@ function loadPokemons(callback) {
 function createPokemon(pokemon, callback) {
     $.ajax({
         method: "POST",
-        url: 'https://coba-ia.herokuapp.com/items',
-        data: JSON.stringify(item),
+        url: 'http://localhost:8080/pokemon/',
+        data: JSON.stringify(pokemon),
         processData: false,
         headers: {
             "Content-Type": "application/json"
         }
-    }).done(function (item) {
-        //console.log("Item created: " + JSON.stringify(item));
-        callback(item);
+    }).done(function (pokemon) {
+        callback(pokemon);
     })
 }
 
 //Update item in server
-function updateItem(item) {
+function updateItem(pokemon) {
     $.ajax({
         method: 'PUT',
-        url: 'https://coba-ia.herokuapp.com/items/' + item.id,
-        data: JSON.stringify(item),
+        url: 'http://localhost:8080/pokemon/' + pokemon.id,
+        data: JSON.stringify(pokemon),
         processData: false,
         headers: {
             "Content-Type": "application/json"
         }
-    }).done(function (item) {
-        ////console.log("Updated item: " + JSON.stringify(item))
+    }).done(function (pokemon) {
     })
 }
 
 //Delete item from server
-function deleteItem(itemId) {
+function deleteItem(pokemonId) {
     $.ajax({
         method: 'DELETE',
-        url: 'https://coba-ia.herokuapp.com/items/' + itemId
-    }).done(function (item) {
-        //console.log("Deleted item " + itemId)
+        url: 'http://localhost:8080/pokemon/' + pokemonId
+    }).done(function (pokemon) {
     })
-}
-
-//Show item in page
-function showItem(item) {
-
-    var checked = '';
-    var style = '';
-
-    if (item.checked) {
-        checked = 'checked';
-        style = 'style="text-decoration:line-through"';
-    }
-
-    $('#info').append(
-        '<li onclick="llamarconsola()" id="item-"' + item.id + '" class="nav-item"><span>' + item.description + ' <i class="fa fa-send"></i></span></li>')
 }
