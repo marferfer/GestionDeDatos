@@ -178,7 +178,20 @@ var pokedex = {
                         pokeball_der.cycleDone = false;
                         inAnimation = true;
                         nextPokeState = listMenu;
+                        var lista = document.getElementById("listaPokemon");
+                        lista.innerHTML = "";
+                        loadPokemons(function(pokemons) {
+                        	for (var p in pokemons) {
+                        		$('#listaPokemon').append(
+                        				'<div id="' + pokemons[p].split("-")[0] + '" class="imgLista">' +
+                        				  '<img class="marcador" src="img/pokeListMark.gif"/>' +
+                        				  '<span class="under">' + pokemons[p].split("-")[1] + '</span>' +
+                        				'</div>');
+                        	}
+                        });
+                        
                     }
+                    //AddPoke onClick
                     if (pokedex.clickX > addPoke.x + addPoke.group.x && pokedex.clickX < addPoke.x + addPoke.group.x + addPoke.width && pokedex.clickY > addPoke.y + addPoke.group.y && pokedex.clickY < addPoke.y + addPoke.group.y + addPoke.height) {
                         pokeball_izq.cycleDone = false;
                         pokeball_der.cycleDone = false;

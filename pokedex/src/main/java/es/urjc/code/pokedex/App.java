@@ -1,4 +1,4 @@
-package es.urjc.code.juegosenred;
+package es.urjc.code.pokedex;
 
 import org.bson.BsonDocument;
 import org.springframework.boot.SpringApplication;
@@ -12,7 +12,7 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 
 @SpringBootApplication
-public class RestEjer1ConUiApplication {
+public class App {
 
 	public static void main(String[] args) {
 		MongoClientOptions options = MongoClientOptions.builder().connectionsPerHost(100).build();
@@ -20,6 +20,6 @@ public class RestEjer1ConUiApplication {
 
         MongoDatabase db = client.getDatabase("test").withReadPreference(ReadPreference.secondary());
         MongoCollection<BsonDocument> coll = db.getCollection("test", BsonDocument.class); //generic interface
-		SpringApplication.run(RestEjer1ConUiApplication.class, args);
+		SpringApplication.run(App.class, args);
 	}
 }
