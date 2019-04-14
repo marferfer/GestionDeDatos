@@ -1,6 +1,19 @@
-function loadPokemons(callback) {
+function loadPokemons(order, callback) {
     $.ajax({
-        url: 'http://localhost:8080/pokemon/'
+        url: 'http://localhost:8080/pokemon/',
+        data: JSON.stringify(order),
+        processData: false,
+        headers: {
+            "Content-Type": "application/json"
+        }
+    }).done(function (pokemons) {
+        callback(pokemons);
+    })
+}
+
+function loadPokemon(order, callback) {
+    $.ajax({
+        url: 'http://localhost:8080/pokemon/' + order
     }).done(function (pokemons) {
         callback(pokemons);
     })

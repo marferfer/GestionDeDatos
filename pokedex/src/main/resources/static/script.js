@@ -178,9 +178,15 @@ var pokedex = {
                         pokeball_der.cycleDone = false;
                         inAnimation = true;
                         nextPokeState = listMenu;
-                        var lista = document.getElementById("listaPokemon");
-                        lista.innerHTML = "";
-                        loadPokemons(function(pokemons) {
+                        var order = {
+                        		orden: "ascendente",
+                        		generacion: "",
+                        		tipo: "",
+                        		legendario: false 
+                        }
+                        loadPokemon(JSON.stringify(order), function(pokemons) {
+                        	var lista = document.getElementById("listaPokemon");
+                            lista.innerHTML = "";
                         	for (var p in pokemons) {
                         		$('#listaPokemon').append(
                         				'<div id="' + pokemons[p].split("-")[0] + '" class="imgLista">' +
