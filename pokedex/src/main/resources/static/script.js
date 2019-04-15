@@ -14,6 +14,21 @@ function preload() {
     }
 }
 
+function load(){
+	var latch = load.arguments.length
+    for (i = 0; i < load.arguments.length; i++) {
+        images[i] = new Image();
+        images[i].src = load.arguments[i];
+        images[i].onload = function() {
+            latch--;
+            if(latch <= 0) {
+                startPokedex();
+            }
+        }
+    }
+}
+
+
 preload(
     "img/interfaz.png", //..........................0
     "img/pokeball_izq.png", //______________________1
@@ -57,6 +72,7 @@ preload(
     "img/Anyadir/camposHover.png", //______________39
     "img/Anyadir/camposPequenyos.png", //..........40
     "img/Anyadir/camposPequenyosHover.png" //______41
+    
 )
 
 //Variables globales
@@ -80,6 +96,7 @@ var btnCamposPequenyos;
 var bdd;
 var creditos;
 var creditosTexto;
+var pokemonElegido;
 
 //Locks and Flags
 var inAnimation = false;
@@ -91,9 +108,12 @@ var mainMenu;
 var listMenu;
 var addMenu;
 var bddMenu;
+var showPokemon;
 var creditsMenu;
 var pokeState; //Estado/menu actual de la pokedex
 var nextPokeState; //Siguiente estado de la pokedex
+
+
 
 //inicialización de variables
 function startPokedex() {
@@ -140,6 +160,7 @@ function startPokedex() {
     addMenu = new State("addMenu", images[3], mainMenu);
     bddMenu = new State("bddMenu", images[3], mainMenu);
     creditsMenu = new State("creditsMenu", images[3], mainMenu);
+    showPokemon = new State("showPokemon", images[3], mainMenu);
     pokeState = mainMenu;
     nextPokeState = mainMenu;
     pokedex.start();
@@ -150,6 +171,7 @@ function startPokedex() {
     inAnimation = true;
     pokegroup_izq.x = 398;
     pokegroup_der.x = 692;
+    
 }
 
 //Gestion del canvas
@@ -236,7 +258,24 @@ var pokedex = {
                         canShowList = false;
                     }
                     switch (pokeState.name) {
-                        case "listMenu":                            
+                        case "listMenu":
+                        	if (pokedex.clickX > listaPokemon.x + listaPokemon.group.x && pokedex.clickX < listaPokemon.x + listaPokemon.group.x + listaPokemon.width && pokedex.clickY > listaPokemon.y + listaPokemon.group.y && pokedex.clickY < listaPokemon.y + listaPokemon.group.y + listaPokemon.height) {
+                        		var pokemonNum = document.getElementById("listaPokemon");
+                        		var child = pokemonNum.firstChild;
+                        		loadPokemon(child.id, function(pokemons) {
+                        			//Asignar pokemon clickado para el estado de ShowPokemon
+                                	pokemonElegido = child.id;
+                                	pokeball_izq.cycleDone = false;
+                                    pokeball_der.cycleDone = false;
+                                    inAnimation = true;
+                                    //Cambio a visualizar pokemon
+                                    nextPokeState = showPokemon;
+                                    document.getElementById("listaPokemon").style.visibility = "hidden";
+                                    document.getElementById("multiselect").style.visibility = "hidden";
+                                    document.getElementById("ordenLista").style.visibility = "hidden";
+                                });
+                        	}
+                        	
                             break;
                         case "addMenu":
                             if (pokedex.clickX > btnAddFoto.x + btnAddFoto.group.x && pokedex.clickX < btnAddFoto.x + btnAddFoto.group.x + btnAddFoto.width && pokedex.clickY > btnAddFoto.y + btnAddFoto.group.y && pokedex.clickY < btnAddFoto.y + btnAddFoto.group.y + btnAddFoto.height) {
@@ -267,6 +306,14 @@ var pokedex = {
                                 dbSelected = 'sqlite';
                             }                  
                             break;
+                        case "showPokemon":
+                        	
+                        	//Boton de volver cambia a ListMenu
+                        	if (pokedex.clickX > btnAtras.x + btnAtras.group.x && pokedex.clickX < btnAtras.x + btnAtras.group.x + btnAtras.width && pokedex.clickY > btnAtras.y + btnAtras.group.y && pokedex.clickY < btnAtras.y + btnAtras.group.y + btnAtras.height) {
+                        		
+                        		nextPokeState = listMenu;
+                        	}
+                        	break;
                         default:
                             break;
                     }
@@ -315,6 +362,52 @@ function updatePokedex() {
             btnTipos.update();
             btnTipos1.update();
             btnAnyadir.update();
+            btnCampos.update();
+            btnCamposPeso.update();
+            btnCamposNat.update();
+            btnCamposAta.update();
+            btnCamposAtaEsp.update();
+            btnCamposDef.update();
+            btnCamposDefEsp.update();
+            btnCamposVel.update();
+            btnCamposHP.update();
+            btnCamposItem.update();
+            btnCamposMov1.update();
+            btnCamposMov2.update();
+            btnCamposMov3.update();
+            btnCamposMov4.update();
+            break;
+        case "showPokemon":
+        	//console.log(pokemonElegido);
+        	loadPokemon(pokemonElegido,function(pokemonE){
+        		
+        		var p=JSON.parse(pokemonE);
+        		document.getElementById("nameP").innerHTML = p.name;
+        		document.getElementById("tipoP").innerHTML = p.name;
+        		document.getElementById("tipo1P").innerHTML = p.name;
+        		document.getElementById("mov1P").innerHTML = p.name;
+        		document.getElementById("mov2P").innerHTML = p.name;
+        		document.getElementById("mov3P").innerHTML = p.name;
+        		document.getElementById("mov4P").innerHTML = p.name;
+        		
+        		document.getElementById("photoP").innerHTML = p.name;
+        		document.getElementById("itemP").innerHTML = p.name;
+        		document.getElementById("vidaP").innerHTML = p.name;
+        		document.getElementById("velP").innerHTML = p.name;
+        		document.getElementById("pesoP").innerHTML = p.name;
+        		document.getElementById("natuP").innerHTML = p.name;
+        		document.getElementById("ataP").innerHTML = p.name;
+        		document.getElementById("ataEP").innerHTML = p.name;
+        		document.getElementById("defP").innerHTML = p.name;
+        		document.getElementById("defEP").innerHTML = p.name;
+        		//CAMPOS ??
+        		//document.getElementById("mov4P").innerHTML = p.name;
+        	});
+        	document.getElementById("atributos").style.visibility = "visible";
+            btnAtras.update();
+            btnAddFoto.update();
+            btnTipos.update();
+            btnTipos1.update();
             btnCampos.update();
             btnCamposPeso.update();
             btnCamposNat.update();

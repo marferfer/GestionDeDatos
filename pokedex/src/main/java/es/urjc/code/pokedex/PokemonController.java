@@ -44,7 +44,7 @@ public class PokemonController {
 		 * if (order.getOrden() == "ascendente") { Bson sort = new Document("name", 1);
 		 * }
 		 */
-		System.out.println(order);
+		//System.out.println(order);
 		List<String> pokemons = new LinkedList<>();
 		for (Pokemon p : repository.findAll()) {
 			String name = p.get_id() + "-" + p.getName();
@@ -62,7 +62,7 @@ public class PokemonController {
 	public List<String> getPokemonById(@PathVariable("id") String id) {
 		List<String> pokemons = new LinkedList<>();
 		if (id.substring(0, 1).equals("5")) { //Comprobar si es un id
-			System.out.println(id.charAt(0));
+			//System.out.println(id.charAt(0));
 			ObjectId _id = new ObjectId(id);
 			Gson g = new Gson();
 			String pokemon = g.toJson(repository.findBy_id(_id));
@@ -84,6 +84,7 @@ public class PokemonController {
 				String objId = "" + p.get("_id");
 				String name = "" + p.get("name");
 				String str = objId.split("=")[1].split("}")[0] + "-" + name.split("'")[1];
+				
 				pokemons.add(str);
 			}
 		}

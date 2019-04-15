@@ -72,6 +72,7 @@
   position: relative;
   overflow: hidden;
   margin-bottom: 8px;
+  cursor: pointer;
 }
 
 .under:before {
@@ -89,6 +90,22 @@
 
 .under:hover:before, .under:focus:before, .under:active:before {
   right: 0;
+}
+
+.name {
+	position: absolute;
+	top: 270px;
+	left: 700px;
+	width: 250px;
+	height: 300px;
+	margin: 50px auto;
+	padding: 20px;
+	overflow: auto;
+	font-family: 'Sniglet';
+	font-size: 25px;
+	color: white;
+	letter-spacing: 2px;
+	cursor: context-menu;
 }
 
 /*///////////////////////////////////////////////////////////////////////*/
