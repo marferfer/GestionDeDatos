@@ -331,6 +331,7 @@ var pokedex = {
                         	if (pokedex.clickX > btnAtras.x + btnAtras.group.x && pokedex.clickX < btnAtras.x + btnAtras.group.x + btnAtras.width && pokedex.clickY > btnAtras.y + btnAtras.group.y && pokedex.clickY < btnAtras.y + btnAtras.group.y + btnAtras.height) {
                         		document.getElementById("atributos").style.visibility = "hidden";
                         		nextPokeState = listMenu;
+                        		//document.getElementById("atributos").innerHTML = '';
                         	}
                         	break;
                         default:
