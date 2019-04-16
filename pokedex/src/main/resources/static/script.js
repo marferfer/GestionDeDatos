@@ -328,9 +328,9 @@ var pokedex = {
                         case "showPokemon":
                         	
                         	//Boton de volver cambia a ListMenu
-                        	if (pokedex.clickX > btnAtras.x + btnAtras.group.x && pokedex.clickX < btnAtras.x + btnAtras.group.x + btnAtras.width && pokedex.clickY > btnAtras.y + btnAtras.group.y && pokedex.clickY < btnAtras.y + btnAtras.group.y + btnAtras.height) {
-                        		
+                        	if (pokedex.clickX > btnAtras.x + btnAtras.group.x && pokedex.clickX < btnAtras.x + btnAtras.group.x + btnAtras.width && pokedex.clickY > btnAtras.y + btnAtras.group.y && pokedex.clickY < btnAtras.y + btnAtras.group.y + btnAtras.height) {                               
                         		nextPokeState = listMenu;
+                        		//document.getElementById("atributos").innerHTML = '';
                         	}
                         	break;
                         default:
@@ -403,23 +403,22 @@ function updatePokedex() {
         		
         		var p=JSON.parse(pokemonE);
         		document.getElementById("nameP").innerHTML = p.name;
-        		document.getElementById("tipoP").innerHTML = p.name;
-        		document.getElementById("tipo1P").innerHTML = p.name;
-        		document.getElementById("mov1P").innerHTML = p.name;
-        		document.getElementById("mov2P").innerHTML = p.name;
-        		document.getElementById("mov3P").innerHTML = p.name;
-        		document.getElementById("mov4P").innerHTML = p.name;
-        		
-        		document.getElementById("photoP").innerHTML = p.name;
-        		document.getElementById("itemP").innerHTML = p.name;
-        		document.getElementById("vidaP").innerHTML = p.name;
-        		document.getElementById("velP").innerHTML = p.name;
-        		document.getElementById("pesoP").innerHTML = p.name;
-        		document.getElementById("natuP").innerHTML = p.name;
-        		document.getElementById("ataP").innerHTML = p.name;
-        		document.getElementById("ataEP").innerHTML = p.name;
-        		document.getElementById("defP").innerHTML = p.name;
-        		document.getElementById("defEP").innerHTML = p.name;
+        		document.getElementById("tipoP").innerHTML = p.type1;
+        		document.getElementById("tipo1P").innerHTML = p.type2;
+        		document.getElementById("mov1P").innerHTML = p.abilities[0];
+        		document.getElementById("mov2P").innerHTML = p.abilities[1];
+        		document.getElementById("mov3P").innerHTML = p.abilities[2];
+        		document.getElementById("mov4P").innerHTML = p.abilities[3];
+        		document.getElementById("photoP").src = p.photos[0];
+        		//document.getElementById("itemP").innerHTML = p.name;
+        		document.getElementById("vidaP").innerHTML = p.hp;
+        		document.getElementById("velP").innerHTML = p.speed;
+        		document.getElementById("pesoP").innerHTML = p.weight_kg;
+        		document.getElementById("natuP").innerHTML = p.classfication;
+        		document.getElementById("ataP").innerHTML = p.attack;
+        		document.getElementById("ataEP").innerHTML = p.sp_attack;
+        		document.getElementById("defP").innerHTML = p.defense;
+        		document.getElementById("defEP").innerHTML = p.sp_defense;
         		//CAMPOS ??
         		//document.getElementById("mov4P").innerHTML = p.name;
         	});

@@ -92,12 +92,10 @@
   right: 0;
 }
 
-.name {
+.atrib {
 	position: absolute;
-	top: 270px;
-	left: 700px;
 	width: 250px;
-	height: 300px;
+	height: auto;
 	margin: 50px auto;
 	padding: 20px;
 	overflow: auto;
@@ -107,6 +105,98 @@
 	letter-spacing: 2px;
 	cursor: context-menu;
 }
+
+.name {
+	top: 270px;
+	left: 700px;
+}
+
+.tipo {
+	top: 450px;
+	left: 365px;
+}
+
+.tipo1 {
+	top: 450px;
+	left: 500px;
+}
+
+.mov1 {
+	top: 510px;
+	left: 340px;
+	font-size: 17px;
+}
+
+.mov2 {
+	top: 510px;
+	left: 500px;
+	font-size: 17px;
+}
+
+.mov3 {
+	top: 580px;
+	left: 340px;
+	font-size: 17px;
+}
+
+.mov4 {
+	top: 580px;
+	left: 500px;
+	font-size: 17px;
+}
+
+.photo {
+	top: 270px;
+	left: 700px;
+}
+
+.vida {
+	top: 445px;
+	left: 730px;
+}
+
+.vel {
+	top: 445px;
+	left: 890px;
+}
+
+.peso {
+	top: 505px;
+	left: 730px;
+}
+
+.natu {
+	top: 570px;
+	left: 720px;
+	font-size: 17px;
+	width: auto;
+}
+
+.ata {
+	top: 325px;
+	left: 730px;
+}
+
+.ataE {
+	top: 385px;
+	left: 730px;
+}
+
+.def {
+	top: 325px;
+	left: 890px;
+}
+
+.defE {
+	top: 385px;
+	left: 890px;
+}
+
+.photoP{
+	
+}
+
+
 
 /*///////////////////////////////////////////////////////////////////////*/
 /*///FILTROS/////////////////////////////////////////////////////////////*/
