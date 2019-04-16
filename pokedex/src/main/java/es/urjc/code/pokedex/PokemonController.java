@@ -77,7 +77,7 @@ public class PokemonController {
 	        Gson g = new Gson(); 
 	        Order order = g.fromJson(id, Order.class);
 	        Bson sort = new Document("name", 1);
-	        if (order.getOrden().equals("descendente")) {
+	        if (order.getOrden().equals("Descendente")) {
 				sort = new Document("name", -1);
 			}
 			for (BsonDocument p : coll.find().sort(sort)) {

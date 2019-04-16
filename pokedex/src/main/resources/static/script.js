@@ -71,8 +71,9 @@ preload(
     "img/Anyadir/campos.png", //...................38
     "img/Anyadir/camposHover.png", //______________39
     "img/Anyadir/camposPequenyos.png", //..........40
-    "img/Anyadir/camposPequenyosHover.png" //______41
-    
+    "img/Anyadir/camposPequenyosHover.png", //_____41
+    "img/search.png", //...........................42
+    "img/search_hover.png" //______________________43
 )
 
 //Variables globales
@@ -97,6 +98,7 @@ var bdd;
 var creditos;
 var creditosTexto;
 var pokemonElegido;
+var btnSearch;
 
 //Locks and Flags
 var inAnimation = false;
@@ -135,6 +137,7 @@ function startPokedex() {
     btnAddFoto = new Button(415, 300, images[34], images[35], 182, 182, globalGroup);
     btnTipos = new Button(365, 500, images[36], images[37], 132, 60, globalGroup);
     btnTipos1 = new Button(500, 500, images[36], images[37], 132, 60, globalGroup);
+    btnSearch = new Button(800, 370, images[42], images[43], 50, 50, globalGroup);
     
     btnCampos = new Button(655, 300, images[38], images[39], 360, 90, globalGroup); 
     btnCamposPeso = new Button(670, 350, images[40], images[41], 150, 125, globalGroup);
@@ -259,23 +262,39 @@ var pokedex = {
                     }
                     switch (pokeState.name) {
                         case "listMenu":
-                        	if (pokedex.clickX > listaPokemon.x + listaPokemon.group.x && pokedex.clickX < listaPokemon.x + listaPokemon.group.x + listaPokemon.width && pokedex.clickY > listaPokemon.y + listaPokemon.group.y && pokedex.clickY < listaPokemon.y + listaPokemon.group.y + listaPokemon.height) {
-                        		var pokemonNum = document.getElementById("listaPokemon");
-                        		var child = pokemonNum.firstChild;
-                        		loadPokemon(child.id, function(pokemons) {
-                        			//Asignar pokemon clickado para el estado de ShowPokemon
-                                	pokemonElegido = child.id;
-                                	pokeball_izq.cycleDone = false;
-                                    pokeball_der.cycleDone = false;
-                                    inAnimation = true;
-                                    //Cambio a visualizar pokemon
-                                    nextPokeState = showPokemon;
-                                    document.getElementById("listaPokemon").style.visibility = "hidden";
-                                    document.getElementById("multiselect").style.visibility = "hidden";
-                                    document.getElementById("ordenLista").style.visibility = "hidden";
-                                });
-                        	}
-                        	
+                        	$('.imgLista').click(function() {
+                        		var id = $(this).attr('id');
+                        		pokemonElegido = id;
+                        		pokeball_izq.cycleDone = false;
+                                pokeball_der.cycleDone = false;
+                                inAnimation = true;
+                                //Cambio a visualizar pokemon
+                                nextPokeState = showPokemon;
+                                document.getElementById("listaPokemon").style.visibility = "hidden";
+                                document.getElementById("multiselect").style.visibility = "hidden";
+                                document.getElementById("ordenLista").style.visibility = "hidden";
+                        	});
+                        	if (pokedex.clickX > btnSearch.x + btnSearch.group.x && pokedex.clickX < btnSearch.x + btnSearch.group.x + btnSearch.width && pokedex.clickY > btnSearch.y + btnSearch.group.y && pokedex.clickY < btnSearch.y + btnSearch.group.y + btnSearch.height) {
+                        		var elem = document.getElementById("orden");
+                        		var ordenLista = elem.options[elem.selectedIndex].text;
+                        		var order = {
+                                		orden: ordenLista,
+                                		generacion: "",
+                                		tipo: "",
+                                		legendario: false 
+                                }
+                                loadPokemon(JSON.stringify(order), function(pokemons) {
+                                	var lista = document.getElementById("listaPokemon");
+                                    lista.innerHTML = "";
+                                	for (var p in pokemons) {
+                                		$('#listaPokemon').append(
+                                				'<div id="' + pokemons[p].split("-")[0] + '" class="imgLista">' +
+                                				  '<img class="marcador" src="img/pokeListMark.gif"/>' +
+                                				  '<span class="under">' + pokemons[p].split("-")[1] + '</span>' +
+                                				'</div>');
+                                	}
+                                });                                
+                            }
                             break;
                         case "addMenu":
                             if (pokedex.clickX > btnAddFoto.x + btnAddFoto.group.x && pokedex.clickX < btnAddFoto.x + btnAddFoto.group.x + btnAddFoto.width && pokedex.clickY > btnAddFoto.y + btnAddFoto.group.y && pokedex.clickY < btnAddFoto.y + btnAddFoto.group.y + btnAddFoto.height) {
@@ -350,6 +369,7 @@ function updatePokedex() {
             break;
         case "listMenu":
             btnAtras.update();
+            btnSearch.update();
             if (nextPokeState.name === "listMenu" && canShowList) {
                 document.getElementById("listaPokemon").style.visibility = "visible";
                 document.getElementById("multiselect").style.visibility = "visible";

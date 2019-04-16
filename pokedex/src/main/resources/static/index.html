@@ -1,155 +1,145 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="UTF-8">
-		<link rel="stylesheet" href="style.css">
-		<link href='https://fonts.googleapis.com/css?family=Sniglet' rel='stylesheet'>
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	</head>
-	<body>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="style.css">
+<link href='https://fonts.googleapis.com/css?family=Sniglet'
+	rel='stylesheet'>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+<body>
 
-		<!--Lista de pokemon registrados-->
-		<div id="listaPokemon" class="listaPokemon">
-			<div class="imgLista">
-			  <img class="marcador" src="img/pokeListMark.gif"/>
-			  <span class="under">Pikachu</span>
+	<!--Lista de pokemon registrados-->
+	<div id="listaPokemon" class="listaPokemon">
+		<div class="imgLista">
+			<img class="marcador" src="img/pokeListMark.gif" /> <span
+				class="under">Pikachu</span>
+		</div>
+		<div class="imgLista">
+			<img class="marcador" src="img/pokeListMark.gif" /> <span
+				class="under">Charmander</span>
+		</div>
+		<div class="imgLista">
+			<img class="marcador" src="img/pokeListMark.gif" /> <span
+				class="under">Mario</span>
+		</div>
+		<div class="imgLista">
+			<img class="marcador" src="img/pokeListMark.gif" /> <span
+				class="under">Charizard</span>
+		</div>
+		<div class="imgLista">
+			<img class="marcador" src="img/pokeListMark.gif" /> <span
+				class="under">Jolteon</span>
+		</div>
+		<div class="imgLista">
+			<img class="marcador" src="img/pokeListMark.gif" /> <span
+				class="under">Dragonite</span>
+		</div>
+		<div class="imgLista">
+			<img class="marcador" src="img/pokeListMark.gif" /> <span
+				class="under">Odish</span>
+		</div>
+		<div class="imgLista">
+			<img class="marcador" src="img/pokeListMark.gif" /> <span
+				class="under">Pidgey</span>
+		</div>
+		<div class="imgLista">
+			<img class="marcador" src="img/pokeListMark.gif" /> <span
+				class="under">Pidgeotto</span>
+		</div>
+		<div class="imgLista">
+			<img class="marcador" src="img/pokeListMark.gif" /> <span
+				class="under">Magikarp</span>
+		</div>
+		<div class="imgLista">
+			<img class="marcador" src="img/pokeListMark.gif" /> <span
+				class="under">Magikarp</span>
+		</div>
+		<div class="imgLista">
+			<img class="marcador" src="img/pokeListMark.gif" /> <span
+				class="under">Magikarp</span>
+		</div>
+		<div class="imgLista">
+			<img class="marcador" src="img/pokeListMark.gif" /> <span
+				class="under">Magikarp</span>
+		</div>
+		<div class="imgLista">
+			<img class="marcador" src="img/pokeListMark.gif" /> <span
+				class="under">Magikarp</span>
+		</div>
+		<div class="imgLista">
+			<img class="marcador" src="img/pokeListMark.gif" /> <span
+				class="under">Magikarp</span>
+		</div>
+	</div>
+
+	<!--Seleccion de filtros para la lista de pokemon-->
+	<form>
+		<div id="multiselect" class="multiselect">
+			<div class="selectBox" onclick="showCheckboxes()">
+				<select>
+					<option>Filtros</option>
+				</select>
+				<div class="overSelect"></div>
 			</div>
-			<div class="imgLista">
-				<img class="marcador" src="img/pokeListMark.gif"/>
-			  <span class="under">Charmander</span>
-			</div>
-			<div class="imgLista">
-				<img class="marcador" src="img/pokeListMark.gif"/>
-			  <span class="under">Mario</span>
-			</div>
-			<div class="imgLista">
-				<img class="marcador" src="img/pokeListMark.gif"/>
-			  <span class="under">Charizard</span>
-			</div>
-			<div class="imgLista">
-				<img class="marcador" src="img/pokeListMark.gif"/>
-			  <span class="under">Jolteon</span>
-			</div>
-			<div class="imgLista">
-				<img class="marcador" src="img/pokeListMark.gif"/>
-			  <span class="under">Dragonite</span>
-			</div>
-			<div class="imgLista">
-				<img class="marcador" src="img/pokeListMark.gif"/>
-			  <span class="under">Odish</span>
-			</div>
-			<div class="imgLista">
-				<img class="marcador" src="img/pokeListMark.gif"/>
-			  <span class="under">Pidgey</span>
-			</div>
-			<div class="imgLista">
-				<img class="marcador" src="img/pokeListMark.gif"/>
-			  <span class="under">Pidgeotto</span>
-			</div>
-			<div class="imgLista">
-				<img class="marcador" src="img/pokeListMark.gif"/>
-			  <span class="under">Magikarp</span>
-			</div>
-			<div class="imgLista">
-				<img class="marcador" src="img/pokeListMark.gif"/>
-			  <span class="under">Magikarp</span>
-			</div>
-			<div class="imgLista">
-				<img class="marcador" src="img/pokeListMark.gif"/>
-			  <span class="under">Magikarp</span>
-			</div>
-			<div class="imgLista">
-				<img class="marcador" src="img/pokeListMark.gif"/>
-			  <span class="under">Magikarp</span>
-			</div>
-			<div class="imgLista">
-				<img class="marcador" src="img/pokeListMark.gif"/>
-			  <span class="under">Magikarp</span>
-			</div>
-			<div class="imgLista">
-				<img class="marcador" src="img/pokeListMark.gif"/>
-			  <span class="under">Magikarp</span>
+			<div id="checkboxes" class="hide">
+				<span>Generación</span> <label for="c1"><input
+					type="checkbox" id="c1" />1ª</label> <label for="c2"><input
+					type="checkbox" id="c2" />2ª</label> <label for="c3"><input
+					type="checkbox" id="c3" />3ª</label> <label for="c4"><input
+					type="checkbox" id="c4" />4ª</label> <label for="c5"><input
+					type="checkbox" id="c5" />5ª</label> <label for="c6"><input
+					type="checkbox" id="c6" />6ª</label> <label for="c7"><input
+					type="checkbox" id="c7" />7ª</label> <span>Tipo</span> <label for="c8"><input
+					type="checkbox" id="c8" />Normal</label> <label for="c9"><input
+					type="checkbox" id="c9" />Fuego</label> <label for="c11"><input
+					type="checkbox" id="c11" />Agua</label> <label for="c12"><input
+					type="checkbox" id="c12" />Planta</label> <label for="c13"><input
+					type="checkbox" id="c13" />Eléctrico</label> <label for="c14"><input
+					type="checkbox" id="c14" />Hielo</label> <label for="c15"><input
+					type="checkbox" id="c15" />Lucha</label> <label for="c16"><input
+					type="checkbox" id="c16" />Veneno</label> <label for="c17"><input
+					type="checkbox" id="c17" />Tierra</label> <label for="c18"><input
+					type="checkbox" id="c18" />Volador</label> <label for="c19"><input
+					type="checkbox" id="c19" />Psiquico</label> <label for="c20"><input
+					type="checkbox" id="c20" />Bicho</label> <label for="c21"><input
+					type="checkbox" id="c21" />Roca</label> <label for="c22"><input
+					type="checkbox" id="c22" />Fantasma</label> <label for="c23"><input
+					type="checkbox" id="c23" />Dragon</label> <label for="c24"><input
+					type="checkbox" id="c24" />Siniestro</label> <label for="c25"><input
+					type="checkbox" id="c25" />Acero</label> <label for="c26"><input
+					type="checkbox" id="c26" />Hada</label> <span>Legendario</span> <label
+					for="c10"><input type="checkbox" id="c10" />Legendario</label>
 			</div>
 		</div>
+	</form>
 
-		<!--Seleccion de filtros para la lista de pokemon-->
-		<form>
-		    <div id="multiselect" class="multiselect">
-		        <div class="selectBox" onclick="showCheckboxes()">
-		            <select>
-		                <option>Filtros</option>
-		            </select>
-		            <div class="overSelect"></div>
-		        </div>
-		        <div id="checkboxes" class="hide">
-		        	<span>Generación</span>
-		            <label for="c1"><input type="checkbox" id="c1" />1ª</label>
-		            <label for="c2"><input type="checkbox" id="c2" />2ª</label>
-		            <label for="c3"><input type="checkbox" id="c3" />3ª</label>
-		            <label for="c4"><input type="checkbox" id="c4" />4ª</label>
-		            <label for="c5"><input type="checkbox" id="c5" />5ª</label>
-		            <label for="c6"><input type="checkbox" id="c6" />6ª</label>
-		            <label for="c7"><input type="checkbox" id="c7" />7ª</label>
-		            <span>Tipo</span>
-		            <label for="c8"><input type="checkbox" id="c8" />Normal</label>
-		            <label for="c9"><input type="checkbox" id="c9" />Fuego</label>
-		            <label for="c11"><input type="checkbox" id="c11" />Agua</label>
-		            <label for="c12"><input type="checkbox" id="c12" />Planta</label>
-		            <label for="c13"><input type="checkbox" id="c13" />Eléctrico</label>
-		            <label for="c14"><input type="checkbox" id="c14" />Hielo</label>
-		            <label for="c15"><input type="checkbox" id="c15" />Lucha</label>
-		            <label for="c16"><input type="checkbox" id="c16" />Veneno</label>
-		            <label for="c17"><input type="checkbox" id="c17" />Tierra</label>
-		            <label for="c18"><input type="checkbox" id="c18" />Volador</label>
-		            <label for="c19"><input type="checkbox" id="c19" />Psiquico</label>
-		            <label for="c20"><input type="checkbox" id="c20" />Bicho</label>
-		            <label for="c21"><input type="checkbox" id="c21" />Roca</label>
-		            <label for="c22"><input type="checkbox" id="c22" />Fantasma</label>
-		            <label for="c23"><input type="checkbox" id="c23" />Dragon</label>
-		            <label for="c24"><input type="checkbox" id="c24" />Siniestro</label>
-		            <label for="c25"><input type="checkbox" id="c25" />Acero</label>
-		            <label for="c26"><input type="checkbox" id="c26" />Hada</label>
-		            <span>Legendario</span>
-		            <label for="c10"><input type="checkbox" id="c10" />Legendario</label>
-		        </div>
-		    </div>
-		</form>
-		
-		<div id="atributos"class="atrib" style="visibility: hidden;">
-			<span id="nameP" class="name"></span>
-			<span id="tipoP" class="tipo"></span>
-			<span id="tipo1P" class="tipo1"></span>
-			<span id="mov1P" class="mov1"></span>
-			<span id="mov2P" class="mov2"></span>
-			<span id="mov3P" class="mov3"></span>
-			<span id="mov4P" class="mov4"></span>
-			<span id="photoP" class="photo"></span>
-			<span id="itemP" class="item"></span>
-			<span id="vidaP" class="vida"></span>
-			<span id="velP" class="vel"></span>
-			<span id="pesoP" class="peso"></span>
-			<span id="natuP" class="natu"></span>
-			<span id="ataP" class="ata"></span>
-			<span id="ataEP" class="ataE"></span>
-			<span id="defP" class="def"></span>
-			<span id="defEP" class="defE"></span>
-		</div>
+	<div id="atributos" class="atrib" style="visibility: hidden;">
+		<span id="nameP" class="name"></span> <span id="tipoP" class="tipo"></span>
+		<span id="tipo1P" class="tipo1"></span> <span id="mov1P" class="mov1"></span>
+		<span id="mov2P" class="mov2"></span> <span id="mov3P" class="mov3"></span>
+		<span id="mov4P" class="mov4"></span> <span id="photoP" class="photo"></span>
+		<span id="itemP" class="item"></span> <span id="vidaP" class="vida"></span>
+		<span id="velP" class="vel"></span> <span id="pesoP" class="peso"></span>
+		<span id="natuP" class="natu"></span> <span id="ataP" class="ata"></span>
+		<span id="ataEP" class="ataE"></span> <span id="defP" class="def"></span>
+		<span id="defEP" class="defE"></span>
+	</div>
 
-		<!--Desplegable del orden de la lista-->
-		<div id="ordenLista" class="ordenLista">
-			<select>
-				<div class= "opciones">
-				   <option selected value="0">Ordenar</option> 
-				   <option value="1">Ascendente</option> 
-				   <option value="2">Descendente</option>
-				</div>
-			</select>
-		</div>
+	<!--Desplegable del orden de la lista-->
+	<div id="ordenLista" class="ordenLista">
+		<select id="orden" class="opciones">
+			<option selected value="0">Ordenar</option>
+			<option value="1">Ascendente</option>
+			<option value="2">Descendente</option>
+		</select>
+	</div>
 
 
-		<script src="script.js"></script>
-		<script src="rest.js"></script>
-		<script src="objects.js"></script>
+	<script src="script.js"></script>
+	<script src="rest.js"></script>
+	<script src="objects.js"></script>
 
-	</body>
+</body>
 </html>
