@@ -50,6 +50,7 @@ public class Pokemon {
 	private float weight_kg;
 	private int generation;
 	private int is_legendary;
+	private String[] photos;
 
 	// Constructors
 	public Pokemon() {
@@ -397,6 +398,8 @@ public class Pokemon {
 		this.is_legendary = is_legendary;
 	}
 
+	
+
 	@Override
 	public String toString() {
 		return "Pokemon [_id=" + _id + ", abilities=" + Arrays.toString(abilities) + ", against_bug=" + against_bug
@@ -413,6 +416,15 @@ public class Pokemon {
 				+ ", japanese_name=" + japanese_name + ", name=" + name + ", percentage_male=" + percentage_male
 				+ ", pokedex_number=" + pokedex_number + ", sp_attack=" + sp_attack + ", sp_defense=" + sp_defense
 				+ ", speed=" + speed + ", type1=" + type1 + ", type2=" + type2 + ", weight_kg=" + weight_kg
-				+ ", generation=" + generation + ", is_legendary=" + is_legendary + "]";
+				+ ", generation=" + generation + ", is_legendary=" + is_legendary + ", photos="
+				+ Arrays.toString(photos) + "]";
+	}
+
+	public String[] getPhotos() {
+		return photos;
+	}
+
+	public void setPhotos(String[] photos) {
+		this.photos = photos;
 	}
 }
