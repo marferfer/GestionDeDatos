@@ -329,7 +329,6 @@ var pokedex = {
                         	
                         	//Boton de volver cambia a ListMenu
                         	if (pokedex.clickX > btnAtras.x + btnAtras.group.x && pokedex.clickX < btnAtras.x + btnAtras.group.x + btnAtras.width && pokedex.clickY > btnAtras.y + btnAtras.group.y && pokedex.clickY < btnAtras.y + btnAtras.group.y + btnAtras.height) {
-                        		document.getElementById("atributos").style.visibility = "hidden";
                         		nextPokeState = listMenu;
                         		//document.getElementById("atributos").innerHTML = '';
                         	}
@@ -404,7 +403,7 @@ function updatePokedex() {
         		var p=JSON.parse(pokemonE);
 
         		document.getElementById("nameP").innerHTML = p.name;
-
+        		
         		if(p.type1 != null){
         			document.getElementById("tipoP").innerHTML = p.type1;
         		}else{
@@ -438,7 +437,6 @@ function updatePokedex() {
         		}
         		
         		document.getElementById("photosP").src = p.photos[0];
-        		//document.getElementById("itemP").innerHTML = p.name;
         		document.getElementById("vidaP").innerHTML = p.hp;
         		document.getElementById("velP").innerHTML = p.speed;
         		document.getElementById("pesoP").innerHTML = p.weight_kg;
@@ -500,6 +498,7 @@ function updatePokedex() {
 
 function changeState() {
     pokeState = nextPokeState; 
+    document.getElementById("atributos").style.visibility = "hidden";
     if (nextPokeState.name === "listMenu") {
         setTimeout(function() {
             canShowList = true;
