@@ -104,6 +104,7 @@ var btnSearch;
 var inAnimation = false;
 var dbSelected = 'sqlite';
 var canShowList = false;
+var canShowPokemon = false;
 
 //Estados/menus de la pokedex
 var mainMenu;
@@ -265,6 +266,54 @@ var pokedex = {
                         	$('.imgLista').click(function() {
                         		var id = $(this).attr('id');
                         		pokemonElegido = id;
+                        		loadPokemon(pokemonElegido,function(pokemonE){
+                            		var p=JSON.parse(pokemonE);
+
+                            		document.getElementById("nameP").innerHTML = p.name;
+                            		
+                            		if(p.type1 != null){
+                            			document.getElementById("tipoP").innerHTML = p.type1;
+                            		}else{
+                            			document.getElementById("tipoP").innerHTML = '--------';
+                            		}
+                            		
+                            		if(p.type2 != null){
+                            			document.getElementById("tipo1P").innerHTML = p.type2;
+                            		}else{
+                            			document.getElementById("tipo1P").innerHTML = '--------';
+                            		}
+                            		if(p.abilities[0] != null){
+                            			document.getElementById("mov1P").innerHTML = p.abilities[0];
+                            		}else{
+                            			document.getElementById("mov1P").innerHTML = '---------';
+                            		}
+                            		if(p.abilities[1] != null){
+                            			document.getElementById("mov2P").innerHTML = p.abilities[1];
+                            		}else{
+                            			document.getElementById("mov2P").innerHTML = '---------';
+                            		}
+                            		if(p.abilities[2] != null){
+                            			document.getElementById("mov3P").innerHTML = p.abilities[2];
+                            		}else{
+                            			document.getElementById("mov3P").innerHTML = '---------';
+                            		}
+                            		if(p.abilities[3] != null){
+                            			document.getElementById("mov4P").innerHTML = p.abilities[3];
+                            		}else{
+                            			document.getElementById("mov4P").innerHTML = '---------';
+                            		}
+                            		document.getElementById("photosP").src = p.photos[0];
+                            		document.getElementById("vidaP").innerHTML = p.hp;
+                            		document.getElementById("velP").innerHTML = p.speed;
+                            		document.getElementById("pesoP").innerHTML = p.weight_kg;
+                            		document.getElementById("natuP").innerHTML = p.classfication;
+                            		document.getElementById("ataP").innerHTML = p.attack;
+                            		document.getElementById("ataEP").innerHTML = p.sp_attack;
+                            		document.getElementById("defP").innerHTML = p.defense;
+                            		document.getElementById("defEP").innerHTML = p.sp_defense;
+                            		//CAMPOS ??
+                            		//document.getElementById("mov4P").innerHTML = p.name;
+                            	});
                         		pokeball_izq.cycleDone = false;
                                 pokeball_der.cycleDone = false;
                                 inAnimation = true;
@@ -330,7 +379,9 @@ var pokedex = {
                         	//Boton de volver cambia a ListMenu
                         	if (pokedex.clickX > btnAtras.x + btnAtras.group.x && pokedex.clickX < btnAtras.x + btnAtras.group.x + btnAtras.width && pokedex.clickY > btnAtras.y + btnAtras.group.y && pokedex.clickY < btnAtras.y + btnAtras.group.y + btnAtras.height) {
                         		nextPokeState = listMenu;
-                        		//document.getElementById("atributos").innerHTML = '';
+                        		canShowPokemon = false;
+                        		document.getElementById("photosP").src = "#";
+                        		document.getElementById("atributos").style.visibility = 'hidden';
                         	}
                         	break;
                         default:
@@ -399,56 +450,10 @@ function updatePokedex() {
             break;
         case "showPokemon":
         	//console.log(pokemonElegido);
-        	loadPokemon(pokemonElegido,function(pokemonE){
-        		var p=JSON.parse(pokemonE);
-
-        		document.getElementById("nameP").innerHTML = p.name;
-        		
-        		if(p.type1 != null){
-        			document.getElementById("tipoP").innerHTML = p.type1;
-        		}else{
-        			document.getElementById("tipoP").innerHTML = '--------';
-        		}
-        		
-        		if(p.type2 != null){
-        			document.getElementById("tipo1P").innerHTML = p.type2;
-        		}else{
-        			document.getElementById("tipo1P").innerHTML = '--------';
-        		}
-        		if(p.abilities[0] != null){
-        			document.getElementById("mov1P").innerHTML = p.abilities[0];
-        		}else{
-        			document.getElementById("mov1P").innerHTML = '---------';
-        		}
-        		if(p.abilities[1] != null){
-        			document.getElementById("mov2P").innerHTML = p.abilities[1];
-        		}else{
-        			document.getElementById("mov2P").innerHTML = '---------';
-        		}
-        		if(p.abilities[2] != null){
-        			document.getElementById("mov3P").innerHTML = p.abilities[2];
-        		}else{
-        			document.getElementById("mov3P").innerHTML = '---------';
-        		}
-        		if(p.abilities[3] != null){
-        			document.getElementById("mov4P").innerHTML = p.abilities[3];
-        		}else{
-        			document.getElementById("mov4P").innerHTML = '---------';
-        		}
-        		
-        		document.getElementById("photosP").src = p.photos[0];
-        		document.getElementById("vidaP").innerHTML = p.hp;
-        		document.getElementById("velP").innerHTML = p.speed;
-        		document.getElementById("pesoP").innerHTML = p.weight_kg;
-        		document.getElementById("natuP").innerHTML = p.classfication;
-        		document.getElementById("ataP").innerHTML = p.attack;
-        		document.getElementById("ataEP").innerHTML = p.sp_attack;
-        		document.getElementById("defP").innerHTML = p.defense;
-        		document.getElementById("defEP").innerHTML = p.sp_defense;
-        		//CAMPOS ??
-        		//document.getElementById("mov4P").innerHTML = p.name;
-        	});
-        	document.getElementById("atributos").style.visibility = "visible";
+        	
+        	if (nextPokeState.name === "showPokemon" && canShowPokemon) {
+        		document.getElementById("atributos").style.visibility = "visible";
+        	}
             btnAtras.update();
             btnAddFoto.update();
             btnTipos.update();
@@ -498,10 +503,14 @@ function updatePokedex() {
 
 function changeState() {
     pokeState = nextPokeState; 
-    document.getElementById("atributos").style.visibility = "hidden";
     if (nextPokeState.name === "listMenu") {
         setTimeout(function() {
             canShowList = true;
+        }, 1000);
+    }
+    else if (nextPokeState.name === "showPokemon") {
+        setTimeout(function() {
+            canShowPokemon = true;
         }, 1000);
     }
 }   
