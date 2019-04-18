@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.google.gson.Gson;
+import com.mongodb.BasicDBList;
 import com.mongodb.MongoClient;
 import com.mongodb.MongoClientOptions;
 import com.mongodb.ReadPreference;
@@ -80,7 +81,18 @@ public class PokemonController {
 	        if (order.getOrden().equals("Descendente")) {
 				sort = new Document("name", -1);
 			}
-			for (BsonDocument p : coll.find().sort(sort)) {
+	        Bson filter = null;
+	        BasicDBList list = new BasicDBList();
+	        for (int i = 0; i < order.getGeneracion().length; i++) {
+        		list.add(new Document("generation", order.getGeneracion()[i]));
+        	}
+	        if (order.getGeneracion().length > 0) {
+	        	filter = new Document("$or", list);
+	        }
+	        else {
+	        	filter = new Document("generation", new Document("$gt", 0));
+	        }
+			for (BsonDocument p : coll.find().filter(filter).sort(sort)) {
 				String objId = "" + p.get("_id");
 				String name = "" + p.get("name");
 				String str = objId.split("=")[1].split("}")[0] + "-" + name.split("'")[1];

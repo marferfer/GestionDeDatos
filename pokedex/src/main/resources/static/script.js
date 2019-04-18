@@ -206,7 +206,7 @@ var pokedex = {
                         nextPokeState = listMenu;
                         var order = {
                         		orden: "ascendente",
-                        		generacion: "",
+                        		generacion: [],
                         		tipo: "",
                         		legendario: false 
                         }
@@ -326,9 +326,16 @@ var pokedex = {
                         	if (pokedex.clickX > btnSearch.x + btnSearch.group.x && pokedex.clickX < btnSearch.x + btnSearch.group.x + btnSearch.width && pokedex.clickY > btnSearch.y + btnSearch.group.y && pokedex.clickY < btnSearch.y + btnSearch.group.y + btnSearch.height) {
                         		var elem = document.getElementById("orden");
                         		var ordenLista = elem.options[elem.selectedIndex].text;
+                        		var gen = [];
+                        		for (var i = 1; i < 8; i++) {
+                        			elem = document.getElementById("c"+i);
+                        			if (elem.checked) {
+                        				gen.push(i);
+                        			}
+                        		}
                         		var order = {
                                 		orden: ordenLista,
-                                		generacion: "",
+                                		generacion: gen,
                                 		tipo: "",
                                 		legendario: false 
                                 }

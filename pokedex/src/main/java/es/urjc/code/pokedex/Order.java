@@ -2,11 +2,11 @@ package es.urjc.code.pokedex;
 
 public class Order {
 	private String orden;
-	private String generacion;
+	private int[] generacion;
 	private String tipo;
 	private boolean legendario;
 
-	public Order(String orden, String generacion, String tipo, boolean legendario) {
+	public Order(String orden, int[] generacion, String tipo, boolean legendario) {
 		super();
 		this.orden = orden;
 		this.generacion = generacion;
@@ -22,11 +22,11 @@ public class Order {
 		this.orden = orden;
 	}
 
-	public String getGeneracion() {
+	public int[] getGeneracion() {
 		return generacion;
 	}
 
-	public void setGeneracion(String generacion) {
+	public void setGeneracion(int[] generacion) {
 		this.generacion = generacion;
 	}
 
