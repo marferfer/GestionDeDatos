@@ -73,7 +73,9 @@ preload(
     "img/Anyadir/camposPequenyos.png", //..........40
     "img/Anyadir/camposPequenyosHover.png", //_____41
     "img/search.png", //...........................42
-    "img/search_hover.png" //______________________43
+    "img/search_hover.png", //______________________43
+    "img/Anyadir/showImg.png", //...............44
+    "img/Anyadir/showImgHover.png" //__________45
 )
 
 //Variables globales
@@ -90,7 +92,10 @@ var pokegroup_der;
 var arrowIzq;
 var arrowDer;
 var btnAtras;
+var btnArrowL;
+var btnArrowR;
 var btnAddFoto;
+var btnFoto;
 var btnTipos;
 var btnCampos;
 var btnCamposPequenyos;
@@ -98,7 +103,13 @@ var bdd;
 var creditos;
 var creditosTexto;
 var pokemonElegido;
+var pokE;
 var btnSearch;
+
+var masfotos;
+var imgCont = 0;
+var noFotoDer;
+var noFotoIz;
 
 //Locks and Flags
 var inAnimation = false;
@@ -136,6 +147,7 @@ function startPokedex() {
     arrowIzq = new ArrowButton(226, 275, images[12], images[13], 49, 50, pokegroup_izq);
     btnAtras = new Button(315, 270, images[15], images[16], 76, 48, globalGroup);
     btnAddFoto = new Button(415, 300, images[34], images[35], 182, 182, globalGroup);
+    btnFoto = new Button(415, 300, images[44], images[45], 182, 182, globalGroup);
     btnTipos = new Button(365, 500, images[36], images[37], 132, 60, globalGroup);
     btnTipos1 = new Button(500, 500, images[36], images[37], 132, 60, globalGroup);
     btnSearch = new Button(800, 370, images[42], images[43], 50, 50, globalGroup);
@@ -150,10 +162,13 @@ function startPokedex() {
     btnCamposVel = new Button(670, 530, images[40], images[41], 150, 125, globalGroup);
     btnCamposHP = new Button(830, 530, images[40], images[41], 150, 125, globalGroup);
     btnCamposItem = new Button(670, 600, images[38], images[39], 360, 90, globalGroup);
-    btnCamposMov1 = new Button(330, 530, images[40], images[41], 150, 125, globalGroup);
-    btnCamposMov2 = new Button(480, 530, images[40], images[41], 150, 125, globalGroup);
+    btnCamposMov1 = new Button(330, 535, images[40], images[41], 150, 125, globalGroup);
+    btnCamposMov2 = new Button(480, 535, images[40], images[41], 150, 125, globalGroup);
     btnCamposMov3 = new Button(330, 595, images[40], images[41], 150, 125, globalGroup);
     btnCamposMov4 = new Button(480, 595, images[40], images[41], 150, 125, globalGroup);
+    
+    btnArrowR = new Button(600, 365, images[10], images[11], 49, 50, globalGroup);
+    btnArrowL = new Button(360, 365, images[12], images[13], 49, 50, globalGroup);
 
     btnAnyadir = new Button(630, 680, images[36], images[37], 132, 60, globalGroup);
     mongodb = new dbButton(440, 340, images[28], images[29], images[30], 231, 346, globalGroup, false);
@@ -268,7 +283,7 @@ var pokedex = {
                         		pokemonElegido = id;
                         		loadPokemon(pokemonElegido,function(pokemonE){
                             		var p=JSON.parse(pokemonE);
-
+                            		pokE = p;
                             		document.getElementById("nameP").innerHTML = p.name;
                             		
                             		if(p.type1 != null){
@@ -302,7 +317,7 @@ var pokedex = {
                             		}else{
                             			document.getElementById("mov4P").innerHTML = '---------';
                             		}
-                            		document.getElementById("photosP").src = p.photos[0];
+                            		document.getElementById("photosP").src = p.photos[imgCont];
                             		document.getElementById("vidaP").innerHTML = p.hp;
                             		document.getElementById("velP").innerHTML = p.speed;
                             		document.getElementById("pesoP").innerHTML = p.weight_kg;
@@ -311,8 +326,7 @@ var pokedex = {
                             		document.getElementById("ataEP").innerHTML = p.sp_attack;
                             		document.getElementById("defP").innerHTML = p.defense;
                             		document.getElementById("defEP").innerHTML = p.sp_defense;
-                            		//CAMPOS ??
-                            		//document.getElementById("mov4P").innerHTML = p.name;
+                            		
                             	});
                         		pokeball_izq.cycleDone = false;
                                 pokeball_der.cycleDone = false;
@@ -397,6 +411,18 @@ var pokedex = {
                         		document.getElementById("photosP").src = "#";
                         		document.getElementById("atributos").style.visibility = 'hidden';
                         	}
+                        	
+                        	//Boton de cambiar imagen Pokemon
+                        	if(masfotos){
+	                        	if (pokedex.clickX > btnArrowL.x + btnArrowL.group.x && pokedex.clickX < btnArrowL.x + btnArrowL.group.x + btnArrowL.width && pokedex.clickY > btnArrowL.y + btnArrowL.group.y && pokedex.clickY < btnArrowL.y + btnArrowL.group.y + btnArrowL.height) {
+	                        		if(noFotoIz)
+	                        			imgCont -= 1;
+	                        	}
+	                        	if (pokedex.clickX > btnArrowR.x + btnArrowR.group.x && pokedex.clickX < btnArrowR.x + btnArrowR.group.x + btnArrowR.width && pokedex.clickY > btnArrowR.y + btnArrowR.group.y && pokedex.clickY < btnArrowR.y + btnArrowR.group.y + btnArrowR.height) {
+	                        		if(noFotoDer)
+	                        			imgCont += 1;
+	                        	}
+                        	}
                         	break;
                         default:
                             break;
@@ -464,12 +490,25 @@ function updatePokedex() {
             break;
         case "showPokemon":
         	//console.log(pokemonElegido);
-        	
+        	if(pokE.photos[1] != null){
+            	masfotos = true;
+            }
+    		if(pokE.photos[imgCont+1] != null){
+    			noFotoDer = true;
+    		}else{
+    			noFotoDer = false;
+    		}
+    		if(pokE.photos[imgCont-1] != null){
+    			noFotoIz = true;
+    		}else{
+    			noFotoIz = false;
+    		}
+    		document.getElementById("photosP").src = pokE.photos[imgCont];
         	if (nextPokeState.name === "showPokemon" && canShowPokemon) {
         		document.getElementById("atributos").style.visibility = "visible";
         	}
             btnAtras.update();
-            btnAddFoto.update();
+            btnFoto.update();
             btnTipos.update();
             btnTipos1.update();
             btnCampos.update();
@@ -486,6 +525,12 @@ function updatePokedex() {
             btnCamposMov2.update();
             btnCamposMov3.update();
             btnCamposMov4.update();
+            if(masfotos){
+            	if(noFotoDer)
+            		btnArrowR.update();
+            	if(noFotoIz)
+            		btnArrowL.update();
+            }
             break;
         case "bddMenu":
             btnAtras.update();
