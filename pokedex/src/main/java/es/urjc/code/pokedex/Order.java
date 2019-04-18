@@ -3,10 +3,10 @@ package es.urjc.code.pokedex;
 public class Order {
 	private String orden;
 	private int[] generacion;
-	private String tipo;
+	private String[] tipo;
 	private boolean legendario;
 
-	public Order(String orden, int[] generacion, String tipo, boolean legendario) {
+	public Order(String orden, int[] generacion, String[] tipo, boolean legendario) {
 		super();
 		this.orden = orden;
 		this.generacion = generacion;
@@ -30,11 +30,11 @@ public class Order {
 		this.generacion = generacion;
 	}
 
-	public String getTipo() {
+	public String[] getTipo() {
 		return tipo;
 	}
 
-	public void setTipo(String tipo) {
+	public void setTipo(String[] tipo) {
 		this.tipo = tipo;
 	}
 

@@ -207,8 +207,8 @@ var pokedex = {
                         var order = {
                         		orden: "ascendente",
                         		generacion: [],
-                        		tipo: "",
-                        		legendario: false 
+                        		tipo: [],
+                        		legendario: document.getElementById("c26").checked 
                         }
                         loadPokemon(JSON.stringify(order), function(pokemons) {
                         	var lista = document.getElementById("listaPokemon");
@@ -333,11 +333,18 @@ var pokedex = {
                         				gen.push(i);
                         			}
                         		}
+                        		var type = [];
+                        		for (var i = 8; i < 26; i++) {
+                        			elem = document.getElementById("c"+i);
+                        			if (elem.checked) {
+                        				type.push(elem.parentElement.innerHTML.split(">")[1]);
+                        			}
+                        		}
                         		var order = {
                                 		orden: ordenLista,
                                 		generacion: gen,
-                                		tipo: "",
-                                		legendario: false 
+                                		tipo: type,
+                                		legendario: document.getElementById("c26").checked
                                 }
                                 loadPokemon(JSON.stringify(order), function(pokemons) {
                                 	var lista = document.getElementById("listaPokemon");

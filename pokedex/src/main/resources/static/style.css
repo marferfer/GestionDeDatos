@@ -213,6 +213,10 @@
     top: 460px;
 }
 
+.tipoPokemon {
+	text-transform: capitalize;
+}
+
 .selectBox {
     position: relative;
 }

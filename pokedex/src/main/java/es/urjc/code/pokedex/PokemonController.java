@@ -82,12 +82,47 @@ public class PokemonController {
 				sort = new Document("name", -1);
 			}
 	        Bson filter = null;
-	        BasicDBList list = new BasicDBList();
+	        Document gen = new Document();
+	        BasicDBList listGen = new BasicDBList();
+	        //Filtro por generación
 	        for (int i = 0; i < order.getGeneracion().length; i++) {
-        		list.add(new Document("generation", order.getGeneracion()[i]));
+        		listGen.add(new Document("generation", order.getGeneracion()[i]));
         	}
-	        if (order.getGeneracion().length > 0) {
-	        	filter = new Document("$or", list);
+	        if (!listGen.isEmpty()) {
+	        	gen = new Document("$or", listGen);
+	        }
+	        else {
+	        	gen = new Document("generation", new Document("$gt", 0));
+	        }
+	        //Filtro por tipo
+	        BasicDBList listType = new BasicDBList();
+	        Document type = new Document();
+	        for (int i = 0; i < order.getTipo().length; i++) {
+        		listType.add(new Document("type1", order.getTipo()[i]));
+        		listType.add(new Document("type2", order.getTipo()[i]));
+        	}
+	        if (!listType.isEmpty()) {
+	        	type = new Document("$or", listType);
+	        }
+	        else {
+	        	type = new Document("generation", new Document("$gt", 0));
+	        }
+	        
+	        //Filtro por legendario
+	        Document legendario;
+	        if (order.isLegendario()) {
+	        	legendario = new Document("is_legendary", 1);
+	        }
+	        else {
+	        	legendario = new Document("is_legendary", "0");
+	        }
+	        //Aplicación de todos los filtros
+	        if (order.getGeneracion().length > 0 || order.getTipo().length > 0 || order.isLegendario()) {
+	        	BasicDBList allFilters = new BasicDBList();
+	        	allFilters.add(type);
+	        	allFilters.add(gen);
+	        	allFilters.add(legendario);
+	        	filter = new Document("$and", allFilters);
 	        }
 	        else {
 	        	filter = new Document("generation", new Document("$gt", 0));
