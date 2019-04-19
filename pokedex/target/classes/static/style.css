@@ -305,3 +305,32 @@
 .ordenLista option {
 	background-color: #38610BCC;
 }
+
+/*///////////////////////////////////////////////////////////////////////*/
+/*///CONFIRMACION BORRAR POKEMON ////////////////////////////////////////*/
+/*///////////////////////////////////////////////////////////////////////*/
+
+.swal-modal {
+    background-color: rgba(67, 84, 26, 0.83);
+    font-family: Arial;
+}
+
+.swal-title {
+    color: white;
+}
+
+.swal-text {
+    color: white;
+}
+
+.swal-icon--success__ring {
+    background-color: transparent;
+}
+
+.swal-icon--success:after, .swal-icon--success:before {
+    background: rgba(67, 84, 26, 0.0);
+}
+
+.swal-icon--success__hide-corners {
+    background-color: rgba(67, 84, 26, 0.0);
+}

@@ -241,9 +241,28 @@ var pokedex = {
                         	$('.imgListaBorrador').click(function(){
                         		
                         		var id = $(this).attr('id');
-                        		$("div").remove("#"+id);
-                        		$(this).remove();
-                        		deleteItem(id);
+                        		
+                        	    swal({
+                        	    	  title: "¿Seguro que desea eliminar a este Pokemon?",
+                        	    	  text: "Una vez borrado no es posible recuperarlo",
+                        	    	  buttons: true,
+                        	    	  dangerMode: true,
+                        	    	})
+                        	    	.then((willDelete) => {
+                        	    	  if (willDelete) {
+                        	    		  
+                        	    		$("div").remove("#"+id);
+                                  		$(this).remove();
+                                  		deleteItem(id);
+                                  		
+                        	    	    swal("Pokemon eliminado", {
+                        	    	      icon: "success",
+                        	    	      dangerMode: true,
+                        	    	      timer:1200,
+                        	    	      buttons: false,
+                        	    	    });
+                        	    	  }
+                        	    	});
                         	})
                         });
                         
@@ -386,9 +405,28 @@ var pokedex = {
                                 	$('.imgListaBorrador').click(function(){
                                 		
                                 		var id = $(this).attr('id');
-                                		$("div").remove("#"+id);
-                                		$(this).remove();
-                                		deleteItem(id);
+                                		
+                                	    swal({
+                                	    	  title: "¿Seguro que desea eliminar a este Pokemon?",
+                                	    	  text: "Una vez borrado no es posible recuperarlo",
+                                	    	  buttons: true,
+                                	    	  dangerMode: true,
+                                	    	})
+                                	    	.then((willDelete) => {
+                                	    	  if (willDelete) {
+                                	    		  
+                                	    		$("div").remove("#"+id);
+                                          		$(this).remove();
+                                          		deleteItem(id);
+                                          		
+                                	    	    swal("Pokemon eliminado", {
+                                	    	      icon: "success",
+                                	    	      dangerMode: true,
+                                	    	      timer:1200,
+                                	    	      buttons: false,
+                                	    	    });
+                                	    	  }
+                                	    	});
                                 	})
                                 });                                
                             }
