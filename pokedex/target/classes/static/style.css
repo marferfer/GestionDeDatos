@@ -204,17 +204,12 @@
 /*///FILTROS/////////////////////////////////////////////////////////////*/
 /*///////////////////////////////////////////////////////////////////////*/
 
-/*Los estilos de los filtros de la lista pokemon*/
 .multiselect {
 	visibility: hidden;
     width: 400px;
     position:absolute;
     left: 665px;
     top: 460px;
-}
-
-.tipoPokemon {
-	text-transform: capitalize;
 }
 
 .selectBox {
@@ -251,14 +246,15 @@
     overflow-y:auto;
     max-height:225px;
 }
+
 #checkboxes.hide {display:none;}
 
-	#checkboxes span{
-		font-family: 'Arial';
-		color: yellow;
-		font-size: 20px;
-		padding: 10px;
-	}
+#checkboxes span {
+	font-family: 'Arial';
+	color: yellow;
+	font-size: 20px;
+	padding: 10px;
+}
 
 #checkboxes label {
     display: block;
@@ -267,7 +263,7 @@
 }
 
 #checkboxes label:hover {
-    background-color: #1e90ff;
+    background-color: #8945;
 }
 
 #checkboxes::-webkit-scrollbar {
@@ -288,6 +284,7 @@
 	position: absolute;
 	left: 665px;
 	top: 380px;
+	border-color: transparent;
 }
 
 .ordenLista select {
@@ -295,11 +292,9 @@
 	font-family: 'Arial';
 	padding: 10px;
 	background: #8945;
+	border-color: transparent;
 }
 
-.ordenLista.opciones {
-	color: white;
-	font-family: 'Arial';
-	background: #8945;
-	padding: 10px;
+.ordenLista option {
+	background-color: #38610BCC;
 }
