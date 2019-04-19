@@ -54,6 +54,13 @@
 	vertical-align: sub;
 }
 
+.listaPokemon img.borrador {
+	position: relative;
+	top: -32px;
+    left: -5px;
+    
+}
+
 /*personalizar la barra de scroll*/
 .listaPokemon::-webkit-scrollbar {
 	width: 7px;

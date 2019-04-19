@@ -233,8 +233,18 @@ var pokedex = {
                         				'<div id="' + pokemons[p].split("-")[0] + '" class="imgLista">' +
                         				  '<img class="marcador" src="img/pokeListMark.gif"/>' +
                         				  '<span class="under">' + pokemons[p].split("-")[1] + '</span>' +
-                        				'</div>');
+                        				'</div>' + 
+                      				  '<div style="float:right;" id="'+ pokemons[p].split("-")[0] + ' "class = "imgListaBorrador"><img class="borrador" src="img/pokeListDelete.png"/>');
                         	}
+                        	
+                        	//Borrado del pokemon en la lista de pokemons
+                        	$('.imgListaBorrador').click(function(){
+                        		
+                        		var id = $(this).attr('id');
+                        		$("div").remove("#"+id);
+                        		$(this).remove();
+                        		deleteItem(id);
+                        	})
                         });
                         
                     }
@@ -368,8 +378,18 @@ var pokedex = {
                                 				'<div id="' + pokemons[p].split("-")[0] + '" class="imgLista">' +
                                 				  '<img class="marcador" src="img/pokeListMark.gif"/>' +
                                 				  '<span class="under">' + pokemons[p].split("-")[1] + '</span>' +
-                                				'</div>');
+                                				'</div>' + 
+                                				'<div style="float:right;" id="'+ pokemons[p].split("-")[0] + ' "class = "imgListaBorrador"><img class="borrador" src="img/pokeListDelete.png"/>');
                                 	}
+                                	
+                                	//Borrado del pokemon en la lista de pokemons
+                                	$('.imgListaBorrador').click(function(){
+                                		
+                                		var id = $(this).attr('id');
+                                		$("div").remove("#"+id);
+                                		$(this).remove();
+                                		deleteItem(id);
+                                	})
                                 });                                
                             }
                             break;
