@@ -92,7 +92,7 @@ public class PokemonController {
 	        	gen = new Document("$or", listGen);
 	        }
 	        else {
-	        	gen = new Document("generation", new Document("$gt", 0));
+	        	gen = new Document("generation", new Document("$gt", -1));
 	        }
 	        //Filtro por tipo
 	        BasicDBList listType = new BasicDBList();

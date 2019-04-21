@@ -180,35 +180,36 @@ function State(name, background, father) {
 	this.father = father;
 }
 
+//clase Pokemon para guardar pokemon nuevos en la bd
 function Pokemon(){
 	
 	this.abilities = [];
-	this.against_bug = 0;
-	this.against_dark = 0;
-	this.against_dragon = 0;
-	this.against_electric = 0;
-	this.against_fairy = 0;
-	this.against_fight = 0;
-	this.against_fire = 0;
-	this.against_flying = 0;
-	this.against_ghost = 0;
-	this.against_grass = 0;
-	this.against_ground = 0;
-	this.against_ice = 0;
-	this.against_normal = 0;
-	this.against_poison = 0;
-	this.against_psychic = 0;
-	this.against_rock = 0;
-	this.against_steel = 0;
-	this.against_water = 0;	
+	this.against_bug = 1;
+	this.against_dark = 1;
+	this.against_dragon = 1;
+	this.against_electric = 1;
+	this.against_fairy = 1;
+	this.against_fight = 1;
+	this.against_fire = 1;
+	this.against_flying = 1;
+	this.against_ghost = 1;
+	this.against_grass = 1;
+	this.against_ground = 1;
+	this.against_ice = 1;
+	this.against_normal = 1;
+	this.against_poison = 1;
+	this.against_psychic = 1;
+	this.against_rock = 1;
+	this.against_steel = 1;
+	this.against_water = 1;	
 	this.attack;
-	this.base_egg_steps = 0;
-	this.base_happiness = 0;
-	this.base_total = 0;
-	this.capture_rate = 0;
+	this.base_egg_steps = 1;
+	this.base_happiness = 1;
+	this.base_total = 1;
+	this.capture_rate = 1;
 	this.classfication;
 	this.defense;
-	this.experience_growth = 0;
+	this.experience_growth = 1;
 	this.height_m;
 	this.hp;
 	this.japanese_name ="";
@@ -221,7 +222,7 @@ function Pokemon(){
 	this.type1;
 	this.type2;
 	this.weight_kg;
-	this.generation = 0;
-	this.is_legendary = 0;
+	this.generation = 1;
+	this.is_legendary = "0";
 	this.photos = [];
 }
