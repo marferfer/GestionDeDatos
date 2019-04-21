@@ -576,57 +576,29 @@ var pokedex = {
                                     		document.getElementById("lectorNaturalezaP").value="";
                                     		
                                     		//guardar el pokemon en la base de datos
-                                    		let pokemon;
+                                    		
+                                    		let pokemon = new Pokemon();
                                     	                                                                     		
                                     		pokemon.abilities[0] = mov1;
                                     		pokemon.abilities[1] = mov2;
                                     		pokemon.abilities[2] = mov3;
                                     		pokemon.abilities[3] = mov4;
-                                    		
-                                          	pokemon.against_bug = 0;
-                                    		pokemon.against_dark = 0;
-                                    		pokemon.against_dragon = 0;
-                                    		pokemon.against_electric = 0;
-                                    		pokemon.against_fairy = 0;
-                                    		pokemon.against_fight = 0;
-                                    		pokemon.against_fire = 0;
-                                    		pokemon.against_flying = 0;
-                                    		pokemon.against_ghost = 0;
-                                    		pokemon.against_grass = 0;
-                                    		pokemon.against_ground = 0;
-                                    		pokemon.against_ice = 0;
-                                    		pokemon.against_normal = 0;
-                                    		pokemon.against_poison = 0;
-                                    		pokemon.against_psychic = 0;
-                                    		pokemon.against_rock = 0;
-                                    		pokemon.against_steel = 0;
-                                    		pokemon.against_water = 0;
-                                    		
+                                                		
                                     		pokemon.attack = ataque;
-                                    		pokemon.base_egg_steps = 0;
-                                    		pokemon.base_happiness = 0;
-                                    		pokemon.base_total = 0;
-                                    		pokemon.capture_rate = 0;
                                     		pokemon.classfication = naturaleza;
                                     		pokemon.defense = defensa;
-                                    		pokemon.experience_growth = 0;
                                     		pokemon.height_m = altura;
-                                    		pokemon.hp = vida;
-                                    		pokemon.japanese_name ="";
-                                    		pokemon.name = name;
-                                    		pokemon.percentage_male = 0.0;
-                                    		pokemon.pokedex_number = 0;
+                                    		pokemon.hp = vida;                                   		
+                                    		pokemon.name = name;                                    		
                                     		pokemon.sp_attack = ataqueEsp;
                                     		pokemon.sp_defense = defensaEsp;
                                     		pokemon.speed = vel;
                                     		pokemon.type1 = tipo;
                                     		pokemon.type2 = tipo1;
-                                    		pokemon.weight_kg = peso;
-                                    		pokemon.generation = 0;
-                                    		pokemon.is_legendary = 0;
+                                    		pokemon.weight_kg = peso;                                   		
                                     		pokemon.photos = [];
                                     		
-                                    		console.log(pokemon);
+                                    		createPokemon(pokemon, function(pokemon){});
                       	    	    		
 	                      	    	    	swal({
 	                                			title: "Pokemon guardado con éxito",

@@ -179,3 +179,49 @@ function State(name, background, father) {
 	this.background = background;
 	this.father = father;
 }
+
+function Pokemon(){
+	
+	this.abilities = [];
+	this.against_bug = 0;
+	this.against_dark = 0;
+	this.against_dragon = 0;
+	this.against_electric = 0;
+	this.against_fairy = 0;
+	this.against_fight = 0;
+	this.against_fire = 0;
+	this.against_flying = 0;
+	this.against_ghost = 0;
+	this.against_grass = 0;
+	this.against_ground = 0;
+	this.against_ice = 0;
+	this.against_normal = 0;
+	this.against_poison = 0;
+	this.against_psychic = 0;
+	this.against_rock = 0;
+	this.against_steel = 0;
+	this.against_water = 0;	
+	this.attack;
+	this.base_egg_steps = 0;
+	this.base_happiness = 0;
+	this.base_total = 0;
+	this.capture_rate = 0;
+	this.classfication;
+	this.defense;
+	this.experience_growth = 0;
+	this.height_m;
+	this.hp;
+	this.japanese_name ="";
+	this.name;
+	this.percentage_male = 0.0;
+	this.pokedex_number = 0;
+	this.sp_attack;
+	this.sp_defense;
+	this.speed;
+	this.type1;
+	this.type2;
+	this.weight_kg;
+	this.generation = 0;
+	this.is_legendary = 0;
+	this.photos = [];
+}
