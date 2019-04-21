@@ -444,50 +444,25 @@ var pokedex = {
                             
                         case "addMenu":
                             
+                        	//variables para comprobar si el formato del pokemon es adecuado
+                    		let tiposValidos = ["normal", "fire", "water", "grass", "electric", "fighting", "poison", "ground", "flying", "psychic", "bug", "rock", "ghost", "dragon", "dark", "steel", "fairy"];
+                    		let numeros = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
+                    		let tipoCorrecto;
+                    		let valoresNumericosCorrectos;
+                    		let nombreCorrecto;
+                    		let naturalezaCorrecta;
+                    		let sePuedeGuardar;
+                    		let mensajeError;
+
                         	//click btnGuardarPokemon
                         	if (pokedex.clickX > btnGuardarPokemon.x + btnGuardarPokemon.group.x && pokedex.clickX < btnGuardarPokemon.x + btnGuardarPokemon.group.x + btnGuardarPokemon.width && pokedex.clickY > btnGuardarPokemon.y + btnGuardarPokemon.group.y && pokedex.clickY < btnGuardarPokemon.y + btnGuardarPokemon.group.y + btnGuardarPokemon.height) {
-                       
-                        		swal({
-                        			
-                      	    	  title: "¿Quiere añadir un pokemon con los campos descritos?",
-                      	    	  buttons: true,
-                      	    	  dangerMode: true,
-                      	    	  
-                      	    	}).then((willDelete) => {
-                      	    	  if (willDelete) {
-                      	    		  
-                      	    		console.log("kjsad");
-                                		
-                      	    	    swal("Guardando pokemon...", {
-                      	    	      icon: "info",
-                      	    	      dangerMode: true,
-                      	    	      timer:2500,
-                      	    	      buttons: false,
-                      	    	      
-                      	    	    }).then((willDelete =>{
-                      	    	    	
-                      	    	    	swal({
-                                			title: "Pokemon guardado con éxito",
-                                			dangerMode: true,
-                                			
-                                		})
-                      	    	    }))
-                      	    	   }
-                      	    	  });
                         		
-                        		
-                        		
-                        		
-                        		
-                        		let tiposValidos = ["normal", "fire", "water", "grass", "electric", "fighting", "poison", "ground", "flying", "psychic", "bug", "rock", "ghost", "dragon", "dark", "steel", "fairy"];
-                        		
-                        		
-                        		
-                        		if ( tiposValidos.indexOf( "grasss" ) > -1 ) {
-                        			console.log("esta dentro");
-                        		}else{
-                        			console.log("no esta dentro");
-                        		}
+                        		// inicializamos las variables de verificacion y recogemos los datos para evaluarlos
+                        		sePuedeGuardar = false;
+                        		tipoCorrecto = false;
+                        		valoresNumericosCorrectos = false;
+                        		nombreCorrecto = true;				//es mas facil comprobar que es incorrecto a que es correcto
+                        		naturalezaCorrecta = true;			//es mas facil comprovar que es incorrecto a que es correcto
                         		
                         		let name = document.getElementById("lectorNameP").value;
                         		let tipo = document.getElementById("lectorTipoP").value;
@@ -506,25 +481,170 @@ var pokedex = {
                         		let altura = document.getElementById("lectorAlturaP").value;
                         		let naturaleza = document.getElementById("lectorNaturalezaP").value;
                         		
-                        		document.getElementById("lectorNameP").value="";
-                        		document.getElementById("lectorTipoP").value="";
-                        		document.getElementById("lectorTipo1P").value="";
-                        		document.getElementById("lectormov1P").value="";
-                        		document.getElementById("lectormov2P").value="";
-                        		document.getElementById("lectormov3P").value="";
-                        		document.getElementById("lectormov4P").value="";
-                        		document.getElementById("lectorVidaP").value="";
-                        		document.getElementById("lectorVelP").value="";
-                        		document.getElementById("lectorAtaqueP").value="";
-                        		document.getElementById("lectorDefensaP").value="";
-                        		document.getElementById("lectorAtaqueEspP").value="";
-                        		document.getElementById("lectorDefensaEspP").value="";
-                        		document.getElementById("lectorPesoP").value="";
-                        		document.getElementById("lectorAlturaP").value="";
-                        		document.getElementById("lectorNaturalezaP").value="";
+                        		vida = parseInt(vida);
+                        		vel = parseInt(vel);
+                        		ataque = parseInt(ataque);
+                        		defensa = parseInt(defensa);
+                        		ataqueEsp = parseInt(ataqueEsp);
+                        		defensaEsp = parseInt(defensaEsp);
+                        		peso = parseFloat(peso);
+                        		altura = parseFloat(altura);
                         		
-                        		
-                        		
+                        		//confirm para agregar o no al pokemon
+                        		swal({
+                        			
+                      	    	  title: "¿Quiere añadir un pokemon con los campos descritos?",
+                      	    	  buttons: true,
+                      	    	  dangerMode: true,
+                      	    	  
+                      	    	}).then((willSave) => {
+                      	    	  if (willSave) {
+                      	    		
+                      	    		//"pantalla de carga" mientras se realizan las comprobaciones
+                      	    		
+                      	    		//si mete dos tipos los dos deben ser validos y si mete solo un tipo este debe ser valido
+                      	    		if ( ((tiposValidos.indexOf( tipo ) > -1) && (tiposValidos.indexOf(tipo1) > -1)) || ((tiposValidos.indexOf( tipo ) > -1) && (tipo1 == "")) ) {
+                            			tipoCorrecto = true;
+                            		}else{
+                            			mensajeError = "El tipo/s del pokemon no es valido. Debe introducir uno o dos valores pertenecientes a esta lista: [" + tiposValidos + "]";
+                            		}
+                      	    		
+                      	    		//comprobamos si los valores numericos son efectivamente numeros
+                      	    		if(!isNaN(vida) && !isNaN(vel) && !isNaN(ataque) && !isNaN(defensa) && !isNaN(ataqueEsp) && !isNaN(defensaEsp) && !isNaN(peso) && !isNaN(altura)){
+                      	    			valoresNumericosCorrectos = true;
+                      	    		}else{
+                      	    			mensajeError = "Los valores 'PS', 'velocidad', 'ataque', 'defensa', 'ataqueEsp', 'defensaEsp', 'peso', 'altura' deben ser números";
+                      	    		}
+                      	    		
+                      	    		//comprobamos que el nombre tenga un limite de caracteres y no contiene numeros
+                      	    		if(name.length <= 12 && name.length > 0){
+                      	    			
+                      	    			for(i=0; i<name.length; i++){
+                      	    				if(numeros.indexOf(name.charAt(i)) > -1 || name.charAt(i) == "" || name.charAt(i) == " "){
+                      	    					nombreCorrecto = false;
+                      	    					mensajeError = "El nombre del pokemon no puede contener numeros ni espacios"
+                      	    				}
+                      	    			}
+                      	    		}else{
+                      	    			nombreCorrecto = false;
+                      	    			mensajeError = "El nombre del pokemon debe tener entre 1 y 12 caracteres";
+                      	    		}
+                      	    		
+                      	    		//comprobamos que la naturaleza tenga un limite de caracteres y no contenga numeros ni espacios
+                      	    		if(naturaleza.length <= 20 && naturaleza.length > 0){
+                      	    			
+                      	    			for(i=0; i<naturaleza.length; i++){
+                      	    				if(numeros.indexOf(naturaleza.charAt(i)) > -1 || naturaleza.charAt(i) == "" || naturaleza.charAt(i) == " "){
+                      	    					naturalezaCorrecta = false;
+                      	    					mensajeError = "La naturaleza del pokemon no puede contener numeros ni espacios"
+                      	    				}
+                      	    			}
+                      	    		}else{
+                      	    			naturalezaCorrecta = false;
+                      	    			mensajeError = "La naturaleza del pokemon debe tener entre 1 y 20 caracteres";
+                      	    		}
+                                		
+                      	    	    swal("Guardando pokemon...", {
+                      	    	      icon: "info",
+                      	    	      dangerMode: true,
+                      	    	      timer:2500,
+                      	    	      buttons: false,
+                      	    	      
+                      	    	    }).then((willSave =>{
+                      	    	    	
+                      	    	    	sePuedeGuardar = (tipoCorrecto & valoresNumericosCorrectos & nombreCorrecto & naturalezaCorrecta);
+                      	    	    	
+                      	    	    	//respuesta al usuario
+                      	    	    	if(sePuedeGuardar){
+                      	    	    		
+                      	    	    	//limpiamos los inputs
+                              	    		document.getElementById("lectorNameP").value="";
+                                    		document.getElementById("lectorTipoP").value="";
+                                    		document.getElementById("lectorTipo1P").value="";
+                                    		document.getElementById("lectormov1P").value="";
+                                    		document.getElementById("lectormov2P").value="";
+                                    		document.getElementById("lectormov3P").value="";
+                                    		document.getElementById("lectormov4P").value="";
+                                    		document.getElementById("lectorVidaP").value="";
+                                    		document.getElementById("lectorVelP").value="";
+                                    		document.getElementById("lectorAtaqueP").value="";
+                                    		document.getElementById("lectorDefensaP").value="";
+                                    		document.getElementById("lectorAtaqueEspP").value="";
+                                    		document.getElementById("lectorDefensaEspP").value="";
+                                    		document.getElementById("lectorPesoP").value="";
+                                    		document.getElementById("lectorAlturaP").value="";
+                                    		document.getElementById("lectorNaturalezaP").value="";
+                                    		
+                                    		//guardar el pokemon en la base de datos
+                                    		let pokemon;
+                                    	                                                                     		
+                                    		pokemon.abilities[0] = mov1;
+                                    		pokemon.abilities[1] = mov2;
+                                    		pokemon.abilities[2] = mov3;
+                                    		pokemon.abilities[3] = mov4;
+                                    		
+                                          	pokemon.against_bug = 0;
+                                    		pokemon.against_dark = 0;
+                                    		pokemon.against_dragon = 0;
+                                    		pokemon.against_electric = 0;
+                                    		pokemon.against_fairy = 0;
+                                    		pokemon.against_fight = 0;
+                                    		pokemon.against_fire = 0;
+                                    		pokemon.against_flying = 0;
+                                    		pokemon.against_ghost = 0;
+                                    		pokemon.against_grass = 0;
+                                    		pokemon.against_ground = 0;
+                                    		pokemon.against_ice = 0;
+                                    		pokemon.against_normal = 0;
+                                    		pokemon.against_poison = 0;
+                                    		pokemon.against_psychic = 0;
+                                    		pokemon.against_rock = 0;
+                                    		pokemon.against_steel = 0;
+                                    		pokemon.against_water = 0;
+                                    		
+                                    		pokemon.attack = ataque;
+                                    		pokemon.base_egg_steps = 0;
+                                    		pokemon.base_happiness = 0;
+                                    		pokemon.base_total = 0;
+                                    		pokemon.capture_rate = 0;
+                                    		pokemon.classfication = naturaleza;
+                                    		pokemon.defense = defensa;
+                                    		pokemon.experience_growth = 0;
+                                    		pokemon.height_m = altura;
+                                    		pokemon.hp = vida;
+                                    		pokemon.japanese_name ="";
+                                    		pokemon.name = name;
+                                    		pokemon.percentage_male = 0.0;
+                                    		pokemon.pokedex_number = 0;
+                                    		pokemon.sp_attack = ataqueEsp;
+                                    		pokemon.sp_defense = defensaEsp;
+                                    		pokemon.speed = vel;
+                                    		pokemon.type1 = tipo;
+                                    		pokemon.type2 = tipo1;
+                                    		pokemon.weight_kg = peso;
+                                    		pokemon.generation = 0;
+                                    		pokemon.is_legendary = 0;
+                                    		pokemon.photos = [];
+                                    		
+                                    		console.log(pokemon);
+                      	    	    		
+	                      	    	    	swal({
+	                                			title: "Pokemon guardado con éxito",
+	                                			dangerMode: true,
+	                                			
+	                                		})
+	                                		
+                      	    	    	}else{
+                      	    	    		swal({
+	                                			title: "Error: los datos introducidos no son válidos",
+	                                			text: mensajeError,
+	                                			dangerMode: true,
+	                                			
+	                                		})
+                      	    	    	}
+                      	    	    }))
+                      	    	   }
+                      	    	  });
                         	}
 
                         	
