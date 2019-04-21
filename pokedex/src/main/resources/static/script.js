@@ -73,9 +73,11 @@ preload(
     "img/Anyadir/camposPequenyos.png", //..........40
     "img/Anyadir/camposPequenyosHover.png", //_____41
     "img/search.png", //...........................42
-    "img/search_hover.png", //______________________43
-    "img/Anyadir/showImg.png", //...............44
-    "img/Anyadir/showImgHover.png" //__________45
+    "img/search_hover.png", //_____________________43
+    "img/Anyadir/showImg.png", //..................44
+    "img/Anyadir/showImgHover.png", //_____________45
+    "img/btnGuardarPokemon.png",//kjashdsajkdhskaj_46
+    "img/btnGuardarPokemon_hover.png"//kjasdsjadas.47
 )
 
 //Variables globales
@@ -105,6 +107,7 @@ var creditosTexto;
 var pokemonElegido;
 var pokE;
 var btnSearch;
+var btnGuardarPokemon;
 
 var masfotos;
 var imgCont = 0;
@@ -116,6 +119,7 @@ var inAnimation = false;
 var dbSelected = 'sqlite';
 var canShowList = false;
 var canShowPokemon = false;
+var canShowLectores = false;
 
 //Estados/menus de la pokedex
 var mainMenu;
@@ -151,6 +155,7 @@ function startPokedex() {
     btnTipos = new Button(365, 500, images[36], images[37], 132, 60, globalGroup);
     btnTipos1 = new Button(500, 500, images[36], images[37], 132, 60, globalGroup);
     btnSearch = new Button(800, 370, images[42], images[43], 50, 50, globalGroup);
+    btnGuardarPokemon = new Button(670, 688, images[46], images[47], 100, 60, globalGroup);
     
     btnCampos = new Button(655, 300, images[38], images[39], 360, 90, globalGroup); 
     btnCamposPeso = new Button(670, 350, images[40], images[41], 150, 125, globalGroup);
@@ -273,6 +278,8 @@ var pokedex = {
                         pokeball_der.cycleDone = false;
                         inAnimation = true;
                         nextPokeState = addMenu;
+                        
+                        
                     }
                     //XML Download onClick
                     else if (pokedex.clickX > xmlDownload.x + xmlDownload.group.x && pokedex.clickX < xmlDownload.x + xmlDownload.group.x + xmlDownload.width && pokedex.clickY > xmlDownload.y + xmlDownload.group.y && pokedex.clickY < xmlDownload.y + xmlDownload.group.y + xmlDownload.height) {
@@ -304,6 +311,9 @@ var pokedex = {
                         document.getElementById("multiselect").style.visibility = "hidden";
                         document.getElementById("ordenLista").style.visibility = "hidden";
                         canShowList = false;
+                        
+                        document.getElementById("lectorAtributos").style.visibility = 'hidden';
+                        canShowLector = false;
                     }
                     switch (pokeState.name) {
                         case "listMenu":
@@ -431,8 +441,95 @@ var pokedex = {
                                 });                                
                             }
                             break;
+                            
                         case "addMenu":
-                            if (pokedex.clickX > btnAddFoto.x + btnAddFoto.group.x && pokedex.clickX < btnAddFoto.x + btnAddFoto.group.x + btnAddFoto.width && pokedex.clickY > btnAddFoto.y + btnAddFoto.group.y && pokedex.clickY < btnAddFoto.y + btnAddFoto.group.y + btnAddFoto.height) {
+                            
+                        	//click btnGuardarPokemon
+                        	if (pokedex.clickX > btnGuardarPokemon.x + btnGuardarPokemon.group.x && pokedex.clickX < btnGuardarPokemon.x + btnGuardarPokemon.group.x + btnGuardarPokemon.width && pokedex.clickY > btnGuardarPokemon.y + btnGuardarPokemon.group.y && pokedex.clickY < btnGuardarPokemon.y + btnGuardarPokemon.group.y + btnGuardarPokemon.height) {
+                       
+                        		swal({
+                        			
+                      	    	  title: "¿Quiere añadir un pokemon con los campos descritos?",
+                      	    	  buttons: true,
+                      	    	  dangerMode: true,
+                      	    	  
+                      	    	}).then((willDelete) => {
+                      	    	  if (willDelete) {
+                      	    		  
+                      	    		console.log("kjsad");
+                                		
+                      	    	    swal("Guardando pokemon...", {
+                      	    	      icon: "info",
+                      	    	      dangerMode: true,
+                      	    	      timer:2500,
+                      	    	      buttons: false,
+                      	    	      
+                      	    	    }).then((willDelete =>{
+                      	    	    	
+                      	    	    	swal({
+                                			title: "Pokemon guardado con éxito",
+                                			dangerMode: true,
+                                			
+                                		})
+                      	    	    }))
+                      	    	   }
+                      	    	  });
+                        		
+                        		
+                        		
+                        		
+                        		
+                        		let tiposValidos = ["normal", "fire", "water", "grass", "electric", "fighting", "poison", "ground", "flying", "psychic", "bug", "rock", "ghost", "dragon", "dark", "steel", "fairy"];
+                        		
+                        		
+                        		
+                        		if ( tiposValidos.indexOf( "grasss" ) > -1 ) {
+                        			console.log("esta dentro");
+                        		}else{
+                        			console.log("no esta dentro");
+                        		}
+                        		
+                        		let name = document.getElementById("lectorNameP").value;
+                        		let tipo = document.getElementById("lectorTipoP").value;
+                        		let tipo1 = document.getElementById("lectorTipo1P").value;
+                        		let mov1 = document.getElementById("lectormov1P").value;
+                        		let mov2 = document.getElementById("lectormov2P").value;
+                        		let mov3 = document.getElementById("lectormov3P").value;
+                        		let mov4 = document.getElementById("lectormov4P").value;
+                        		let vida = document.getElementById("lectorVidaP").value;
+                        		let vel = document.getElementById("lectorVelP").value;
+                        		let ataque = document.getElementById("lectorAtaqueP").value;
+                        		let defensa = document.getElementById("lectorDefensaP").value;
+                        		let ataqueEsp = document.getElementById("lectorAtaqueEspP").value;
+                        		let defensaEsp = document.getElementById("lectorDefensaEspP").value;
+                        		let peso = document.getElementById("lectorPesoP").value;
+                        		let altura = document.getElementById("lectorAlturaP").value;
+                        		let naturaleza = document.getElementById("lectorNaturalezaP").value;
+                        		
+                        		document.getElementById("lectorNameP").value="";
+                        		document.getElementById("lectorTipoP").value="";
+                        		document.getElementById("lectorTipo1P").value="";
+                        		document.getElementById("lectormov1P").value="";
+                        		document.getElementById("lectormov2P").value="";
+                        		document.getElementById("lectormov3P").value="";
+                        		document.getElementById("lectormov4P").value="";
+                        		document.getElementById("lectorVidaP").value="";
+                        		document.getElementById("lectorVelP").value="";
+                        		document.getElementById("lectorAtaqueP").value="";
+                        		document.getElementById("lectorDefensaP").value="";
+                        		document.getElementById("lectorAtaqueEspP").value="";
+                        		document.getElementById("lectorDefensaEspP").value="";
+                        		document.getElementById("lectorPesoP").value="";
+                        		document.getElementById("lectorAlturaP").value="";
+                        		document.getElementById("lectorNaturalezaP").value="";
+                        		
+                        		
+                        		
+                        	}
+
+                        	
+                        	if (pokedex.clickX > btnAddFoto.x + btnAddFoto.group.x && pokedex.clickX < btnAddFoto.x + btnAddFoto.group.x + btnAddFoto.width && pokedex.clickY > btnAddFoto.y + btnAddFoto.group.y && pokedex.clickY < btnAddFoto.y + btnAddFoto.group.y + btnAddFoto.height) {
+                            	
                                var preview = document.querySelector('img'); //selects the query named img
                                var file    = document.querySelector('input[type=file]').files[0]; //sames as here
                                var reader  = new FileReader();
@@ -446,8 +543,9 @@ var pokedex = {
                                } else {
                                    preview.src = "";
                                }
-                            }                            
+                            }      
                             break;
+                            
                         case "bddMenu":  
                             if (pokedex.clickX > mongodb.x + mongodb.group.x && pokedex.clickX < mongodb.x + mongodb.group.x + mongodb.width && pokedex.clickY > mongodb.y + mongodb.group.y && pokedex.clickY < mongodb.y + mongodb.group.y + mongodb.height) {
                                 mongodb.isSelected = true;
@@ -460,6 +558,7 @@ var pokedex = {
                                 dbSelected = 'sqlite';
                             }                  
                             break;
+                            
                         case "showPokemon":
                         	
                         	//Boton de volver cambia a ListMenu
@@ -482,6 +581,7 @@ var pokedex = {
 	                        	}
                         	}
                         	break;
+                        	
                         default:
                             break;
                     }
@@ -545,6 +645,11 @@ function updatePokedex() {
             btnCamposMov2.update();
             btnCamposMov3.update();
             btnCamposMov4.update();
+            btnGuardarPokemon.update();
+            if (nextPokeState.name === "addMenu" && canShowLectores) {
+            	document.getElementById("lectorAtributos").style.visibility = 'visible';
+            }
+     
             break;
         case "showPokemon":
         	//console.log(pokemonElegido);
@@ -629,6 +734,15 @@ function changeState() {
         setTimeout(function() {
             canShowPokemon = true;
         }, 1000);
+    }
+    else if (nextPokeState.name === "addMenu") {
+    	setTimeout(function() {
+            canShowLectores = true;
+        }, 1000);
+        
+    }
+    else{
+    	;
     }
 }   
 

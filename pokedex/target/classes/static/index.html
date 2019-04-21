@@ -1,14 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<link rel="stylesheet" href="style.css">
-<link href='https://fonts.googleapis.com/css?family=Sniglet'
-	rel='stylesheet'>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="style.css">
+	<link href='https://fonts.googleapis.com/css?family=Sniglet' rel='stylesheet'>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
+
 <body>
 
 	<!--Lista de pokemon registrados-->
@@ -85,7 +84,7 @@
 				<div class="overSelect"></div>
 			</div>
 			<div id="checkboxes" class="hide">
-				<span>Generación</span> 
+				<span>Generación</span> <br></br>
 				<label for="c1"><input type="checkbox" id="c1" />1</label> 
 				<label for="c2"><input type="checkbox" id="c2" />2</label> 
 				<label for="c3"><input type="checkbox" id="c3" />3</label> 
@@ -93,7 +92,7 @@
 				<label for="c5"><input type="checkbox" id="c5" />5</label> 
 				<label for="c6"><input type="checkbox" id="c6" />6</label> 
 				<label for="c7"><input type="checkbox" id="c7" />7</label> 
-				<span>Tipo</span> 
+				<br></br><span>Tipo</span> <br></br>
 				<label for="c8" class="tipoPokemon"><input type="checkbox" id="c8" />normal</label>
 				<label for="c9" class="tipoPokemon"><input type="checkbox" id="c9" />fire</label> 
 				<label for="c10" class="tipoPokemon"><input type="checkbox" id="c10" />water</label> 
@@ -112,25 +111,50 @@
 				<label for="c23" class="tipoPokemon"><input type="checkbox" id="c23" />dark</label> 
 				<label for="c24" class="tipoPokemon"><input type="checkbox" id="c24" />steel</label> 
 				<label for="c25" class="tipoPokemon"><input type="checkbox" id="c25" />fairy</label> 
-				<span>Legendario</span>
+				<br></br><span>Legendario</span> <br></br>
 				<label for="c26"><input type="checkbox" id="c26" />Legendario</label>
 			</div>
 		</div>
 	</form>
 	
 	<div id="atributos" style="visibility: hidden;">
-		<span id="nameP" class="atrib name"></span> <span id="tipoP"
-			class="atrib tipo"></span> <span id="tipo1P" class="atrib tipo1"></span>
-		<span id="mov1P" class="atrib mov1"></span> <span id="mov2P"
-			class="atrib mov2"></span> <span id="mov3P" class="atrib mov3"></span>
-		<span id="mov4P" class="atrib mov4"></span> <span id="photoP"
-			class="atrib photo"></span> <span id="itemP" class="atrib item"></span>
-		<span id="vidaP" class="atrib vida"></span> <span id="velP"
-			class="atrib vel"></span> <span id="pesoP" class="atrib peso"></span>
-		<span id="natuP" class="atrib natu"></span> <span id="ataP"
-			class="atrib ata"></span> <span id="ataEP" class="atrib ataE"></span>
-		<span id="defP" class="atrib def"></span> <span id="defEP"
-			class="atrib defE"></span> <img id="photosP" src="" class="photos">
+		<span id="nameP" class="atrib name"></span> 
+		<span id="tipoP" class="atrib tipo"></span> 
+		<span id="tipo1P" class="atrib tipo1"></span>
+		<span id="mov1P" class="atrib mov1"></span> 
+		<span id="mov2P" class="atrib mov2"></span> 
+		<span id="mov3P" class="atrib mov3"></span>
+		<span id="mov4P" class="atrib mov4"></span> 
+		<span id="photoP" class="atrib photo"></span>
+		<span id="itemP" class="atrib item"></span>
+		<span id="vidaP" class="atrib vida"></span> 
+		<span id="velP" class="atrib vel"></span> 
+		<span id="pesoP" class="atrib peso"></span>
+		<span id="natuP" class="atrib natu"></span>
+		<span id="ataP" class="atrib ata"></span> 
+		<span id="ataEP" class="atrib ataE"></span>
+		<span id="defP" class="atrib def"></span> 
+		<span id="defEP" class="atrib defE"></span> 
+		<img id="photosP" src="" class="photos">
+	</div>
+	
+	<div id="lectorAtributos" style="visibility: hidden;">
+		<input type="text" id="lectorNameP" class="lectorAtributo" placeholder="Nombre del Pokemon">
+		<input type="text" id="lectorTipoP" class="lectorAtributo" placeholder="Tipo 1">
+		<input type="text" id="lectorTipo1P" class="lectorAtributo" placeholder="Tipo 2">
+		<input type="text" id="lectormov1P" class="lectorAtributo" placeholder="Movimiento 1">
+		<input type="text" id="lectormov2P" class="lectorAtributo" placeholder="Movimiento 2">
+		<input type="text" id="lectormov3P" class="lectorAtributo" placeholder="Movimiento 3">
+		<input type="text" id="lectormov4P" class="lectorAtributo" placeholder="Movimiento 4">
+		<input type="text" id="lectorVidaP" class="lectorAtributo" placeholder="PS">
+		<input type="text" id="lectorVelP" class="lectorAtributo" placeholder="Velocidad">
+		<input type="text" id="lectorAtaqueP" class="lectorAtributo" placeholder="Ataque">
+		<input type="text" id="lectorDefensaP" class="lectorAtributo" placeholder="Defensa">
+		<input type="text" id="lectorAtaqueEspP" class="lectorAtributo" placeholder="Ataque Esp.">
+		<input type="text" id="lectorDefensaEspP" class="lectorAtributo" placeholder="Defensa Esp.">
+		<input type="text" id="lectorPesoP" class="lectorAtributo" placeholder="Peso">
+		<input type="text" id="lectorNaturalezaP" class="lectorAtributo" placeholder="Naturaleza">
+		<input type="text" id="lectorAlturaP" class="lectorAtributo" placeholder="Altura">
 	</div>
 
 	<!--Desplegable del orden de la lista-->

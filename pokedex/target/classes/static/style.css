@@ -1,6 +1,5 @@
-/*Estilos de la lista de pokemon*/
-
 /*la marca que sale a la izquierda de todos los elmentos de la lista*/
+
 .imgLista {
   list-style-image: url('img/pokeListMark.gif');
 }
@@ -23,6 +22,7 @@
 /*///////////////////////////////////////////////////////////////////////*/
 
 /*El div con scroll y la fuente*/
+
 .listaPokemon {
 	position: absolute;
 	visibility: hidden;
@@ -32,7 +32,7 @@
 	height: 300px;
 	margin: 50px auto;
 	padding: 20px;
-	background: #8945;
+	background: rgba(0, 77, 77, 0.5);
 	overflow: auto;
 	font-family: 'Sniglet';
 	font-size: 17px;
@@ -67,7 +67,7 @@
 }
 
 .listaPokemon::-webkit-scrollbar-thumb {
-	background: #D7DF01;
+	background: mediumaquamarine;
 	border-radius: 5px;
 }
 
@@ -206,6 +206,145 @@
 	left: 890px;
 }
 
+/*///////////////////////////////////////////////////////////////////////*/
+/*///FORMULARIOS DE AÑADIR POKEMON///////////////////////////////////////*/
+/*///////////////////////////////////////////////////////////////////////*/
+
+.lectorAtributo {
+	position:absolute;
+	background: transparent;
+    border: none;
+    outline: none;
+}
+
+input {
+  color: white;
+  font-size: 1.2em;
+  text-align: center;
+}
+
+input::placeholder {
+  color: rgb(179, 255, 179);
+  font-size: 1.2em;
+  font-style: italic;
+}
+
+input:focus::-webkit-input-placeholder {
+    opacity: 0;
+}
+
+#lectorNameP {
+	top: 345px;
+    left: 715px;
+    width: 265px;
+    height: 21px;
+}
+
+#lectorTipoP {
+	top: 527px;
+    left: 379px;
+    width: 115px;
+    height: 21px;
+}
+
+#lectorTipo1P {
+	top: 527px;
+    left: 515px;
+    width: 115px;
+    height: 21px;
+}
+
+#lectormov1P {
+	top: 586px;
+    left: 362px;
+    width: 121px;
+    height: 21px;
+}
+
+#lectormov2P {
+	top: 586px;
+    left: 510px;
+    width: 121px;
+    height: 21px;
+}
+
+#lectormov3P {
+	top: 646px;
+    left: 362px;
+    width: 121px;
+    height: 21px;
+}
+
+#lectormov4P {
+	top: 646px;
+    left: 510px;
+    width: 121px;
+    height: 21px;
+}
+
+#lectorVidaP {
+	top: 400px;
+    left: 730px;
+    width: 60px;
+    height: 21px;
+}
+
+#lectorVelP {
+	top: 400px;
+    left: 870px;
+    width: 103px;
+    height: 21px;
+}
+
+#lectorAtaqueP {
+	top: 459px;
+    left: 721px;
+    width: 78px;
+    height: 21px;
+}
+
+#lectorDefensaP {
+	top: 459px;
+    left: 876px;
+    width: 90px;
+    height: 21px;
+}
+
+#lectorAtaqueEspP {
+	top: 520px;
+    left: 700px;
+    width: 122px;
+    height: 21px;
+}
+
+#lectorDefensaEspP {
+	top: 520px;
+    left: 854px;
+    width: 132px;
+    height: 21px;
+}
+
+#lectorPesoP {
+	top: 580px;
+    left: 726px;
+    width: 60px;
+    height: 21px;
+}
+
+#lectorAlturaP {
+	top: 580px;
+    left: 890px;
+    width: 63px;
+    height: 21px;
+}
+
+#lectorNaturalezaP {
+	
+	top: 641px;
+    left: 718px;
+    width: 279px;
+    height: 21px;
+}
 
 /*///////////////////////////////////////////////////////////////////////*/
 /*///FILTROS/////////////////////////////////////////////////////////////*/
@@ -225,7 +364,7 @@
 
 .selectBox select {
     width: 100%;
-    background: #8945;
+    background: rgba(0, 77, 77, 0.85);
     border: none;
     font-family: 'Arial';
 	font-size: 15px;
@@ -245,10 +384,10 @@
 
 #checkboxes {
     display: block;
-    border: 1px #D7DF01 solid;
+    border: 1px rgba(0, 128, 128, 0.85) solid;
     position:absolute;
     width:100%;
-    background-color:#8945;
+    background-color:rgba(0, 77, 77, 0.5);
     box-sizing: border-box;
     overflow-y:auto;
     max-height:225px;
@@ -258,7 +397,7 @@
 
 #checkboxes span {
 	font-family: 'Arial';
-	color: yellow;
+	color: mediumaquamarine;
 	font-size: 20px;
 	padding: 10px;
 }
@@ -270,7 +409,7 @@
 }
 
 #checkboxes label:hover {
-    background-color: #8945;
+    background-color: mediumaquamarine;
 }
 
 #checkboxes::-webkit-scrollbar {
@@ -278,7 +417,7 @@
 }
 
 #checkboxes::-webkit-scrollbar-thumb {
-	background: #D7DF01;
+	background: mediumaquamarine;
 	border-radius: 5px;
 }
 
@@ -298,20 +437,20 @@
 	color: white;
 	font-family: 'Arial';
 	padding: 10px;
-	background: #8945;
+	background: rgba(0, 77, 77, 0.5);
 	border-color: transparent;
 }
 
 .ordenLista option {
-	background-color: #38610BCC;
+	background-color: rgba(0, 77, 77, 0.5);
 }
 
 /*///////////////////////////////////////////////////////////////////////*/
-/*///CONFIRMACION BORRAR POKEMON ////////////////////////////////////////*/
+/*///CONFIRMACION BORRAR Y AÑADIR POKEMON ///////////////////////////////*/
 /*///////////////////////////////////////////////////////////////////////*/
 
 .swal-modal {
-    background-color: rgba(67, 84, 26, 0.83);
+    background-color: rgba(0, 77, 77, 0.83);
     font-family: Arial;
 }
 
@@ -328,9 +467,9 @@
 }
 
 .swal-icon--success:after, .swal-icon--success:before {
-    background: rgba(67, 84, 26, 0.0);
+    background: rgba(0, 77, 77, 0.0);
 }
 
 .swal-icon--success__hide-corners {
-    background-color: rgba(67, 84, 26, 0.0);
+    background-color: rgba(0, 77, 77, 0.0);
 }
