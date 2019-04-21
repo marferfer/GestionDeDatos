@@ -105,7 +105,7 @@ public class PokemonController {
 	        	type = new Document("$or", listType);
 	        }
 	        else {
-	        	type = new Document("generation", new Document("$gt", 0));
+	        	type = new Document("generation", new Document("$gt", -1));
 	        }
 	        
 	        //Filtro por legendario
@@ -114,7 +114,7 @@ public class PokemonController {
 	        	legendario = new Document("is_legendary", 1);
 	        }
 	        else {
-	        	legendario = new Document("is_legendary", "0");
+	        	legendario = new Document("generation", new Document("$gt", -1));
 	        }
 	        //Aplicación de todos los filtros
 	        if (order.getGeneracion().length > 0 || order.getTipo().length > 0 || order.isLegendario()) {
@@ -125,7 +125,7 @@ public class PokemonController {
 	        	filter = new Document("$and", allFilters);
 	        }
 	        else {
-	        	filter = new Document("generation", new Document("$gt", 0));
+	        	filter = new Document("generation", new Document("$gt", -1));
 	        }
 			for (BsonDocument p : coll.find().filter(filter).sort(sort)) {
 				String objId = "" + p.get("_id");
