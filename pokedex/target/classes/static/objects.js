@@ -179,3 +179,50 @@ function State(name, background, father) {
 	this.background = background;
 	this.father = father;
 }
+
+//clase Pokemon para guardar pokemon nuevos en la bd
+function Pokemon(){
+	
+	this.abilities = [];
+	this.against_bug = 1;
+	this.against_dark = 1;
+	this.against_dragon = 1;
+	this.against_electric = 1;
+	this.against_fairy = 1;
+	this.against_fight = 1;
+	this.against_fire = 1;
+	this.against_flying = 1;
+	this.against_ghost = 1;
+	this.against_grass = 1;
+	this.against_ground = 1;
+	this.against_ice = 1;
+	this.against_normal = 1;
+	this.against_poison = 1;
+	this.against_psychic = 1;
+	this.against_rock = 1;
+	this.against_steel = 1;
+	this.against_water = 1;	
+	this.attack;
+	this.base_egg_steps = 1;
+	this.base_happiness = 1;
+	this.base_total = 1;
+	this.capture_rate = 1;
+	this.classfication;
+	this.defense;
+	this.experience_growth = 1;
+	this.height_m;
+	this.hp;
+	this.japanese_name ="";
+	this.name;
+	this.percentage_male = 0.0;
+	this.pokedex_number = 0;
+	this.sp_attack;
+	this.sp_defense;
+	this.speed;
+	this.type1;
+	this.type2;
+	this.weight_kg;
+	this.generation = 1;
+	this.is_legendary = "0";
+	this.photos = [];
+}

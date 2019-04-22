@@ -450,6 +450,9 @@ input:focus::-webkit-input-placeholder {
 /*///////////////////////////////////////////////////////////////////////*/
 
 .swal-modal {
+	position:absolute;
+	top: 400px;
+	left:455px;
     background-color: rgba(0, 77, 77, 0.83);
     font-family: Arial;
 }

@@ -26,7 +26,7 @@ public class App {
         MongoClient client = new MongoClient(new ServerAddress(), options);
 
         MongoDatabase db = client.getDatabase("pokemon").withReadPreference(ReadPreference.secondary());
-        MongoCollection<BsonDocument> pokemon = db.getCollection("pokemon", BsonDocument.class); //generic interface
+        MongoCollection<BsonDocument> coll = db.getCollection("pokemon", BsonDocument.class); //generic interface
         
         
         
