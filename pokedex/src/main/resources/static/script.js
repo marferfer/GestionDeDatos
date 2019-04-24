@@ -27,7 +27,7 @@ function preload() {
         images[i].src = preload.arguments[i];
         images[i].onload = function() {
             latch--;
-            if(latch <= 0) {
+            if(latch === 0) {
                 startPokedex();
             }
         }
@@ -50,93 +50,95 @@ function load(){
 
 
 preload(
-    "img/interfaz.png", //..........................0
-    "img/pokeball_izq.png", //______________________1
-    "img/pokeball_der.png", //......................2
-    "img/Fondo.png", //_____________________________3
-    "img/Pokedex.png", //...........................4
-    "img/PokedexHover.png", //______________________5
-    "img/Add.png", //...............................6
-    "img/AddHover.png", //__________________________7
-    "img/XML.png", //...............................8
-    "img/XMLHover.png", //__________________________9
-    "img/arrow.png", //............................10
-    "img/arrowHover.png", //_______________________11
-    "img/arrowIzq.png", //.........................12
-    "img/arrowHoverIzq.png", //____________________13
-    "img/listaPokemon/FondoNaranja.png", //........14
-    "img/listaPokemon/atras.png", //_______________15
-    "img/listaPokemon/atrasHover.png", //..........16
-    "img/Config.png", //___________________________17
-    "img/ConfigHover.png", //......................18
-    "img/Creditos.png", //_________________________19
-    "img/CreditosHover.png", //....................20
-    "img/creditos/FondoVerde.png", //______________21
-    "img/creditos/atras.png", //...................22
-    "img/creditos/atrasHover.png", //______________23
-    "img/creditos/creditos.png", //................24
-    "img/BDD/FondoMorado.png", //__________________25
-    "img/BDD/atras.png", //........................26
-    "img/BDD/atrasHover.png", //___________________27
-    "img/Tema.png", //.............................28
-    "img/TemaHover.png", //________________________29
-    "img/BDD/mongodbSelected.png", //..............30
-    "img/Fondobtn.png", //_________________________31
-    "img/FondobtnHover.png", //....................32
-    "img/BDD/sqliteSelected.png", //_______________33
-    "img/Anyadir/anyadirImg.png", //...............34
-    "img/Anyadir/anyadirImgHover.png", //__________35
-    "img/Anyadir/tipos.png", //....................36
-    "img/Anyadir/tiposHover.png", //_______________37
-    "img/Anyadir/campos.png", //...................38
-    "img/Anyadir/camposHover.png", //______________39
-    "img/Anyadir/camposPequenyos.png", //..........40
-    "img/Anyadir/camposPequenyosHover.png", //_____41
-    "img/search.png", //...........................42
-    "img/search_hover.png", //_____________________43
-    "img/Anyadir/showImg.png", //..................44
-    "img/Anyadir/showImgHover.png", //_____________45
-    "img/btnGuardarPokemon.png", //................46
-    "img/btnGuardarPokemon_hover.png", //__________47
-    "img/TemaClasico.png", //......................48
-    "img/TemaClasicoHover.png", //_________________49
-    "img/TemaClasicoSel.png", //...................50
-    "img/TemaLucario.png", //______________________51
-    "img/TemaLucarioHover.png", //.................52
-    "img/TemaLucarioSel.png", //___________________53
-    "img/FondoMini.png", //........................54
-    "img/FondoMiniHover.png", //___________________55
-    "img/FondoAbraMini.png", //....................56
-    "img/FondoAbraMiniHover.png", //_______________57
-    "img/FondoArticunoMini.png", //................58
-    "img/FondoArticunoMiniHover.png", //___________59
-    "img/FondoAshMini.png", //.....................60
-    "img/FondoAshMiniHover.png", //________________61
-    "img/FondoDarkMini.png", //....................62
-    "img/FondoDarkMiniHover.png", //_______________63
-    "img/FondoEeveeMini.png", //...................64
-    "img/FondoEeveeMiniHover.png", //______________65
-    "img/FondoGhostMini.png", //...................66
-    "img/FondoGhostMiniHover.png", //______________67
-    "img/FondoGrassMini.png", //...................58
-    "img/FondoGrassMiniHover.png", //______________69
-    "img/FondoMoltresMini.png", //.................70
-    "img/FondoMoltresMiniHover.png", //____________71
-    "img/FondoTourneyMini.png", //.................72
-    "img/FondoTourneyMiniHover.png", //____________73
-    "img/FondoZapdosMini.png", //..................74
-    "img/FondoZapdosMiniHover.png" //______________75
+    "img/interfaz.png", // ..........................0
+    "img/pokeball_izq.png", // ______________________1
+    "img/pokeball_der.png", // ......................2
+    "img/Fondo.png", // _____________________________3
+    "img/Pokedex.png", // ...........................4
+    "img/PokedexHover.png", // ______________________5
+    "img/Add.png", // ...............................6
+    "img/AddHover.png", // __________________________7
+    "img/XML.png", // ...............................8
+    "img/XMLHover.png", // __________________________9
+    "img/arrow.png", // ............................10
+    "img/arrowHover.png", // _______________________11
+    "img/arrowIzq.png", // .........................12
+    "img/arrowHoverIzq.png", // ____________________13
+    "img/listaPokemon/FondoNaranja.png", // ........14
+    "img/listaPokemon/atras.png", // _______________15
+    "img/listaPokemon/atrasHover.png", // ..........16
+    "img/Config.png", // ___________________________17
+    "img/ConfigHover.png", // ......................18
+    "img/Creditos.png", // _________________________19
+    "img/CreditosHover.png", // ....................20
+    "img/creditos/FondoVerde.png", // ______________21
+    "img/creditos/atras.png", // ...................22
+    "img/creditos/atrasHover.png", // ______________23
+    "img/creditos/creditos.png", // ................24
+    "img/BDD/FondoMorado.png", // __________________25
+    "img/BDD/atras.png", // ........................26
+    "img/BDD/atrasHover.png", // ___________________27
+    "img/Tema.png", // .............................28
+    "img/TemaHover.png", // ________________________29
+    "img/BDD/mongodbSelected.png", // ..............30
+    "img/Fondobtn.png", // _________________________31
+    "img/FondobtnHover.png", // ....................32
+    "img/BDD/sqliteSelected.png", // _______________33
+    "img/Anyadir/anyadirImg.png", // ...............34
+    "img/Anyadir/anyadirImgHover.png", // __________35
+    "img/Anyadir/tipos.png", // ....................36
+    "img/Anyadir/tiposHover.png", // _______________37
+    "img/Anyadir/campos.png", // ...................38
+    "img/Anyadir/camposHover.png", // ______________39
+    "img/Anyadir/camposPequenyos.png", // ..........40
+    "img/Anyadir/camposPequenyosHover.png", // _____41
+    "img/search.png", // ...........................42
+    "img/search_hover.png", // _____________________43
+    "img/Anyadir/showImg.png", // ..................44
+    "img/Anyadir/showImgHover.png", // _____________45
+    "img/btnGuardarPokemon.png", // ................46
+    "img/btnGuardarPokemon_hover.png", // __________47
+    "img/TemaClasico.png", // ......................48
+    "img/TemaClasicoHover.png", // _________________49
+    "img/TemaClasicoSel.png", // ...................50
+    "img/TemaLucario.png", // ______________________51
+    "img/TemaLucarioHover.png", // .................52
+    "img/TemaLucarioSel.png", // ___________________53
+    "img/FondoMini.png", // ........................54
+    "img/FondoMiniHover.png", // ___________________55
+    "img/FondoAbraMini.png", // ....................56
+    "img/FondoAbraMiniHover.png", // _______________57
+    "img/FondoArticunoMini.png", // ................58
+    "img/FondoArticunoMiniHover.png", // ___________59
+    "img/FondoAshMini.png", // .....................60
+    "img/FondoAshMiniHover.png", // ________________61
+    "img/FondoDarkMini.png", // ....................62
+    "img/FondoDarkMiniHover.png", // _______________63
+    "img/FondoEeveeMini.png", // ...................64
+    "img/FondoEeveeMiniHover.png", // ______________65
+    "img/FondoGhostMini.png", // ...................66
+    "img/FondoGhostMiniHover.png", // ______________67
+    "img/FondoGrassMini.png", // ...................58
+    "img/FondoGrassMiniHover.png", // ______________69
+    "img/FondoMoltresMini.png", // .................70
+    "img/FondoMoltresMiniHover.png", // ____________71
+    "img/FondoTourneyMini.png", // .................72
+    "img/FondoTourneyMiniHover.png", // ____________73
+    "img/FondoZapdosMini.png", // ..................74
+    "img/FondoZapdosMiniHover.png" // ______________75
 );
 
-//Variables globales
-var globalGroup; //grupo por defecto para todos los objetos sin un grupo específico
+// Variables globales
+var globalGroup; // grupo por defecto para todos los objetos sin un grupo
+					// específico
+var fondosGroup;
 var pokeball_izq;
 var pokeball_der;
 var background;
 var listaPokemon;
 var addPoke;
 var xmlDownload;
-var menuItems; //grupo de los botones del main menu
+var menuItems; // grupo de los botones del main menu
 var pokegroup_izq;
 var pokegroup_der;
 var arrowIzq;
@@ -178,13 +180,16 @@ var imgCont = 0;
 var noFotoDer;
 var noFotoIz;
 
-//Locks and Flags
+// Locks and Flags
 var inAnimation = false;
 var canShowList = false;
 var canShowPokemon = false;
 var canShowLectores = false;
+var selectedTheme = "clasico";
+var selectedBackground = "normal";
+var loading = false;
 
-//Estados/menus de la pokedex
+// Estados/menus de la pokedex
 var mainMenu;
 var listMenu;
 var addMenu;
@@ -193,10 +198,10 @@ var showPokemon;
 var creditsMenu;
 var themeMenu;
 var backgroundMenu;
-var pokeState; //Estado/menu actual de la pokedex
-var nextPokeState; //Siguiente estado de la pokedex
+var pokeState; // Estado/menu actual de la pokedex
+var nextPokeState; // Siguiente estado de la pokedex
 
-//sonidos
+// sonidos
 var sonido_abrirDesplegable;
 var sonido_eliminarPokemon;
 var sonido_guardandoPokemon;
@@ -206,15 +211,30 @@ var sonido_mostrarPokemon;
 var sonido_popup;
 var sonido_presionarBoton;
 
-//inicialización de variables
+// inicialización de variables
 function startPokedex() {
     globalGroup = new Group(0, 0);
     pokegroup_izq = new Group(15, 200);
     pokegroup_der = new Group(1075, 200);
     fondosGroup = new Group(380, 620);
     menuItems = new Group(20, 0);
-    pokeball_izq = new Pokeball(0, 0, images[1], "right", pokegroup_izq); //Se posiciona a la izquierda pero mira hacia la derecha
-    pokeball_der = new Pokeball(0, 0, images[2], "left", pokegroup_der); //Se posiciona a la derecha pero mira a la izquierda
+    pokeball_izq = new Pokeball(0, 0, images[1], "right", pokegroup_izq); // Se
+																			// posiciona
+																			// a la
+																			// izquierda
+																			// pero
+																			// mira
+																			// hacia
+																			// la
+																			// derecha
+    pokeball_der = new Pokeball(0, 0, images[2], "left", pokegroup_der); // Se
+																			// posiciona
+																			// a la
+																			// derecha
+																			// pero
+																			// mira
+																			// a la
+																			// izquierda
     background = new Background();
     listaPokemon = new Button(300, 400, images[4], images[5], 235, 251, menuItems);
     addPoke = new Button(550, 400, images[6], images[7], 235, 251, menuItems);
@@ -292,7 +312,7 @@ function startPokedex() {
     nextPokeState = mainMenu;
     pokedex.start();
 
-    //Comienza con la pokeball cerrada
+    // Comienza con la pokeball cerrada
     pokeball_izq.cycleDone = false;
     pokeball_der.cycleDone = false;
     inAnimation = true;
@@ -303,7 +323,7 @@ function startPokedex() {
     
 }
 
-//Gestion del canvas
+// Gestion del canvas
 var pokedex = {
     canvas : document.createElement("canvas"),
     start : function() {
@@ -321,11 +341,12 @@ var pokedex = {
             pokedex.clickY = e.pageY;
 
             if (!inAnimation && pokedex.clickX > 322 && pokedex.clickX < 1090) {
-                //Dependiendo del estado/menu actual de la pokedex se comprobarán las funciones onclick de unos botones u otros
+                // Dependiendo del estado/menu actual de la pokedex se
+				// comprobarán las funciones onclick de unos botones u otros
                 if (pokeState.name === "mainMenu") {
-                    //ListaPokemon onClick
+                    // ListaPokemon onClick
                     if (pokedex.clickX > listaPokemon.x + listaPokemon.group.x && pokedex.clickX < listaPokemon.x + listaPokemon.group.x + listaPokemon.width && pokedex.clickY > listaPokemon.y + listaPokemon.group.y && pokedex.clickY < listaPokemon.y + listaPokemon.group.y + listaPokemon.height) {
-                    	//sonido
+                    	// sonido
                     	sonido_presionarBoton.play();
                     	
                     	pokeball_izq.cycleDone = false;
@@ -350,10 +371,10 @@ var pokedex = {
                       				  '<div style="float:right;cursor:pointer;" id="'+ pokemons[p].split("-")[0] + ' "class = "imgListaBorrador"><img class="borrador" src="img/pokeListDelete.png"/>');
                         	}
                         	
-                        	//Borrado del pokemon en la lista de pokemons
+                        	// Borrado del pokemon en la lista de pokemons
                         	$('.imgListaBorrador').click(function(){
                         		
-                        		//sonido
+                        		// sonido
                         		sonido_presionarBoton.play();
                         		sonido_popup.play();
                         		
@@ -368,7 +389,7 @@ var pokedex = {
                         	    	.then((willDelete) => {
                         	    	  if (willDelete) {
                         	    		  
-                        	    		//sonido
+                        	    		// sonido
                         	    		sonido_eliminarPokemon.play();
                         	    		  
                         	    		$("div").remove("#"+id);
@@ -382,7 +403,7 @@ var pokedex = {
                         	    	      buttons: false,
                         	    	    }); 
                         	    	  }else{
-                        	    		  //sonido
+                        	    		  // sonido
                         	    		  sonido_presionarBoton.play();
                         	    	  }
                         	    	});
@@ -390,44 +411,179 @@ var pokedex = {
                         });
                         
                     }
-                    //AddPoke onClick
+                    // AddPoke onClick
                     if (pokedex.clickX > addPoke.x + addPoke.group.x && pokedex.clickX < addPoke.x + addPoke.group.x + addPoke.width && pokedex.clickY > addPoke.y + addPoke.group.y && pokedex.clickY < addPoke.y + addPoke.group.y + addPoke.height) {
                         pokeball_izq.cycleDone = false;
                         pokeball_der.cycleDone = false;
                         inAnimation = true;
                         nextPokeState = addMenu;
                         
-                        //sonido
+                        // sonido
                         sonido_presionarBoton.play();
                     }
-                    //XML Download onClick
+                    // XML Download onClick
                     else if (pokedex.clickX > xmlDownload.x + xmlDownload.group.x && pokedex.clickX < xmlDownload.x + xmlDownload.group.x + xmlDownload.width && pokedex.clickY > xmlDownload.y + xmlDownload.group.y && pokedex.clickY < xmlDownload.y + xmlDownload.group.y + xmlDownload.height) {
-                        download("prueba.xml","¡Capturalos a todos!");
+                    	inAnimation = true;
+                    	swal({
+              	    	  title: "¿Quieres guardar tu configuración actual o subir una nueva?",
+              	    	  buttons: {              	    	    
+              	    		catch: {
+              	    	      text: "Guardar",
+              	    	      value: "guardar",
+              	    	    },
+              	    	    cancel: "Subir una nueva",
+              	    	  },
+              	    	})
+              	    	.then((value) => {
+              	    		switch (value) {   
+              	    	    case "guardar":
+              	    	    	download("ajustes_pokedex.xml","<pokedex><config><tema>" + selectedTheme + "</tema>" +
+              	    	    			 "<fondo>" + selectedBackground + "</fondo></config></pokedex>");
+
+                  	    		setTimeout(function() {
+                  	    			inAnimation = false;
+                  	    		},100);
+              	    	    	break;              	    	 
+              	    	    default:
+              	    	    	loading = true  
+              	    	    	var x = document.createElement("INPUT");
+		              	    	  x.style.visibility = "hidden";
+		              	    	  
+		              	    	  x.setAttribute("type", "file");
+		              	    	  x.click();
+		              	    	  x.onchange = function() {
+		              	    	  	var reader = new FileReader();
+		              	    	         reader.onload = function(e) {
+		              	    	             readXml=e.target.result;
+		              	    	             var parser = new DOMParser();
+		              	    	             var doc = parser.parseFromString(readXml, "application/xml");
+		              	    	             var miTema = doc.getElementsByTagName("tema")[0].childNodes[0].nodeValue;
+		              	    	             var miFondo = doc.getElementsByTagName("fondo")[0].childNodes[0].nodeValue;
+		              	    	             
+		              	    	             switch (miTema) {
+		              	    	             case "clasico":
+		              	    	            	 images[4].src = "img/Pokedex.png";
+			                             		 images[5].src = "img/PokedexHover.png";
+			                             		 images[6].src = "img/Add.png";
+			                             		 images[7].src = "img/AddHover.png";
+			                             		 images[8].src = "img/XML.png";
+			                             		 images[9].src = "img/XMLHover.png";
+			                             		 images[17].src = "img/Config.png";
+			                             		 images[18].src = "img/ConfigHover.png";
+			                             		 images[19].src = "img/Creditos.png";
+			                             		 images[20].src = "img/CreditosHover.png";
+			                             		 selectedTheme = "clasico";
+		              	    	            	 break;
+		              	    	             case "lucario":
+		              	    	            	 images[4].src = "img/Pokedex2.png";
+			              	    	             images[5].src = "img/PokedexHover2.png";
+			                             		 images[6].src = "img/Añadir2.png";
+			                             		 images[7].src = "img/AñadirHover2.png";
+			                             		 images[8].src = "img/XML2.png";
+			                             		 images[9].src = "img/XMLHover2.png";
+			                             		 images[17].src = "img/Config2.png";
+			                             		 images[18].src = "img/ConfigHover2.png";
+			                             		 images[19].src = "img/Creditos2.png";
+			                             		 images[20].src = "img/CreditosHover2.png";
+			                             		 selectedTheme = "lucario";
+		              	    	            	 break;
+		              	    	             default:
+		              	    	            	 swal("El tema seleccionado no es correcto");
+		              	    	             	break;
+		              	    	             }
+		              	    	             switch (miFondo) {
+		              	    	             case "normal":
+		              	    	            	 images[3].src = "img/Fondo.png";
+		              	    	            	 selectedBackground = "normal";
+		              	    	            	 break;
+		              	    	             case "abra":
+		              	    	            	 images[3].src = "img/FondoAbra.png";
+		              	    	            	 selectedBackground = "abra";
+		              	    	            	 break;
+		              	    	             case "articuno":
+		              	    	            	 images[3].src = "img/FondoArticuno.png";
+		              	    	            	 selectedBackground = "articuno";
+		              	    	            	 break;
+		              	    	             case "ash":
+		              	    	            	 images[3].src = "img/FondoAsh.png";
+		              	    	            	 selectedBackground = "ash";
+		              	    	            	 break;
+		              	    	             case "dark":
+		              	    	            	 images[3].src = "img/FondoDark.png";
+		              	    	            	 selectedBackground = "dark";
+		              	    	            	 break;
+		              	    	             case "eevee":
+		              	    	            	 images[3].src = "img/FondoEevee.png";
+		              	    	            	 selectedBackground = "eevee";
+		              	    	            	 break;
+		              	    	             case "ghost":
+		              	    	            	 images[3].src = "img/FondoGhost.png";
+		              	    	            	 selectedBackground = "ghost";
+		              	    	            	 break;
+		              	    	             case "grass":
+		              	    	            	 images[3].src = "img/FondoGrass.png";
+		              	    	            	 selectedBackground = "grass";
+		              	    	            	 break;
+		              	    	             case "moltres":
+		              	    	            	 images[3].src = "img/FondoMoltres.png";
+		              	    	            	 selectedBackground = "moltres";
+		              	    	            	 break;
+		              	    	             case "tourney":
+		              	    	            	 images[3].src = "img/FondoTourney.png";
+		              	    	            	 selectedBackground = "tourney";
+		              	    	            	 break;
+		              	    	             case "zapdos":
+		              	    	            	 images[3].src = "img/FondoZapdos.png";
+		              	    	            	 selectedBackground = "zapdos";
+		              	    	            	 break;
+		              	    	             default:
+		              	    	            	 swal("El fondo seleccionado no es correcto");
+		              	    	            	 break;
+		              	    	             }
+		              	    	         }
+		              	    	         reader.readAsText(x.files[0]);
+		              	    	       swal("Configuración actualizada", {
+	                        	    	      icon: "success",
+	                        	    	      dangerMode: true,
+	                        	    	      timer:1200,
+	                        	    	      buttons: false,
+	                        	    	   }).then(value => {
+	                      	    	    		 loading = false;
+	                      	    	    		setTimeout(function() {
+	                              	    			inAnimation = false;
+	                              	    		},100);
+	                      	    	     });
+		              	    	  	
+		              	    	};
+              	    	    	
+              	    	  }
+              	    	});
+                    	
                       
-                        //sonido
+                        // sonido
                         sonido_presionarBoton.play();
                     }
-                    //BDD onClick
+                    // BDD onClick
                     if (pokedex.clickX > config.x + config.group.x && pokedex.clickX < config.x + config.group.x + config.width && pokedex.clickY > config.y + config.group.y && pokedex.clickY < config.y + config.group.y + config.height) {
                         pokeball_izq.cycleDone = false;
                         pokeball_der.cycleDone = false;
                         inAnimation = true;
                         nextPokeState = configMenu;
                         sonido_presionarBoton.play();
-                      //sonido
+                      // sonido
                     }
-                    //Creditos onClick
+                    // Creditos onClick
                     if (pokedex.clickX > creditos.x + creditos.group.x && pokedex.clickX < creditos.x + creditos.group.x + creditos.width && pokedex.clickY > creditos.y + creditos.group.y && pokedex.clickY < creditos.y + creditos.group.y + creditos.height) {
                         pokeball_izq.cycleDone = false;
                         pokeball_der.cycleDone = false;
                         inAnimation = true;
                         nextPokeState = creditsMenu;
                         
-                      //sonido
+                      // sonido
                         sonido_presionarBoton.play();
                     }
                 }
-                //El main menu va aparte
+                // El main menu va aparte
                 else {
                     if (pokedex.clickX > btnAtras.x + btnAtras.group.x && pokedex.clickX < btnAtras.x + btnAtras.group.x + btnAtras.width && pokedex.clickY > btnAtras.y + btnAtras.group.y && pokedex.clickY < btnAtras.y + btnAtras.group.y + btnAtras.height) {
                         pokeball_izq.cycleDone = false;
@@ -435,7 +591,7 @@ var pokedex = {
                         inAnimation = true;
                         nextPokeState = pokeState.father;
                         
-                      //sonido
+                      // sonido
                         sonido_presionarBoton.play();
                         
                         document.getElementById("listaPokemon").style.visibility = "hidden";
@@ -451,7 +607,7 @@ var pokedex = {
                         case "listMenu":
                         	$('.imgLista').click(function() {
                         		
-                        		//sonido
+                        		// sonido
                                 sonido_mostrarPokemon.play();
                         		
                         		var id = $(this).attr('id');
@@ -526,7 +682,7 @@ var pokedex = {
                         		pokeball_izq.cycleDone = false;
                                 pokeball_der.cycleDone = false;
                                 inAnimation = true;
-                                //Cambio a visualizar pokemon
+                                // Cambio a visualizar pokemon
                                 nextPokeState = showPokemon;
                                 document.getElementById("listaPokemon").style.visibility = "hidden";
                                 document.getElementById("multiselect").style.visibility = "hidden";
@@ -534,7 +690,7 @@ var pokedex = {
                         	});
                         	if (pokedex.clickX > btnSearch.x + btnSearch.group.x && pokedex.clickX < btnSearch.x + btnSearch.group.x + btnSearch.width && pokedex.clickY > btnSearch.y + btnSearch.group.y && pokedex.clickY < btnSearch.y + btnSearch.group.y + btnSearch.height) {
                         		
-                        		//sonido
+                        		// sonido
                                 sonido_presionarBoton.play();
                         		
                         		var elem = document.getElementById("orden");
@@ -571,10 +727,11 @@ var pokedex = {
                                 				'<div style="float:right;" id="'+ pokemons[p].split("-")[0] + ' "class = "imgListaBorrador"><img class="borrador" src="img/pokeListDelete.png"/>');
                                 	}
                                 	
-                                	//Borrado del pokemon en la lista de pokemons
+                                	// Borrado del pokemon en la lista de
+									// pokemons
                                 	$('.imgListaBorrador').click(function(){
                                 		
-                                		//sonido
+                                		// sonido
                                         sonido_presionarBoton.play();
                                         sonido_popup.play();
                                         
@@ -589,7 +746,7 @@ var pokedex = {
                                 	    	.then((willDelete) => {
                                 	    	  if (willDelete) {
                                 	    		
-                                	    		//sonido
+                                	    		// sonido
                                                 sonido_eliminarPokemon.play();
                                 	    		  
                                 	    		$("div").remove("#"+id);
@@ -603,7 +760,7 @@ var pokedex = {
                                 	    	      buttons: false,
                                 	    	    });
                                 	    	  }else{
-                                	    		//sonido
+                                	    		// sonido
                                                 sonido_presionarBoton.play();
                                 	    	  }
                                 	    	});
@@ -614,8 +771,9 @@ var pokedex = {
                             
                         case "addMenu":
                             
-                        	//variables para comprobar si el formato del pokemon es adecuado
-                    		let tiposValidos = ["normal", "fire", "water", "grass", "electric", "fighting", "poison", "ground", "flying", "psychic", "bug", "rock", "ghost", "dragon", "dark", "steel", "fairy"];
+                        	// variables para comprobar si el formato del
+							// pokemon es adecuado
+                    		let tiposValidos = ["normal", "fire", "water", "grass", "electric", "ice", "fighting", "poison", "ground", "flying", "psychic", "bug", "rock", "ghost", "dragon", "dark", "steel", "fairy"];
                     		let numeros = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
                     		let respuestas = ["si", "sí", "Si", "Sí", "SI", "SÍ", "sI", "sÍ", "no", "No", "NO", "nO"];
                     		let tipoCorrecto;
@@ -627,18 +785,31 @@ var pokedex = {
                     		
                     		document.getElementById("imgAdd").style.visibility = "visible";
 
-                        	//click btnGuardarPokemon
+                        	// click btnGuardarPokemon
                         	if (pokedex.clickX > btnGuardarPokemon.x + btnGuardarPokemon.group.x && pokedex.clickX < btnGuardarPokemon.x + btnGuardarPokemon.group.x + btnGuardarPokemon.width && pokedex.clickY > btnGuardarPokemon.y + btnGuardarPokemon.group.y && pokedex.clickY < btnGuardarPokemon.y + btnGuardarPokemon.group.y + btnGuardarPokemon.height) {
                         		
-                        		//sonido
+                        		// sonido
                                 sonido_presionarBoton.play();
                         		
-                        		// inicializamos las variables de verificacion y recogemos los datos para evaluarlos
+                        		// inicializamos las variables de verificacion y
+								// recogemos los datos para evaluarlos
                         		sePuedeGuardar = false;
                         		tipoCorrecto = false;
                         		valoresNumericosCorrectos = false;
-                        		nombreCorrecto = true;				//es mas facil comprobar que es incorrecto a que es correcto
-                        		legendarioCorrecto = true;			//es mas facil comprobar que es incorrecto a que es correcto
+                        		nombreCorrecto = true;				// es mas
+																	// facil
+																	// comprobar
+																	// que es
+																	// incorrecto
+																	// a que es
+																	// correcto
+                        		legendarioCorrecto = true;			// es mas
+																	// facil
+																	// comprobar
+																	// que es
+																	// incorrecto
+																	// a que es
+																	// correcto
                         		
                         		
                         		let name = document.getElementById("lectorNameP").value;
@@ -670,10 +841,10 @@ var pokedex = {
                         		generacion = parseInt(generacion);                       		
                         		name = name.charAt(0).toUpperCase() + name.slice(1);	//ponemos la inicial del pokemon en mayusculas
                         		
-                        		//sonido
+                        		// sonido
                         		sonido_popup.play();
                         		
-                        		//confirm para agregar o no al pokemon
+                        		// confirm para agregar o no al pokemon
                         		swal({
                         			
                       	    	  title: "¿Quiere añadir un pokemon con los campos descritos?",
@@ -683,23 +854,28 @@ var pokedex = {
                       	    	}).then((willSave) => {
                       	    	  if (willSave) {
                       	    		
-                      	    		//"pantalla de carga" mientras se realizan las comprobaciones
+                      	    		// "pantalla de carga" mientras se realizan
+									// las comprobaciones
                       	    		
-                      	    		//si mete dos tipos los dos deben ser validos y si mete solo un tipo este debe ser valido
+                      	    		// si mete dos tipos los dos deben ser
+									// validos y si mete solo un tipo este debe
+									// ser valido
                       	    		if ( ((tiposValidos.indexOf( tipo ) > -1) && (tiposValidos.indexOf(tipo1) > -1)) || ((tiposValidos.indexOf( tipo ) > -1) && (tipo1 == "")) ) {
                             			tipoCorrecto = true;
                             		}else{
                             			mensajeError = "El tipo/s del pokemon no es valido. Debe introducir uno o dos valores pertenecientes a esta lista: [" + tiposValidos + "]";
                             		}
                       	    		
-                      	    		//comprobamos si los valores numericos son efectivamente numeros
+                      	    		// comprobamos si los valores numericos son
+									// efectivamente numeros
                       	    		if(!isNaN(vida) && !isNaN(vel) && !isNaN(ataque) && !isNaN(defensa) && !isNaN(ataqueEsp) && !isNaN(defensaEsp) && !isNaN(peso) && !isNaN(altura) && !isNaN(generacion)){
                       	    			valoresNumericosCorrectos = true;
                       	    		}else{
                       	    			mensajeError = "Los valores 'PS', 'velocidad', 'ataque', 'defensa', 'ataqueEsp', 'defensaEsp', 'peso', 'altura' y 'generacion' deben ser números";
                       	    		}
                       	    		
-                      	    		//comprobamos que el nombre tenga un limite de caracteres y no contiene numeros
+                      	    		// comprobamos que el nombre tenga un limite
+									// de caracteres y no contiene numeros
                       	    		if(name.length <= 12 && name.length > 0){
                       	    			
                       	    			for(i=0; i<name.length; i++){
@@ -714,13 +890,14 @@ var pokedex = {
                       	    		}
                       	    		
                       	    
-                      	    		//comprobamos que la respuesta sobre si es legendario tenga sentido
+                      	    		// comprobamos que la respuesta sobre si es
+									// legendario tenga sentido
                       	    		if(respuestas.indexOf(legendario) <= -1){
                       	    			legendarioCorrecto = false;
                       	    			mensajeError = "La respuesta a si el pokemon es legendario o no, no es valida. Debe escribir si o no";
                       	    		}
                       	    		
-                      	    		//sonido
+                      	    		// sonido
                                     sonido_guardandoPokemon.play();	
                                     
                       	    	    swal("Guardando pokemon...", {
@@ -735,10 +912,10 @@ var pokedex = {
                       	    	    	
                       	    	    	sePuedeGuardar = (tipoCorrecto & valoresNumericosCorrectos & nombreCorrecto &legendarioCorrecto);
                       	    	    	
-                      	    	    	//respuesta al usuario
+                      	    	    	// respuesta al usuario
                       	    	    	if(sePuedeGuardar){
                       	    	    		
-                      	    	    	//limpiamos los inputs
+                      	    	    	// limpiamos los inputs
                               	    		document.getElementById("lectorNameP").value="";
                                     		document.getElementById("lectorTipoP").value="";
                                     		document.getElementById("lectorTipo1P").value="";
@@ -798,7 +975,6 @@ var pokedex = {
                                     				break;
                                     				
                                     			default:
-                                        			console.log("dkjdas");
                                     				pokemon.is_legendary = 1;
                                     				break;
                                     		}
@@ -807,11 +983,10 @@ var pokedex = {
                       	    	    		
 	                      	    	    	swal({
 	                                			title: "Pokemon guardado con éxito",
-	                                			dangerMode: true,
-	                                			
+	                                			dangerMode: true,	                                			
 	                                		})
 	                                		
-	                                		//sonido
+	                                		// sonido
 	                                        sonido_exitoGuardar.play();
 	                                		
                       	    	    	}else{
@@ -822,42 +997,48 @@ var pokedex = {
 	                                			
 	                                		})
 	                                		
-	                                		//sonido
+	                                		// sonido
 	                                        sonido_falloGuardar.play();
                       	    	    	}
                       	    	    }))                    	    	    
                       	    	   }else{
                       	    		   
-                      	    		   //sonido
+                      	    		   // sonido
                       	    		   sonido_presionarBoton.play();
                       	    	   }
                       	    	  });
                         	}
                         	if (pokedex.clickX > btnAtras.x + btnAtras.group.x && pokedex.clickX < btnAtras.x + btnAtras.group.x + btnAtras.width && pokedex.clickY > btnAtras.y + btnAtras.group.y && pokedex.clickY < btnAtras.y + btnAtras.group.y + btnAtras.height) {
+                        		//document.body.removeChild()
                         		
+                        		$("img").remove();
                         		document.getElementById("imgAdd").style.visibility = 'hidden';
+                        		
                         	}
 
                         	
-                        	/*if (pokedex.clickX > btnAddFoto.x + btnAddFoto.group.x && pokedex.clickX < btnAddFoto.x + btnAddFoto.group.x + btnAddFoto.width && pokedex.clickY > btnAddFoto.y + btnAddFoto.group.y && pokedex.clickY < btnAddFoto.y + btnAddFoto.group.y + btnAddFoto.height) {
-                            	
-                        		//sonido
-                        		sonido_presionarBoton.play();
-                        		
-                               var preview = document.querySelector('img'); //selects the query named img
-                               var file    = document.querySelector('input[type=file]').files[0]; //sames as here
-                               var reader  = new FileReader();
-
-                               reader.onloadend = function () {
-                                   preview.src = reader.result;
-                               }
-
-                               if (file) {
-                                   reader.readAsDataURL(file); //reads the data as a URL
-                               } else {
-                                   preview.src = "";
-                               }
-                            }  */    
+                        	/*
+							 * if (pokedex.clickX > btnAddFoto.x +
+							 * btnAddFoto.group.x && pokedex.clickX <
+							 * btnAddFoto.x + btnAddFoto.group.x +
+							 * btnAddFoto.width && pokedex.clickY > btnAddFoto.y +
+							 * btnAddFoto.group.y && pokedex.clickY <
+							 * btnAddFoto.y + btnAddFoto.group.y +
+							 * btnAddFoto.height) {
+							 * 
+							 * //sonido sonido_presionarBoton.play();
+							 * 
+							 * var preview = document.querySelector('img');
+							 * //selects the query named img var file =
+							 * document.querySelector('input[type=file]').files[0];
+							 * //sames as here var reader = new FileReader();
+							 * 
+							 * reader.onloadend = function () { preview.src =
+							 * reader.result; }
+							 * 
+							 * if (file) { reader.readAsDataURL(file); //reads
+							 * the data as a URL } else { preview.src = ""; } }
+							 */    
                             break;
                             
                         case "configMenu":  
@@ -867,6 +1048,8 @@ var pokedex = {
                                 pokeball_der.cycleDone = false;
                                 inAnimation = true;
                         		nextPokeState = themeMenu;
+                        		// Sonido
+                        		sonido_presionarBoton.play();
                             }
                         	clicked = backgroundBtn;
                         	if (pokedex.clickX > clicked.x + clicked.group.x && pokedex.clickX < clicked.x + clicked.group.x + clicked.width && pokedex.clickY > clicked.y + clicked.group.y && pokedex.clickY < clicked.y + clicked.group.y + clicked.height) {
@@ -874,6 +1057,8 @@ var pokedex = {
                                 pokeball_der.cycleDone = false;
                                 inAnimation = true;
                         		nextPokeState = backgroundMenu;
+                        		// Sonido
+                        		sonido_presionarBoton.play();
                             }
                             break;
                         case "themeMenu":  
@@ -881,31 +1066,257 @@ var pokedex = {
                         	if (pokedex.clickX > clicked.x + clicked.group.x && pokedex.clickX < clicked.x + clicked.group.x + clicked.width && pokedex.clickY > clicked.y + clicked.group.y && pokedex.clickY < clicked.y + clicked.group.y + clicked.height) {
                         		temaClasico.isSelected = true;
                         		temaLucario.isSelected = false;
+                        		images[4].src = "img/Pokedex.png";
+                        		images[5].src = "img/PokedexHover.png";
+                        		images[6].src = "img/Add.png";
+                        		images[7].src = "img/AddHover.png";
+                        		images[8].src = "img/XML.png";
+                        		images[9].src = "img/XMLHover.png";
+                        		images[17].src = "img/Config.png";
+                        		images[18].src = "img/ConfigHover.png";
+                        		images[19].src = "img/Creditos.png";
+                        		images[20].src = "img/CreditosHover.png";
+                        		selectedTheme = "clasico";
+                        		// Sonido
+                        		sonido_presionarBoton.play();
                             }
                         	clicked = temaLucario;
                         	if (pokedex.clickX > clicked.x + clicked.group.x && pokedex.clickX < clicked.x + clicked.group.x + clicked.width && pokedex.clickY > clicked.y + clicked.group.y && pokedex.clickY < clicked.y + clicked.group.y + clicked.height) {
                         		temaClasico.isSelected = false;
                         		temaLucario.isSelected = true;
+                        		images[4].src = "img/Pokedex2.png";
+                        		images[5].src = "img/PokedexHover2.png";
+                        		images[6].src = "img/Añadir2.png";
+                        		images[7].src = "img/AñadirHover2.png";
+                        		images[8].src = "img/XML2.png";
+                        		images[9].src = "img/XMLHover2.png";
+                        		images[17].src = "img/Config2.png";
+                        		images[18].src = "img/ConfigHover2.png";
+                        		images[19].src = "img/Creditos2.png";
+                        		images[20].src = "img/CreditosHover2.png";
+                        		selectedTheme = "lucario";
+                        		// Sonido
+                        		sonido_presionarBoton.play();
                             }
                             break;
+                        case "backgroundMenu":  
+                        	var clicked = fondoNormal;
+                        	if (pokedex.clickX > clicked.x + clicked.group.x && pokedex.clickX < clicked.x + clicked.group.x + clicked.width && pokedex.clickY > clicked.y + clicked.group.y && pokedex.clickY < clicked.y + clicked.group.y + clicked.height) {
+                        		images[3].src = "img/Fondo.png";
+                        		fondoNormal.isSelected = true;
+                        		fondoAbra.isSelected = false;
+                        		fondoArticuno.isSelected = false;
+                        		fondoAsh.isSelected = false;
+                        		fondoDark.isSelected = false;
+                        		fondoEevee.isSelected = false;
+                        		fondoGhost.isSelected = false;
+                        		fondoGrass.isSelected = false;
+                        		fondoMoltres.isSelected = false;
+                        		fondoTourney.isSelected = false;
+                        		fondoZapdos.isSelected = false;
+                        		selectedBackground = "normal";
+                        		// Sonido
+                        		sonido_presionarBoton.play();
+                            }
+                        	clicked = fondoAbra;
+                        	if (pokedex.clickX > clicked.x + clicked.group.x && pokedex.clickX < clicked.x + clicked.group.x + clicked.width && pokedex.clickY > clicked.y + clicked.group.y && pokedex.clickY < clicked.y + clicked.group.y + clicked.height) {
+                        		images[3].src = "img/FondoAbra.png";
+                        		fondoNormal.isSelected = false;
+                        		fondoAbra.isSelected = true;
+                        		fondoArticuno.isSelected = false;
+                        		fondoAsh.isSelected = false;
+                        		fondoDark.isSelected = false;
+                        		fondoEevee.isSelected = false;
+                        		fondoGhost.isSelected = false;
+                        		fondoGrass.isSelected = false;
+                        		fondoMoltres.isSelected = false;
+                        		fondoTourney.isSelected = false;
+                        		fondoZapdos.isSelected = false;
+                        		selectedBackground = "abra";
+                        		// Sonido
+                        		sonido_presionarBoton.play();
+                            }
+                        	clicked = fondoArticuno;
+                        	if (pokedex.clickX > clicked.x + clicked.group.x && pokedex.clickX < clicked.x + clicked.group.x + clicked.width && pokedex.clickY > clicked.y + clicked.group.y && pokedex.clickY < clicked.y + clicked.group.y + clicked.height) {
+                        		images[3].src = "img/FondoArticuno.png";
+                        		fondoNormal.isSelected = false;
+                        		fondoAbra.isSelected = false;
+                        		fondoArticuno.isSelected = true;
+                        		fondoAsh.isSelected = false;
+                        		fondoDark.isSelected = false;
+                        		fondoEevee.isSelected = false;
+                        		fondoGhost.isSelected = false;
+                        		fondoGrass.isSelected = false;
+                        		fondoMoltres.isSelected = false;
+                        		fondoTourney.isSelected = false;
+                        		fondoZapdos.isSelected = false;
+                        		selectedBackground = "articuno";
+                        		// Sonido
+                        		sonido_presionarBoton.play();
+                            }
+                        	clicked = fondoAsh;
+                        	if (pokedex.clickX > clicked.x + clicked.group.x && pokedex.clickX < clicked.x + clicked.group.x + clicked.width && pokedex.clickY > clicked.y + clicked.group.y && pokedex.clickY < clicked.y + clicked.group.y + clicked.height) {
+                        		images[3].src = "img/FondoAsh.png";
+                        		fondoNormal.isSelected = false;
+                        		fondoAbra.isSelected = false;
+                        		fondoArticuno.isSelected = false;
+                        		fondoAsh.isSelected = true;
+                        		fondoDark.isSelected = false;
+                        		fondoEevee.isSelected = false;
+                        		fondoGhost.isSelected = false;
+                        		fondoGrass.isSelected = false;
+                        		fondoMoltres.isSelected = false;
+                        		fondoTourney.isSelected = false;
+                        		fondoZapdos.isSelected = false;
+                        		selectedBackground = "ash";
+                        		// Sonido
+                        		sonido_presionarBoton.play();
+                            }
+                            clicked = fondoDark;
+                        	if (pokedex.clickX > clicked.x + clicked.group.x && pokedex.clickX < clicked.x + clicked.group.x + clicked.width && pokedex.clickY > clicked.y + clicked.group.y && pokedex.clickY < clicked.y + clicked.group.y + clicked.height) {
+                        		images[3].src = "img/FondoDark.png";
+                        		fondoNormal.isSelected = false;
+                        		fondoAbra.isSelected = false;
+                        		fondoArticuno.isSelected = false;
+                        		fondoAsh.isSelected = false;
+                        		fondoDark.isSelected = true;
+                        		fondoEevee.isSelected = false;
+                        		fondoGhost.isSelected = false;
+                        		fondoGrass.isSelected = false;
+                        		fondoMoltres.isSelected = false;
+                        		fondoTourney.isSelected = false;
+                        		fondoZapdos.isSelected = false;
+                        		selectedBackground = "dark";
+                        		// Sonido
+                        		sonido_presionarBoton.play();
+                            }
+                        	clicked = fondoEevee;
+                        	if (pokedex.clickX > clicked.x + clicked.group.x && pokedex.clickX < clicked.x + clicked.group.x + clicked.width && pokedex.clickY > clicked.y + clicked.group.y && pokedex.clickY < clicked.y + clicked.group.y + clicked.height) {
+                        		images[3].src = "img/FondoEevee.png";
+                        		fondoNormal.isSelected = false;
+                        		fondoAbra.isSelected = false;
+                        		fondoArticuno.isSelected = false;
+                        		fondoAsh.isSelected = false;
+                        		fondoDark.isSelected = false;
+                        		fondoEevee.isSelected = true;
+                        		fondoGhost.isSelected = false;
+                        		fondoGrass.isSelected = false;
+                        		fondoMoltres.isSelected = false;
+                        		fondoTourney.isSelected = false;
+                        		fondoZapdos.isSelected = false;
+                        		selectedBackground = "eevee";
+                        		// Sonido
+                        		sonido_presionarBoton.play();
+                            }
+                        	clicked = fondoGhost;
+                        	if (pokedex.clickX > clicked.x + clicked.group.x && pokedex.clickX < clicked.x + clicked.group.x + clicked.width && pokedex.clickY > clicked.y + clicked.group.y && pokedex.clickY < clicked.y + clicked.group.y + clicked.height) {
+                        		images[3].src = "img/FondoGhost.png";
+                        		fondoNormal.isSelected = false;
+                        		fondoAbra.isSelected = false;
+                        		fondoArticuno.isSelected = false;
+                        		fondoAsh.isSelected = false;
+                        		fondoDark.isSelected = false;
+                        		fondoEevee.isSelected = false;
+                        		fondoGhost.isSelected = true;
+                        		fondoGrass.isSelected = false;
+                        		fondoMoltres.isSelected = false;
+                        		fondoTourney.isSelected = false;
+                        		fondoZapdos.isSelected = false;
+                        		selectedBackground = "ghost";
+                        		// Sonido
+                        		sonido_presionarBoton.play();
+                            }
+                        	clicked = fondoGrass;
+                        	if (pokedex.clickX > clicked.x + clicked.group.x && pokedex.clickX < clicked.x + clicked.group.x + clicked.width && pokedex.clickY > clicked.y + clicked.group.y && pokedex.clickY < clicked.y + clicked.group.y + clicked.height) {
+                        		images[3].src = "img/FondoGrass.png";
+                        		fondoNormal.isSelected = false;
+                        		fondoAbra.isSelected = false;
+                        		fondoArticuno.isSelected = false;
+                        		fondoAsh.isSelected = false;
+                        		fondoDark.isSelected = false;
+                        		fondoEevee.isSelected = false;
+                        		fondoGhost.isSelected = false;
+                        		fondoGrass.isSelected = true;
+                        		fondoMoltres.isSelected = false;
+                        		fondoTourney.isSelected = false;
+                        		fondoZapdos.isSelected = false;
+                        		selectedBackground = "grass";
+                        		// Sonido
+                        		sonido_presionarBoton.play();
+                            }
+                        	clicked = fondoMoltres;
+                        	if (pokedex.clickX > clicked.x + clicked.group.x && pokedex.clickX < clicked.x + clicked.group.x + clicked.width && pokedex.clickY > clicked.y + clicked.group.y && pokedex.clickY < clicked.y + clicked.group.y + clicked.height) {
+                        		images[3].src = "img/FondoMoltres.png";
+                        		fondoNormal.isSelected = false;
+                        		fondoAbra.isSelected = false;
+                        		fondoArticuno.isSelected = false;
+                        		fondoAsh.isSelected = false;
+                        		fondoDark.isSelected = false;
+                        		fondoEevee.isSelected = false;
+                        		fondoGhost.isSelected = false;
+                        		fondoGrass.isSelected = false;
+                        		fondoMoltres.isSelected = true;
+                        		fondoTourney.isSelected = false;
+                        		fondoZapdos.isSelected = false;
+                        		selectedBackground = "moltres";
+                        		// Sonido
+                        		sonido_presionarBoton.play();
+                            }
+                        	clicked = fondoTourney;
+                        	if (pokedex.clickX > clicked.x + clicked.group.x && pokedex.clickX < clicked.x + clicked.group.x + clicked.width && pokedex.clickY > clicked.y + clicked.group.y && pokedex.clickY < clicked.y + clicked.group.y + clicked.height) {
+                        		images[3].src = "img/FondoTourney.png";
+                        		fondoNormal.isSelected = false;
+                        		fondoAbra.isSelected = false;
+                        		fondoArticuno.isSelected = false;
+                        		fondoAsh.isSelected = false;
+                        		fondoDark.isSelected = false;
+                        		fondoEevee.isSelected = false;
+                        		fondoGhost.isSelected = false;
+                        		fondoGrass.isSelected = false;
+                        		fondoMoltres.isSelected = false;
+                        		fondoTourney.isSelected = true;
+                        		fondoZapdos.isSelected = false;
+                        		selectedBackground = "tourney";
+                        		// Sonido
+                        		sonido_presionarBoton.play();
+                            }
+                        	clicked = fondoZapdos;
+                        	if (pokedex.clickX > clicked.x + clicked.group.x && pokedex.clickX < clicked.x + clicked.group.x + clicked.width && pokedex.clickY > clicked.y + clicked.group.y && pokedex.clickY < clicked.y + clicked.group.y + clicked.height) {
+                        		images[3].src = "img/FondoZapdos.png";
+                        		fondoNormal.isSelected = false;
+                        		fondoAbra.isSelected = false;
+                        		fondoArticuno.isSelected = false;
+                        		fondoAsh.isSelected = false;
+                        		fondoDark.isSelected = false;
+                        		fondoEevee.isSelected = false;
+                        		fondoGhost.isSelected = false;
+                        		fondoGrass.isSelected = false;
+                        		fondoMoltres.isSelected = false;
+                        		fondoTourney.isSelected = false;
+                        		fondoZapdos.isSelected = true;
+                        		selectedBackground = "zapdos";
+                        		// Sonido
+                        		sonido_presionarBoton.play();
+                            }
+                        	break;
                         case "showPokemon":
                         	
-                        	//Boton de volver cambia a ListMenu
+                        	// Boton de volver cambia a ListMenu
                         	if (pokedex.clickX > btnAtras.x + btnAtras.group.x && pokedex.clickX < btnAtras.x + btnAtras.group.x + btnAtras.width && pokedex.clickY > btnAtras.y + btnAtras.group.y && pokedex.clickY < btnAtras.y + btnAtras.group.y + btnAtras.height) {
                         		nextPokeState = listMenu;
                         		canShowPokemon = false;
                         		document.getElementById("photosP").src = "#";
                         		document.getElementById("atributos").style.visibility = 'hidden';
                         		
-                        		//sonido
+                        		// sonido
                                 sonido_presionarBoton.play();
                         	}
                         	
-                        	//Boton de cambiar imagen Pokemon
+                        	// Boton de cambiar imagen Pokemon
                         	if(masfotos){
 	                        	if (pokedex.clickX > btnArrowL.x + btnArrowL.group.x && pokedex.clickX < btnArrowL.x + btnArrowL.group.x + btnArrowL.width && pokedex.clickY > btnArrowL.y + btnArrowL.group.y && pokedex.clickY < btnArrowL.y + btnArrowL.group.y + btnArrowL.height) {
 	                        		
-	                        		//sonido
+	                        		// sonido
 	                                sonido_presionarBoton.play();
 	                        		
 	                        		if(noFotoIz)
@@ -913,7 +1324,7 @@ var pokedex = {
 	                        	}
 	                        	if (pokedex.clickX > btnArrowR.x + btnArrowR.group.x && pokedex.clickX < btnArrowR.x + btnArrowR.group.x + btnArrowR.width && pokedex.clickY > btnArrowR.y + btnArrowR.group.y && pokedex.clickY < btnArrowR.y + btnArrowR.group.y + btnArrowR.height) {
 	                        		
-	                        		//sonido
+	                        		// sonido
 	                                sonido_presionarBoton.play();
 	                        		
 	                        		if(noFotoDer)
@@ -934,168 +1345,170 @@ var pokedex = {
     }
 }
 
-//Actualizar canvas
+// Actualizar canvas
 function updatePokedex() {
-    pokedex.clear();   
-    background.update();
-    //Dependiendo del estado/menu actual de la pokedex se renderizará una cosa u otra
-    switch (pokeState.name) {
-        case "mainMenu":
-            //Control de movimiento de los botones del menu mediante las flechas rojas arrowDer y arrowIzq
-            if (!inAnimation) {
-                if (pokedex.mouseX > arrowDer.x + arrowDer.group.x && pokedex.mouseX < arrowDer.x + arrowDer.group.x + arrowDer.width && pokedex.mouseY > arrowDer.y + arrowDer.group.y && pokedex.mouseY < arrowDer.y + arrowDer.group.y + arrowDer.height) {
-                    if (menuItems.x > -480) menuItems.x -= 6;
-                }
-                else if (pokedex.mouseX > arrowIzq.x + arrowIzq.group.x && pokedex.mouseX < arrowIzq.x + arrowIzq.group.x + arrowIzq.width && pokedex.mouseY > arrowIzq.y + arrowIzq.group.y && pokedex.mouseY < arrowIzq.y + arrowIzq.group.y + arrowIzq.height) {
-                    if (menuItems.x < 20) menuItems.x += 6;
-                }
-            }
-            listaPokemon.update();
-            addPoke.update();
-            xmlDownload.update();
-            config.update();
-            creditos.update();
-            break;
-        case "listMenu":
-            btnAtras.update();
-            btnSearch.update();
-            if (nextPokeState.name === "listMenu" && canShowList) {
-                document.getElementById("listaPokemon").style.visibility = "visible";
-                document.getElementById("multiselect").style.visibility = "visible";
-                document.getElementById("ordenLista").style.visibility = "visible";
-            }
-            break;
-        case "addMenu":
-            btnAtras.update();
-            btnAddFoto.update();
-            btnTipos.update();
-            btnTipos1.update();
-            btnAnyadir.update();
-            btnCampos.update();
-            btnCamposPeso.update();
-            btnCamposNat.update();
-            btnCamposAta.update();
-            btnCamposAtaEsp.update();
-            btnCamposDef.update();
-            btnCamposDefEsp.update();
-            btnCamposVel.update();
-            btnCamposHP.update();
-            btnCamposGeneracion.update();
-            btnCamposLegendario.update();
-            btnCamposMov1.update();
-            btnCamposMov2.update();
-            btnCamposMov3.update();
-            btnCamposMov4.update();
-            btnGuardarPokemon.update();
-            if (nextPokeState.name === "addMenu" && canShowLectores) {
-            	document.getElementById("lectorAtributos").style.visibility = 'visible';
-            }
-     
-            break;
-        case "showPokemon":
-        	//console.log(pokemonElegido);
-        	if(pokE.photos[1] != null){
-            	masfotos = true;
-            }
-    		if(pokE.photos[imgCont+1] != null){
-    			noFotoDer = true;
-    		}else{
-    			noFotoDer = false;
-    		}
-    		if(pokE.photos[imgCont-1] != null){
-    			noFotoIz = true;
-    		}else{
-    			noFotoIz = false;
-    		}
-    		if(pokE.photos[imgCont] != undefined){
-    			
-    			var foto = pokE.photos[imgCont].split("/");
-    			var num = foto[2].split(".");
-    		
-    		
-	    		if(parseInt(num[0]) < 721){
-	    			
-	    			document.getElementById("photosP").src = pokE.photos[imgCont];
+	if (!loading) {
+		pokedex.clear();   
+		background.update();
+    // Dependiendo del estado/menu actual de la pokedex se renderizará una cosa
+	// u otra
+    
+	    switch (pokeState.name) {
+	    
+	        case "mainMenu":
+	            // Control de movimiento de los botones del menu mediante las
+				// flechas rojas arrowDer y arrowIzq
+	            if (!inAnimation) {
+	                if (pokedex.mouseX > arrowDer.x + arrowDer.group.x && pokedex.mouseX < arrowDer.x + arrowDer.group.x + arrowDer.width && pokedex.mouseY > arrowDer.y + arrowDer.group.y && pokedex.mouseY < arrowDer.y + arrowDer.group.y + arrowDer.height) {
+	                    if (menuItems.x > -480) menuItems.x -= 6;
+	                }
+	                else if (pokedex.mouseX > arrowIzq.x + arrowIzq.group.x && pokedex.mouseX < arrowIzq.x + arrowIzq.group.x + arrowIzq.width && pokedex.mouseY > arrowIzq.y + arrowIzq.group.y && pokedex.mouseY < arrowIzq.y + arrowIzq.group.y + arrowIzq.height) {
+	                    if (menuItems.x < 20) menuItems.x += 6;
+	                }
+	            }
+	            listaPokemon.update();
+	            addPoke.update();
+	            xmlDownload.update();
+	            config.update();
+	            creditos.update();
+	            break;
+	        case "listMenu":
+	            btnAtras.update();
+	            btnSearch.update();
+	            if (nextPokeState.name === "listMenu" && canShowList) {
+	                document.getElementById("listaPokemon").style.visibility = "visible";
+	                document.getElementById("multiselect").style.visibility = "visible";
+	                document.getElementById("ordenLista").style.visibility = "visible";
+	            }
+	            break;
+	        case "addMenu":
+	            btnAtras.update();
+	            btnAddFoto.update();
+	            btnTipos.update();
+	            btnTipos1.update();
+	            btnAnyadir.update();
+	            btnCampos.update();
+	            btnCamposPeso.update();
+	            btnCamposNat.update();
+	            btnCamposAta.update();
+	            btnCamposAtaEsp.update();
+	            btnCamposDef.update();
+	            btnCamposDefEsp.update();
+	            btnCamposVel.update();
+	            btnCamposHP.update();
+	            btnCamposGeneracion.update();
+	            btnCamposLegendario.update();
+	            btnCamposMov1.update();
+	            btnCamposMov2.update();
+	            btnCamposMov3.update();
+	            btnCamposMov4.update();
+	            btnGuardarPokemon.update();
+	            if (nextPokeState.name === "addMenu" && canShowLectores) {
+	            	document.getElementById("lectorAtributos").style.visibility = 'visible';
+	            }
+	     
+	            break;
+	        case "showPokemon":
+	        	// console.log(pokemonElegido);
+	        	if(pokE.photos[1] != null){
+	            	masfotos = true;
+	            }
+	    		if(pokE.photos[imgCont+1] != null){
+	    			noFotoDer = true;
 	    		}else{
-	    			document.getElementById("photosP").src = "img/pokeball_mini.png";
+	    			noFotoDer = false;
 	    		}
-    		}else{
-    			document.getElementById("photosP").src = "img/pokeball_mini.png";
-    		}
-    		
-        	if (nextPokeState.name === "showPokemon" && canShowPokemon) {
-        		document.getElementById("atributos").style.visibility = "visible";
-        	}
-            btnAtras.update();
-            btnFoto.update();
-            btnTipos.update();
-            btnTipos1.update();
-            btnCampos.update();
-            btnCamposPeso.update();
-            btnCamposNat.update();
-            btnCamposAta.update();
-            btnCamposAtaEsp.update();
-            btnCamposDef.update();
-            btnCamposDefEsp.update();
-            btnCamposVel.update();
-            btnCamposHP.update();
-            btnCamposItem.update();
-            btnCamposMov1.update();
-            btnCamposMov2.update();
-            btnCamposMov3.update();
-            btnCamposMov4.update();
-            if(masfotos){
-            	if(noFotoDer)
-            		btnArrowR.update();
-            	if(noFotoIz)
-            		btnArrowL.update();
-            }
-            break;
-        case "configMenu":
-            btnAtras.update();
-            theme.update();
-            backgroundBtn.update();
-            break;
-        case "creditsMenu":
-            btnAtras.update();
-            creditosTexto.update();
-            break;
-        case "themeMenu":
-        	btnAtras.update();
-        	temaClasico.update();
-        	temaLucario.update();
-        	break;
-        case "backgroundMenu":
-        	btnAtras.update();
-        	fondoNormal.update();
-        	fondoAbra.update();
-        	fondoArticuno.update();
-        	fondoAsh.update();
-        	fondoDark.update();
-        	fondoEevee.update();
-        	fondoGhost.update();
-        	fondoGrass.update();
-        	fondoMoltres.update();
-        	fondoTourney.update();
-        	fondoZapdos.update();
-        	break;
-        default:
-            break;
-    }
-    //Hasta que no se complete el ciclo de ida y retorno de cada pokeball, el update no deja de llamar a rightAndBack() y leftAndBack()
-    if (!pokeball_izq.cycleDone) {
-        pokeball_izq.rightAndBack();
-    }
-    if (!pokeball_der.cycleDone) {
-        pokeball_der.leftAndBack();
-    }
-    //Se borran los recuadros que no pertenecen a la pnatalla de la pokedex
-    ctx.clearRect(0, 0, pokeball_izq.x + pokeball_izq.group.x + 295, pokedex.canvas.height);
-    ctx.clearRect(pokeball_der.x + pokeball_der.group.x + 10, 0, pokedex.canvas.width, pokedex.canvas.height);
-    pokeball_izq.update();
-    pokeball_der.update();
-    arrowIzq.update();
-    arrowDer.update();
+	    		if(pokE.photos[imgCont-1] != null){
+	    			noFotoIz = true;
+	    		}else{
+	    			noFotoIz = false;
+	    		}
+	    		document.getElementById("photosP").src = pokE.photos[imgCont];
+	        	if (nextPokeState.name === "showPokemon" && canShowPokemon) {
+	        		document.getElementById("atributos").style.visibility = "visible";
+	        	}
+	            btnAtras.update();
+	            btnFoto.update();
+	            btnTipos.update();
+	            btnTipos1.update();
+	            btnCampos.update();
+	            btnCamposPeso.update();
+	            btnCamposNat.update();
+	            btnCamposAta.update();
+	            btnCamposAtaEsp.update();
+	            btnCamposDef.update();
+	            btnCamposDefEsp.update();
+	            btnCamposVel.update();
+	            btnCamposHP.update();
+	            btnCamposItem.update();
+	            btnCamposMov1.update();
+	            btnCamposMov2.update();
+	            btnCamposMov3.update();
+	            btnCamposMov4.update();
+	            if(masfotos){
+	            	if(noFotoDer)
+	            		btnArrowR.update();
+	            	if(noFotoIz)
+	            		btnArrowL.update();
+	            }
+	            break;
+	        case "configMenu":
+	            btnAtras.update();
+	            theme.update();
+	            backgroundBtn.update();
+	            break;
+	        case "creditsMenu":
+	            btnAtras.update();
+	            creditosTexto.update();
+	            break;
+	        case "themeMenu":
+	        	btnAtras.update();
+	        	temaClasico.update();
+	        	temaLucario.update();
+	        	break;
+	        case "backgroundMenu":
+	        	btnAtras.update();
+	        	if (!inAnimation) {
+	                if (pokedex.mouseX > arrowDer.x + arrowDer.group.x && pokedex.mouseX < arrowDer.x + arrowDer.group.x + arrowDer.width && pokedex.mouseY > arrowDer.y + arrowDer.group.y && pokedex.mouseY < arrowDer.y + arrowDer.group.y + arrowDer.height) {
+	                    if (fondosGroup.x > -60) fondosGroup.x -= 6;
+	                }
+	                else if (pokedex.mouseX > arrowIzq.x + arrowIzq.group.x && pokedex.mouseX < arrowIzq.x + arrowIzq.group.x + arrowIzq.width && pokedex.mouseY > arrowIzq.y + arrowIzq.group.y && pokedex.mouseY < arrowIzq.y + arrowIzq.group.y + arrowIzq.height) {
+	                    if (fondosGroup.x <= 380) fondosGroup.x += 6;
+	                }
+	            }
+	        	fondoNormal.update();
+	        	fondoAbra.update();
+	        	fondoArticuno.update();
+	        	fondoAsh.update();
+	        	fondoDark.update();
+	        	fondoEevee.update();
+	        	fondoGhost.update();
+	        	fondoGrass.update();
+	        	fondoMoltres.update();
+	        	fondoTourney.update();
+	        	fondoZapdos.update();
+	        	break;
+	        default:
+	            break;
+	    }
+    
+	    // Hasta que no se complete el ciclo de ida y retorno de cada pokeball,
+		// el
+		// update no deja de llamar a rightAndBack() y leftAndBack()
+	    if (!pokeball_izq.cycleDone) {
+	        pokeball_izq.rightAndBack();
+	    }
+	    if (!pokeball_der.cycleDone) {
+	        pokeball_der.leftAndBack();
+	    }
+	    // Se borran los recuadros que no pertenecen a la pnatalla de la pokedex
+	    ctx.clearRect(0, 0, pokeball_izq.x + pokeball_izq.group.x + 295, pokedex.canvas.height);
+	    ctx.clearRect(pokeball_der.x + pokeball_der.group.x + 10, 0, pokedex.canvas.width, pokedex.canvas.height);
+	    pokeball_izq.update();
+	    pokeball_der.update();
+	    arrowIzq.update();
+	    arrowDer.update();
+	}
 }
 
 function changeState() {
@@ -1121,7 +1534,8 @@ function changeState() {
     }
 }   
 
-//By Carlos Delgado. https://ourcodeworld.com/articles/read/189/how-to-create-a-file-and-generate-a-download-with-javascript-in-the-browser-without-a-server
+// By Carlos Delgado.
+// https://ourcodeworld.com/articles/read/189/how-to-create-a-file-and-generate-a-download-with-javascript-in-the-browser-without-a-server
 function download(filename, text) {
   var element = document.createElement('a');
   element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
@@ -1135,7 +1549,8 @@ function download(filename, text) {
   document.body.removeChild(element);
 }
 
-//para gestionar la apariencia de las checkboxes de los filtros de la lista de pokemon
+// para gestionar la apariencia de las checkboxes de los filtros de la lista de
+// pokemon
 function showCheckboxes() {
     var checkboxes = document.getElementById("checkboxes");
     if(checkboxes.classList.contains("hide")) {
