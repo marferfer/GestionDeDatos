@@ -233,7 +233,7 @@ function Pokemon(){
 	this.base_happiness = 1;
 	this.base_total = 1;
 	this.capture_rate = 1;
-	this.classfication="";
+	this.classfication="Pokemon personalizado";
 	this.defense;
 	this.experience_growth = 1;
 	this.height_m;
