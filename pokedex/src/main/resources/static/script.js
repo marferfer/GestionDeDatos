@@ -47,8 +47,8 @@ preload(
     "img/listaPokemon/FondoNaranja.png", //........14
     "img/listaPokemon/atras.png", //_______________15
     "img/listaPokemon/atrasHover.png", //..........16
-    "img/BDD.png", //______________________________17
-    "img/BDDHover.png", //.........................18
+    "img/Config.png", //___________________________17
+    "img/ConfigHover.png", //......................18
     "img/Creditos.png", //_________________________19
     "img/CreditosHover.png", //....................20
     "img/creditos/FondoVerde.png", //______________21
@@ -58,11 +58,11 @@ preload(
     "img/BDD/FondoMorado.png", //__________________25
     "img/BDD/atras.png", //........................26
     "img/BDD/atrasHover.png", //___________________27
-    "img/BDD/mongodb.png", //......................28
-    "img/BDD/mongodbHover.png", //_________________29
+    "img/Tema.png", //.............................28
+    "img/TemaHover.png", //________________________29
     "img/BDD/mongodbSelected.png", //..............30
-    "img/BDD/sqlite.png", //_______________________31
-    "img/BDD/sqliteHover.png", //..................32
+    "img/Fondobtn.png", //_________________________31
+    "img/FondobtnHover.png", //....................32
     "img/BDD/sqliteSelected.png", //_______________33
     "img/Anyadir/anyadirImg.png", //...............34
     "img/Anyadir/anyadirImgHover.png", //__________35
@@ -76,9 +76,37 @@ preload(
     "img/search_hover.png", //_____________________43
     "img/Anyadir/showImg.png", //..................44
     "img/Anyadir/showImgHover.png", //_____________45
-    "img/btnGuardarPokemon.png" //.................46
-    "img/btnGuardarPokemon_hover.png" //___________47
-)
+    "img/btnGuardarPokemon.png", //................46
+    "img/btnGuardarPokemon_hover.png", //__________47
+    "img/TemaClasico.png", //......................48
+    "img/TemaClasicoHover.png", //_________________49
+    "img/TemaClasicoSel.png", //...................50
+    "img/TemaLucario.png", //______________________51
+    "img/TemaLucarioHover.png", //.................52
+    "img/TemaLucarioSel.png", //___________________53
+    "img/FondoMini.png", //........................54
+    "img/FondoMiniHover.png", //___________________55
+    "img/FondoAbraMini.png", //....................56
+    "img/FondoAbraMiniHover.png", //_______________57
+    "img/FondoArticunoMini.png", //................58
+    "img/FondoArticunoMiniHover.png", //___________59
+    "img/FondoAshMini.png", //.....................60
+    "img/FondoAshMiniHover.png", //________________61
+    "img/FondoDarkMini.png", //....................62
+    "img/FondoDarkMiniHover.png", //_______________63
+    "img/FondoEeveeMini.png", //...................64
+    "img/FondoEeveeMiniHover.png", //______________65
+    "img/FondoGhostMini.png", //...................66
+    "img/FondoGhostMiniHover.png", //______________67
+    "img/FondoGrassMini.png", //...................58
+    "img/FondoGrassMiniHover.png", //______________69
+    "img/FondoMoltresMini.png", //.................70
+    "img/FondoMoltresMiniHover.png", //____________71
+    "img/FondoTourneyMini.png", //.................72
+    "img/FondoTourneyMiniHover.png", //____________73
+    "img/FondoZapdosMini.png", //..................74
+    "img/FondoZapdosMiniHover.png" //______________75
+);
 
 //Variables globales
 var globalGroup; //grupo por defecto para todos los objetos sin un grupo específico
@@ -101,13 +129,29 @@ var btnFoto;
 var btnTipos;
 var btnCampos;
 var btnCamposPequenyos;
-var bdd;
+var config;
 var creditos;
 var creditosTexto;
 var pokemonElegido;
 var pokE;
 var btnSearch;
 var btnGuardarPokemon;
+
+var theme;
+var backgroundBtn;
+var temaClasico;
+var temaLucario;
+var fondoNormal;
+var fondoAbra;
+var fondoArticuno;
+var fondoAsh;
+var fondoDark;
+var fondoEevee;
+var fondoGhost;
+var fondoGrass;
+var fondoMoltres;
+var fondoTourney;
+var fondoZapdos;
 
 var masfotos;
 var imgCont = 0;
@@ -116,7 +160,6 @@ var noFotoIz;
 
 //Locks and Flags
 var inAnimation = false;
-var dbSelected = 'sqlite';
 var canShowList = false;
 var canShowPokemon = false;
 var canShowLectores = false;
@@ -125,9 +168,11 @@ var canShowLectores = false;
 var mainMenu;
 var listMenu;
 var addMenu;
-var bddMenu;
+var configMenu;
 var showPokemon;
 var creditsMenu;
+var themeMenu;
+var backgroundMenu;
 var pokeState; //Estado/menu actual de la pokedex
 var nextPokeState; //Siguiente estado de la pokedex
 
@@ -138,6 +183,7 @@ function startPokedex() {
     globalGroup = new Group(0, 0);
     pokegroup_izq = new Group(15, 200);
     pokegroup_der = new Group(1075, 200);
+    fondosGroup = new Group(380, 620);
     menuItems = new Group(20, 0);
     pokeball_izq = new Pokeball(0, 0, images[1], "right", pokegroup_izq); //Se posiciona a la izquierda pero mira hacia la derecha
     pokeball_der = new Pokeball(0, 0, images[2], "left", pokegroup_der); //Se posiciona a la derecha pero mira a la izquierda
@@ -145,7 +191,7 @@ function startPokedex() {
     listaPokemon = new Button(300, 400, images[4], images[5], 235, 251, menuItems);
     addPoke = new Button(550, 400, images[6], images[7], 235, 251, menuItems);
     xmlDownload = new Button(800, 400, images[8], images[9], 235, 251, menuItems);
-    bdd = new Button(1050, 400, images[17], images[18], 235, 251, menuItems);
+    config = new Button(1050, 400, images[17], images[18], 235, 251, menuItems);
     creditos = new Button(1300, 400, images[19], images[20], 235, 251, menuItems);
     arrowDer = new ArrowButton(30, 275, images[10], images[11], 49, 50, pokegroup_der);
     arrowIzq = new ArrowButton(226, 275, images[12], images[13], 49, 50, pokegroup_izq);
@@ -156,6 +202,21 @@ function startPokedex() {
     btnTipos1 = new Button(500, 500, images[36], images[37], 132, 60, globalGroup);
     btnSearch = new Button(800, 370, images[42], images[43], 50, 50, globalGroup);
     btnGuardarPokemon = new Button(670, 688, images[46], images[47], 100, 60, globalGroup);
+    
+    temaClasico = new selectButton(470, 300, images[48], images[49], images[50], 443, 197, globalGroup, true);
+    temaLucario = new selectButton(470, 520, images[51], images[52], images[53], 443, 197, globalGroup, false);
+    
+    fondoNormal = new selectButton(0, 0, images[54], images[55], images[55], 97, 65, fondosGroup, true);
+    fondoAbra = new selectButton(100, 0, images[56], images[57], images[57], 97, 65, fondosGroup, false);
+    fondoArticuno = new selectButton(200, 0, images[58], images[59], images[59], 97, 65, fondosGroup, false);
+    fondoAsh = new selectButton(300, 0, images[60], images[61], images[61], 97, 65, fondosGroup, false);
+    fondoDark = new selectButton(400, 0, images[62], images[63], images[63], 97, 65, fondosGroup, false);
+    fondoEevee = new selectButton(500, 0, images[64], images[65], images[65], 97, 65, fondosGroup, false);
+    fondoGhost = new selectButton(600, 0, images[66], images[67], images[67], 97, 65, fondosGroup, false);
+    fondoGrass = new selectButton(700, 0, images[68], images[69], images[69], 97, 65, fondosGroup, false);
+    fondoMoltres = new selectButton(800, 0, images[70], images[71], images[71], 97, 65, fondosGroup, false);
+    fondoTourney = new selectButton(900, 0, images[72], images[73], images[73], 97, 65, fondosGroup, false);
+    fondoZapdos = new selectButton(1000, 0, images[74], images[75], images[75], 97, 65, fondosGroup, false);
     
     btnCampos = new Button(655, 300, images[38], images[39], 360, 90, globalGroup); 
     btnCamposPeso = new Button(670, 350, images[40], images[41], 150, 125, globalGroup);
@@ -176,15 +237,17 @@ function startPokedex() {
     btnArrowL = new Button(360, 365, images[12], images[13], 49, 50, globalGroup);
 
     btnAnyadir = new Button(630, 680, images[36], images[37], 132, 60, globalGroup);
-    mongodb = new dbButton(440, 340, images[28], images[29], images[30], 231, 346, globalGroup, false);
-    sqlite = new dbButton(740, 340, images[31], images[32], images[33], 231, 346, globalGroup, true);
+    theme = new Button(440, 400, images[28], images[29], 235, 251, globalGroup);
+    backgroundBtn = new Button(740, 400, images[31], images[32], 231, 251, globalGroup);
     creditosTexto = new Decoration(400, 230, images[24], globalGroup);
     mainMenu = new State("mainMenu", images[3]);
     listMenu = new State("listMenu", images[3], mainMenu);
     addMenu = new State("addMenu", images[3], mainMenu);
-    bddMenu = new State("bddMenu", images[3], mainMenu);
+    configMenu = new State("configMenu", images[3], mainMenu);
     creditsMenu = new State("creditsMenu", images[3], mainMenu);
     showPokemon = new State("showPokemon", images[3], mainMenu);
+    themeMenu = new State("themeMenu", images[3], configMenu);
+    backgroundMenu = new State("backgroundMenu", images[3], configMenu);
     pokeState = mainMenu;
     nextPokeState = mainMenu;
     pokedex.start();
@@ -288,11 +351,11 @@ var pokedex = {
                         download("prueba.xml","¡Capturalos a todos!");
                     }
                     //BDD onClick
-                    if (pokedex.clickX > bdd.x + bdd.group.x && pokedex.clickX < bdd.x + bdd.group.x + bdd.width && pokedex.clickY > bdd.y + bdd.group.y && pokedex.clickY < bdd.y + bdd.group.y + bdd.height) {
+                    if (pokedex.clickX > config.x + config.group.x && pokedex.clickX < config.x + config.group.x + config.width && pokedex.clickY > config.y + config.group.y && pokedex.clickY < config.y + config.group.y + config.height) {
                         pokeball_izq.cycleDone = false;
                         pokeball_der.cycleDone = false;
                         inAnimation = true;
-                        nextPokeState = bddMenu;
+                        nextPokeState = configMenu;
                     }
                     //Creditos onClick
                     if (pokedex.clickX > creditos.x + creditos.group.x && pokedex.clickX < creditos.x + creditos.group.x + creditos.width && pokedex.clickY > creditos.y + creditos.group.y && pokedex.clickY < creditos.y + creditos.group.y + creditos.height) {
@@ -647,19 +710,34 @@ var pokedex = {
                             }  */    
                             break;
                             
-                        case "bddMenu":  
-                            if (pokedex.clickX > mongodb.x + mongodb.group.x && pokedex.clickX < mongodb.x + mongodb.group.x + mongodb.width && pokedex.clickY > mongodb.y + mongodb.group.y && pokedex.clickY < mongodb.y + mongodb.group.y + mongodb.height) {
-                                mongodb.isSelected = true;
-                                sqlite.isSelected = false;
-                                dbSelected = 'mongodb';
-                            }   
-                            else if (pokedex.clickX > sqlite.x + sqlite.group.x && pokedex.clickX < sqlite.x + sqlite.group.x + sqlite.width && pokedex.clickY > sqlite.y + sqlite.group.y && pokedex.clickY < sqlite.y + sqlite.group.y + sqlite.height) {
-                                sqlite.isSelected = true;
-                                mongodb.isSelected = false;
-                                dbSelected = 'sqlite';
-                            }                  
+                        case "configMenu":  
+                        	var clicked = theme;
+                        	if (pokedex.clickX > clicked.x + clicked.group.x && pokedex.clickX < clicked.x + clicked.group.x + clicked.width && pokedex.clickY > clicked.y + clicked.group.y && pokedex.clickY < clicked.y + clicked.group.y + clicked.height) {
+                        		pokeball_izq.cycleDone = false;
+                                pokeball_der.cycleDone = false;
+                                inAnimation = true;
+                        		nextPokeState = themeMenu;
+                            }
+                        	clicked = backgroundBtn;
+                        	if (pokedex.clickX > clicked.x + clicked.group.x && pokedex.clickX < clicked.x + clicked.group.x + clicked.width && pokedex.clickY > clicked.y + clicked.group.y && pokedex.clickY < clicked.y + clicked.group.y + clicked.height) {
+                        		pokeball_izq.cycleDone = false;
+                                pokeball_der.cycleDone = false;
+                                inAnimation = true;
+                        		nextPokeState = backgroundMenu;
+                            }
                             break;
-                            
+                        case "themeMenu":  
+                        	var clicked = temaClasico;
+                        	if (pokedex.clickX > clicked.x + clicked.group.x && pokedex.clickX < clicked.x + clicked.group.x + clicked.width && pokedex.clickY > clicked.y + clicked.group.y && pokedex.clickY < clicked.y + clicked.group.y + clicked.height) {
+                        		temaClasico.isSelected = true;
+                        		temaLucario.isSelected = false;
+                            }
+                        	clicked = temaLucario;
+                        	if (pokedex.clickX > clicked.x + clicked.group.x && pokedex.clickX < clicked.x + clicked.group.x + clicked.width && pokedex.clickY > clicked.y + clicked.group.y && pokedex.clickY < clicked.y + clicked.group.y + clicked.height) {
+                        		temaClasico.isSelected = false;
+                        		temaLucario.isSelected = true;
+                            }
+                            break;
                         case "showPokemon":
                         	
                         	//Boton de volver cambia a ListMenu
@@ -714,7 +792,7 @@ function updatePokedex() {
             listaPokemon.update();
             addPoke.update();
             xmlDownload.update();
-            bdd.update();
+            config.update();
             creditos.update();
             break;
         case "listMenu":
@@ -796,15 +874,34 @@ function updatePokedex() {
             		btnArrowL.update();
             }
             break;
-        case "bddMenu":
+        case "configMenu":
             btnAtras.update();
-            mongodb.update();
-            sqlite.update();
+            theme.update();
+            backgroundBtn.update();
             break;
         case "creditsMenu":
             btnAtras.update();
             creditosTexto.update();
             break;
+        case "themeMenu":
+        	btnAtras.update();
+        	temaClasico.update();
+        	temaLucario.update();
+        	break;
+        case "backgroundMenu":
+        	btnAtras.update();
+        	fondoNormal.update();
+        	fondoAbra.update();
+        	fondoArticuno.update();
+        	fondoAsh.update();
+        	fondoDark.update();
+        	fondoEevee.update();
+        	fondoGhost.update();
+        	fondoGrass.update();
+        	fondoMoltres.update();
+        	fondoTourney.update();
+        	fondoZapdos.update();
+        	break;
         default:
             break;
     }
