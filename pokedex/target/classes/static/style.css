@@ -1,3 +1,6 @@
+
+
+
 /*la marca que sale a la izquierda de todos los elmentos de la lista*/
 
 .imgLista {
@@ -484,4 +487,24 @@ input:focus::-webkit-input-placeholder {
 
 .swal-icon--success__hide-corners {
     background-color: rgba(0, 77, 77, 0.0);
+}
+
+.addimage {
+        width: 130px;
+        height: 195px;
+        position: absolute;
+        top: 308px;
+    	left: 424px;
+        
+}
+.addimage .img-top {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 99;
+}
+.addimage:hover .img-top {
+    display: inline;
+    
 }

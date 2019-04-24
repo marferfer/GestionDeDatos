@@ -76,8 +76,8 @@ preload(
     "img/search_hover.png", //_____________________43
     "img/Anyadir/showImg.png", //..................44
     "img/Anyadir/showImgHover.png", //_____________45
-    "img/btnGuardarPokemon.png",//kjashdsajkdhskaj_46
-    "img/btnGuardarPokemon_hover.png"//kjasdsjadas.47
+    "img/btnGuardarPokemon.png" //.................46
+    "img/btnGuardarPokemon_hover.png" //___________47
 )
 
 //Variables globales
@@ -217,7 +217,9 @@ function startPokedex() {
     pokeball_der.cycleDone = false;
     inAnimation = true;
     pokegroup_izq.x = 398;
-    pokegroup_der.x = 692;
+    pokegroup_der.x = 692;    
+    
+    
     
 }
 
@@ -262,10 +264,10 @@ var pokedex = {
                         	for (var p in pokemons) {
                         		$('#listaPokemon').append(
                         				'<div id="' + pokemons[p].split("-")[0] + '" class="imgLista">' +
-                        				  '<img class="marcador" src="img/pokeListMark.gif"/>' +
+                        				  '<img class="marcador" style="cursor:pointer" src="img/pokeListMark.gif"/>' +
                         				  '<span class="under">' + pokemons[p].split("-")[1] + '</span>' +
                         				'</div>' + 
-                      				  '<div style="float:right;" id="'+ pokemons[p].split("-")[0] + ' "class = "imgListaBorrador"><img class="borrador" src="img/pokeListDelete.png"/>');
+                      				  '<div style="float:right;cursor:pointer;" id="'+ pokemons[p].split("-")[0] + ' "class = "imgListaBorrador"><img class="borrador" src="img/pokeListDelete.png"/>');
                         	}
                         	
                         	//Borrado del pokemon en la lista de pokemons
@@ -363,6 +365,7 @@ var pokedex = {
                         canShowList = false;
                         
                         document.getElementById("lectorAtributos").style.visibility = 'hidden';
+                        
                         canShowLector = false;
                     }
                     switch (pokeState.name) {
@@ -522,6 +525,8 @@ var pokedex = {
                     		let legendarioCorrecto;
                     		let sePuedeGuardar;
                     		let mensajeError;
+                    		
+                    		document.getElementById("imgAdd").style.visibility = "visible";
 
                         	//click btnGuardarPokemon
                         	if (pokedex.clickX > btnGuardarPokemon.x + btnGuardarPokemon.group.x && pokedex.clickX < btnGuardarPokemon.x + btnGuardarPokemon.group.x + btnGuardarPokemon.width && pokedex.clickY > btnGuardarPokemon.y + btnGuardarPokemon.group.y && pokedex.clickY < btnGuardarPokemon.y + btnGuardarPokemon.group.y + btnGuardarPokemon.height) {
@@ -720,9 +725,13 @@ var pokedex = {
                       	    	   }
                       	    	  });
                         	}
+                        	if (pokedex.clickX > btnAtras.x + btnAtras.group.x && pokedex.clickX < btnAtras.x + btnAtras.group.x + btnAtras.width && pokedex.clickY > btnAtras.y + btnAtras.group.y && pokedex.clickY < btnAtras.y + btnAtras.group.y + btnAtras.height) {
+                        		
+                        		document.getElementById("imgAdd").style.visibility = 'hidden';
+                        	}
 
                         	
-                        	if (pokedex.clickX > btnAddFoto.x + btnAddFoto.group.x && pokedex.clickX < btnAddFoto.x + btnAddFoto.group.x + btnAddFoto.width && pokedex.clickY > btnAddFoto.y + btnAddFoto.group.y && pokedex.clickY < btnAddFoto.y + btnAddFoto.group.y + btnAddFoto.height) {
+                        	/*if (pokedex.clickX > btnAddFoto.x + btnAddFoto.group.x && pokedex.clickX < btnAddFoto.x + btnAddFoto.group.x + btnAddFoto.width && pokedex.clickY > btnAddFoto.y + btnAddFoto.group.y && pokedex.clickY < btnAddFoto.y + btnAddFoto.group.y + btnAddFoto.height) {
                             	
                         		//sonido
                         		sonido_presionarBoton.play();
@@ -740,7 +749,7 @@ var pokedex = {
                                } else {
                                    preview.src = "";
                                }
-                            }      
+                            }  */    
                             break;
                             
                         case "bddMenu":  
