@@ -131,7 +131,15 @@ var creditsMenu;
 var pokeState; //Estado/menu actual de la pokedex
 var nextPokeState; //Siguiente estado de la pokedex
 
-
+//sonidos
+var sonido_abrirDesplegable;
+var sonido_eliminarPokemon;
+var sonido_guardandoPokemon;
+var sonido_exitoGuardar;
+var sonido_falloGuardar;
+var sonido_mostrarPokemon;
+var sonido_popup;
+var sonido_presionarBoton;
 
 //inicialización de variables
 function startPokedex() {
@@ -166,25 +174,40 @@ function startPokedex() {
     btnCamposDefEsp = new Button(830, 470, images[40], images[41], 150, 125, globalGroup);
     btnCamposVel = new Button(670, 530, images[40], images[41], 150, 125, globalGroup);
     btnCamposHP = new Button(830, 530, images[40], images[41], 150, 125, globalGroup);
-    btnCamposItem = new Button(670, 600, images[38], images[39], 360, 90, globalGroup);
     btnCamposMov1 = new Button(330, 535, images[40], images[41], 150, 125, globalGroup);
     btnCamposMov2 = new Button(480, 535, images[40], images[41], 150, 125, globalGroup);
     btnCamposMov3 = new Button(330, 595, images[40], images[41], 150, 125, globalGroup);
     btnCamposMov4 = new Button(480, 595, images[40], images[41], 150, 125, globalGroup);
+    btnCamposItem = new Button(670, 600, images[38], images[39], 360, 90, globalGroup);
+    btnCamposGeneracion = new Button(830, 600, images[40], images[41], 150, 25, globalGroup);
+    btnCamposLegendario = new Button(670, 600, images[40], images[41], 150, 25, globalGroup);
     
     btnArrowR = new Button(600, 365, images[10], images[11], 49, 50, globalGroup);
     btnArrowL = new Button(360, 365, images[12], images[13], 49, 50, globalGroup);
 
     btnAnyadir = new Button(630, 680, images[36], images[37], 132, 60, globalGroup);
+    
     mongodb = new dbButton(440, 340, images[28], images[29], images[30], 231, 346, globalGroup, false);
     sqlite = new dbButton(740, 340, images[31], images[32], images[33], 231, 346, globalGroup, true);
+    
     creditosTexto = new Decoration(400, 230, images[24], globalGroup);
+    
+    sonido_abrirDesplegable = new Sound("/sounds/sonido_abrirDesplegable.wav");
+    sonido_eliminarPokemon = new Sound("/sounds/sonido_eliminarPokemon.wav");
+    sonido_guardandoPokemon = new Sound("/sounds/sonido_guardandoPokemon.wav");
+    sonido_exitoGuardar = new Sound("/sounds/sonido_exitoGuardar.wav");
+    sonido_falloGuardar = new Sound("/sounds/sonido_falloGuardar.wav");
+    sonido_mostrarPokemon = new Sound("/sounds/sonido_mostrarPokemon.wav");
+    sonido_popup = new Sound("/sounds/sonido_popup.wav");
+    sonido_presionarBoton = new Sound("/sounds/sonido_presionarBoton.wav");
+    
     mainMenu = new State("mainMenu", images[3]);
     listMenu = new State("listMenu", images[3], mainMenu);
     addMenu = new State("addMenu", images[3], mainMenu);
     bddMenu = new State("bddMenu", images[3], mainMenu);
     creditsMenu = new State("creditsMenu", images[3], mainMenu);
     showPokemon = new State("showPokemon", images[3], mainMenu);
+    
     pokeState = mainMenu;
     nextPokeState = mainMenu;
     pokedex.start();
@@ -220,7 +243,10 @@ var pokedex = {
                 if (pokeState.name === "mainMenu") {
                     //ListaPokemon onClick
                     if (pokedex.clickX > listaPokemon.x + listaPokemon.group.x && pokedex.clickX < listaPokemon.x + listaPokemon.group.x + listaPokemon.width && pokedex.clickY > listaPokemon.y + listaPokemon.group.y && pokedex.clickY < listaPokemon.y + listaPokemon.group.y + listaPokemon.height) {
-                        pokeball_izq.cycleDone = false;
+                    	//sonido
+                    	sonido_presionarBoton.play();
+                    	
+                    	pokeball_izq.cycleDone = false;
                         pokeball_der.cycleDone = false;
                         inAnimation = true;
                         nextPokeState = listMenu;
@@ -245,6 +271,10 @@ var pokedex = {
                         	//Borrado del pokemon en la lista de pokemons
                         	$('.imgListaBorrador').click(function(){
                         		
+                        		//sonido
+                        		sonido_presionarBoton.play();
+                        		sonido_popup.play();
+                        		
                         		var id = $(this).attr('id');
                         		
                         	    swal({
@@ -256,6 +286,9 @@ var pokedex = {
                         	    	.then((willDelete) => {
                         	    	  if (willDelete) {
                         	    		  
+                        	    		//sonido
+                        	    		sonido_eliminarPokemon.play();
+                        	    		  
                         	    		$("div").remove("#"+id);
                                   		$(this).remove();
                                   		deleteItem(id);
@@ -265,7 +298,10 @@ var pokedex = {
                         	    	      dangerMode: true,
                         	    	      timer:1200,
                         	    	      buttons: false,
-                        	    	    });
+                        	    	    }); 
+                        	    	  }else{
+                        	    		  //sonido
+                        	    		  sonido_presionarBoton.play();
                         	    	  }
                         	    	});
                         	})
@@ -279,11 +315,15 @@ var pokedex = {
                         inAnimation = true;
                         nextPokeState = addMenu;
                         
-                        
+                        //sonido
+                        sonido_presionarBoton.play();
                     }
                     //XML Download onClick
                     else if (pokedex.clickX > xmlDownload.x + xmlDownload.group.x && pokedex.clickX < xmlDownload.x + xmlDownload.group.x + xmlDownload.width && pokedex.clickY > xmlDownload.y + xmlDownload.group.y && pokedex.clickY < xmlDownload.y + xmlDownload.group.y + xmlDownload.height) {
                         download("prueba.xml","¡Capturalos a todos!");
+                      
+                        //sonido
+                        sonido_presionarBoton.play();
                     }
                     //BDD onClick
                     if (pokedex.clickX > bdd.x + bdd.group.x && pokedex.clickX < bdd.x + bdd.group.x + bdd.width && pokedex.clickY > bdd.y + bdd.group.y && pokedex.clickY < bdd.y + bdd.group.y + bdd.height) {
@@ -291,6 +331,9 @@ var pokedex = {
                         pokeball_der.cycleDone = false;
                         inAnimation = true;
                         nextPokeState = bddMenu;
+                        
+                      //sonido
+                        sonido_presionarBoton.play();
                     }
                     //Creditos onClick
                     if (pokedex.clickX > creditos.x + creditos.group.x && pokedex.clickX < creditos.x + creditos.group.x + creditos.width && pokedex.clickY > creditos.y + creditos.group.y && pokedex.clickY < creditos.y + creditos.group.y + creditos.height) {
@@ -298,6 +341,9 @@ var pokedex = {
                         pokeball_der.cycleDone = false;
                         inAnimation = true;
                         nextPokeState = creditsMenu;
+                        
+                      //sonido
+                        sonido_presionarBoton.play();
                     }
                 }
                 //El main menu va aparte
@@ -307,6 +353,10 @@ var pokedex = {
                         pokeball_der.cycleDone = false;
                         inAnimation = true;
                         nextPokeState = pokeState.father;
+                        
+                      //sonido
+                        sonido_presionarBoton.play();
+                        
                         document.getElementById("listaPokemon").style.visibility = "hidden";
                         document.getElementById("multiselect").style.visibility = "hidden";
                         document.getElementById("ordenLista").style.visibility = "hidden";
@@ -318,6 +368,10 @@ var pokedex = {
                     switch (pokeState.name) {
                         case "listMenu":
                         	$('.imgLista').click(function() {
+                        		
+                        		//sonido
+                                sonido_mostrarPokemon.play();
+                        		
                         		var id = $(this).attr('id');
                         		pokemonElegido = id;
                         		loadPokemon(pokemonElegido,function(pokemonE){
@@ -377,6 +431,10 @@ var pokedex = {
                                 document.getElementById("ordenLista").style.visibility = "hidden";
                         	});
                         	if (pokedex.clickX > btnSearch.x + btnSearch.group.x && pokedex.clickX < btnSearch.x + btnSearch.group.x + btnSearch.width && pokedex.clickY > btnSearch.y + btnSearch.group.y && pokedex.clickY < btnSearch.y + btnSearch.group.y + btnSearch.height) {
+                        		
+                        		//sonido
+                                sonido_presionarBoton.play();
+                        		
                         		var elem = document.getElementById("orden");
                         		var ordenLista = elem.options[elem.selectedIndex].text;
                         		var gen = [];
@@ -414,6 +472,10 @@ var pokedex = {
                                 	//Borrado del pokemon en la lista de pokemons
                                 	$('.imgListaBorrador').click(function(){
                                 		
+                                		//sonido
+                                        sonido_presionarBoton.play();
+                                        sonido_popup.play();
+                                        
                                 		var id = $(this).attr('id');
                                 		
                                 	    swal({
@@ -424,6 +486,9 @@ var pokedex = {
                                 	    	})
                                 	    	.then((willDelete) => {
                                 	    	  if (willDelete) {
+                                	    		
+                                	    		//sonido
+                                                sonido_eliminarPokemon.play();
                                 	    		  
                                 	    		$("div").remove("#"+id);
                                           		$(this).remove();
@@ -435,6 +500,9 @@ var pokedex = {
                                 	    	      timer:1200,
                                 	    	      buttons: false,
                                 	    	    });
+                                	    	  }else{
+                                	    		//sonido
+                                                sonido_presionarBoton.play();
                                 	    	  }
                                 	    	});
                                 	})
@@ -447,22 +515,27 @@ var pokedex = {
                         	//variables para comprobar si el formato del pokemon es adecuado
                     		let tiposValidos = ["normal", "fire", "water", "grass", "electric", "fighting", "poison", "ground", "flying", "psychic", "bug", "rock", "ghost", "dragon", "dark", "steel", "fairy"];
                     		let numeros = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
+                    		let respuestas = ["si", "sí", "Si", "Sí", "SI", "SÍ", "sI", "sÍ", "no", "No", "NO", "nO"];
                     		let tipoCorrecto;
                     		let valoresNumericosCorrectos;
                     		let nombreCorrecto;
-                    		let naturalezaCorrecta;
+                    		let legendarioCorrecto;
                     		let sePuedeGuardar;
                     		let mensajeError;
 
                         	//click btnGuardarPokemon
                         	if (pokedex.clickX > btnGuardarPokemon.x + btnGuardarPokemon.group.x && pokedex.clickX < btnGuardarPokemon.x + btnGuardarPokemon.group.x + btnGuardarPokemon.width && pokedex.clickY > btnGuardarPokemon.y + btnGuardarPokemon.group.y && pokedex.clickY < btnGuardarPokemon.y + btnGuardarPokemon.group.y + btnGuardarPokemon.height) {
                         		
+                        		//sonido
+                                sonido_presionarBoton.play();
+                        		
                         		// inicializamos las variables de verificacion y recogemos los datos para evaluarlos
                         		sePuedeGuardar = false;
                         		tipoCorrecto = false;
                         		valoresNumericosCorrectos = false;
                         		nombreCorrecto = true;				//es mas facil comprobar que es incorrecto a que es correcto
-                        		naturalezaCorrecta = true;			//es mas facil comprovar que es incorrecto a que es correcto
+                        		legendarioCorrecto = true;			//es mas facil comprobar que es incorrecto a que es correcto
+                        		
                         		
                         		let name = document.getElementById("lectorNameP").value;
                         		let tipo = document.getElementById("lectorTipoP").value;
@@ -479,7 +552,8 @@ var pokedex = {
                         		let defensaEsp = document.getElementById("lectorDefensaEspP").value;
                         		let peso = document.getElementById("lectorPesoP").value;
                         		let altura = document.getElementById("lectorAlturaP").value;
-                        		let naturaleza = document.getElementById("lectorNaturalezaP").value;
+                        		let generacion = document.getElementById("lectorGeneracionP").value;
+                        		let legendario = document.getElementById("lectorLegendarioP").value;
                         		
                         		vida = parseInt(vida);
                         		vel = parseInt(vel);
@@ -489,6 +563,10 @@ var pokedex = {
                         		defensaEsp = parseInt(defensaEsp);
                         		peso = parseFloat(peso);
                         		altura = parseFloat(altura);
+                        		generacion = parseInt(generacion);
+                        		
+                        		//sonido
+                        		sonido_popup.play();
                         		
                         		//confirm para agregar o no al pokemon
                         		swal({
@@ -510,10 +588,10 @@ var pokedex = {
                             		}
                       	    		
                       	    		//comprobamos si los valores numericos son efectivamente numeros
-                      	    		if(!isNaN(vida) && !isNaN(vel) && !isNaN(ataque) && !isNaN(defensa) && !isNaN(ataqueEsp) && !isNaN(defensaEsp) && !isNaN(peso) && !isNaN(altura)){
+                      	    		if(!isNaN(vida) && !isNaN(vel) && !isNaN(ataque) && !isNaN(defensa) && !isNaN(ataqueEsp) && !isNaN(defensaEsp) && !isNaN(peso) && !isNaN(altura) && !isNaN(generacion)){
                       	    			valoresNumericosCorrectos = true;
                       	    		}else{
-                      	    			mensajeError = "Los valores 'PS', 'velocidad', 'ataque', 'defensa', 'ataqueEsp', 'defensaEsp', 'peso', 'altura' deben ser números";
+                      	    			mensajeError = "Los valores 'PS', 'velocidad', 'ataque', 'defensa', 'ataqueEsp', 'defensaEsp', 'peso', 'altura' y 'generacion' deben ser números";
                       	    		}
                       	    		
                       	    		//comprobamos que el nombre tenga un limite de caracteres y no contiene numeros
@@ -530,29 +608,27 @@ var pokedex = {
                       	    			mensajeError = "El nombre del pokemon debe tener entre 1 y 12 caracteres";
                       	    		}
                       	    		
-                      	    		//comprobamos que la naturaleza tenga un limite de caracteres y no contenga numeros ni espacios
-                      	    		if(naturaleza.length <= 20 && naturaleza.length > 0){
-                      	    			
-                      	    			for(i=0; i<naturaleza.length; i++){
-                      	    				if(numeros.indexOf(naturaleza.charAt(i)) > -1 || naturaleza.charAt(i) == "" || naturaleza.charAt(i) == " "){
-                      	    					naturalezaCorrecta = false;
-                      	    					mensajeError = "La naturaleza del pokemon no puede contener numeros ni espacios"
-                      	    				}
-                      	    			}
-                      	    		}else{
-                      	    			naturalezaCorrecta = false;
-                      	    			mensajeError = "La naturaleza del pokemon debe tener entre 1 y 20 caracteres";
+                      	    
+                      	    		//comprobamos que la respuesta sobre si es legendario tenga sentido
+                      	    		if(respuestas.indexOf(legendario) <= -1){
+                      	    			legendarioCorrecto = false;
+                      	    			mensajeError = "La respuesta a si el pokemon es legendario o no, no es valida. Debe escribir si o no";
                       	    		}
-                                		
+                      	    		
+                      	    		//sonido
+                                    sonido_guardandoPokemon.play();	
+                                    
                       	    	    swal("Guardando pokemon...", {
                       	    	      icon: "info",
                       	    	      dangerMode: true,
-                      	    	      timer:2500,
+                      	    	      timer:3000,
                       	    	      buttons: false,
                       	    	      
                       	    	    }).then((willSave =>{
                       	    	    	
-                      	    	    	sePuedeGuardar = (tipoCorrecto & valoresNumericosCorrectos & nombreCorrecto & naturalezaCorrecta);
+                      	    	    	
+                      	    	    	
+                      	    	    	sePuedeGuardar = (tipoCorrecto & valoresNumericosCorrectos & nombreCorrecto &legendarioCorrecto);
                       	    	    	
                       	    	    	//respuesta al usuario
                       	    	    	if(sePuedeGuardar){
@@ -573,7 +649,9 @@ var pokedex = {
                                     		document.getElementById("lectorDefensaEspP").value="";
                                     		document.getElementById("lectorPesoP").value="";
                                     		document.getElementById("lectorAlturaP").value="";
-                                    		document.getElementById("lectorNaturalezaP").value="";
+                                    		document.getElementById("lectorLegendarioP").value="";
+                                    		document.getElementById("lectorGeneracionP").value="";
+
                                     		
                                     		//guardar el pokemon en la base de datos
                                     		
@@ -585,9 +663,9 @@ var pokedex = {
                                     		pokemon.abilities[3] = mov4;
                                                 		
                                     		pokemon.attack = ataque;
-                                    		pokemon.classfication = naturaleza;
                                     		pokemon.defense = defensa;
                                     		pokemon.height_m = altura;
+                                    		pokemon.generation = generacion;
                                     		pokemon.hp = vida;                                   		
                                     		pokemon.name = name;                                    		
                                     		pokemon.sp_attack = ataqueEsp;
@@ -598,6 +676,20 @@ var pokedex = {
                                     		pokemon.weight_kg = peso;                                   		
                                     		pokemon.photos = [];
                                     		
+                                    		switch(legendario){
+                                    			case "no":
+                                    			case "No":
+                                    			case "NO":
+                                    			case "nO":
+                                    				pokemon.is_legendary = "0";
+                                    				break;
+                                    				
+                                    			default:
+                                        			console.log("dkjdas");
+                                    				pokemon.is_legendary = 1;
+                                    				break;
+                                    		}
+                                    		
                                     		createPokemon(pokemon, function(pokemon){});
                       	    	    		
 	                      	    	    	swal({
@@ -606,6 +698,9 @@ var pokedex = {
 	                                			
 	                                		})
 	                                		
+	                                		//sonido
+	                                        sonido_exitoGuardar.play();
+	                                		
                       	    	    	}else{
                       	    	    		swal({
 	                                			title: "Error: los datos introducidos no son válidos",
@@ -613,8 +708,15 @@ var pokedex = {
 	                                			dangerMode: true,
 	                                			
 	                                		})
+	                                		
+	                                		//sonido
+	                                        sonido_falloGuardar.play();
                       	    	    	}
-                      	    	    }))
+                      	    	    }))                    	    	    
+                      	    	   }else{
+                      	    		   
+                      	    		   //sonido
+                      	    		   sonido_presionarBoton.play();
                       	    	   }
                       	    	  });
                         	}
@@ -622,6 +724,9 @@ var pokedex = {
                         	
                         	if (pokedex.clickX > btnAddFoto.x + btnAddFoto.group.x && pokedex.clickX < btnAddFoto.x + btnAddFoto.group.x + btnAddFoto.width && pokedex.clickY > btnAddFoto.y + btnAddFoto.group.y && pokedex.clickY < btnAddFoto.y + btnAddFoto.group.y + btnAddFoto.height) {
                             	
+                        		//sonido
+                        		sonido_presionarBoton.play();
+                        		
                                var preview = document.querySelector('img'); //selects the query named img
                                var file    = document.querySelector('input[type=file]').files[0]; //sames as here
                                var reader  = new FileReader();
@@ -642,13 +747,17 @@ var pokedex = {
                             if (pokedex.clickX > mongodb.x + mongodb.group.x && pokedex.clickX < mongodb.x + mongodb.group.x + mongodb.width && pokedex.clickY > mongodb.y + mongodb.group.y && pokedex.clickY < mongodb.y + mongodb.group.y + mongodb.height) {
                                 mongodb.isSelected = true;
                                 sqlite.isSelected = false;
-                                dbSelected = 'mongodb';
+                                dbSelected = 'mongodb'; 
                             }   
                             else if (pokedex.clickX > sqlite.x + sqlite.group.x && pokedex.clickX < sqlite.x + sqlite.group.x + sqlite.width && pokedex.clickY > sqlite.y + sqlite.group.y && pokedex.clickY < sqlite.y + sqlite.group.y + sqlite.height) {
                                 sqlite.isSelected = true;
                                 mongodb.isSelected = false;
                                 dbSelected = 'sqlite';
-                            }                  
+                            }    
+                            
+                            //sonido
+                            sonido_presionarBoton.play();
+                            
                             break;
                             
                         case "showPokemon":
@@ -659,15 +768,26 @@ var pokedex = {
                         		canShowPokemon = false;
                         		document.getElementById("photosP").src = "#";
                         		document.getElementById("atributos").style.visibility = 'hidden';
+                        		
+                        		//sonido
+                                sonido_presionarBoton.play();
                         	}
                         	
                         	//Boton de cambiar imagen Pokemon
                         	if(masfotos){
 	                        	if (pokedex.clickX > btnArrowL.x + btnArrowL.group.x && pokedex.clickX < btnArrowL.x + btnArrowL.group.x + btnArrowL.width && pokedex.clickY > btnArrowL.y + btnArrowL.group.y && pokedex.clickY < btnArrowL.y + btnArrowL.group.y + btnArrowL.height) {
+	                        		
+	                        		//sonido
+	                                sonido_presionarBoton.play();
+	                        		
 	                        		if(noFotoIz)
 	                        			imgCont -= 1;
 	                        	}
 	                        	if (pokedex.clickX > btnArrowR.x + btnArrowR.group.x && pokedex.clickX < btnArrowR.x + btnArrowR.group.x + btnArrowR.width && pokedex.clickY > btnArrowR.y + btnArrowR.group.y && pokedex.clickY < btnArrowR.y + btnArrowR.group.y + btnArrowR.height) {
+	                        		
+	                        		//sonido
+	                                sonido_presionarBoton.play();
+	                        		
 	                        		if(noFotoDer)
 	                        			imgCont += 1;
 	                        	}
@@ -732,7 +852,8 @@ function updatePokedex() {
             btnCamposDefEsp.update();
             btnCamposVel.update();
             btnCamposHP.update();
-            btnCamposItem.update();
+            btnCamposGeneracion.update();
+            btnCamposLegendario.update();
             btnCamposMov1.update();
             btnCamposMov2.update();
             btnCamposMov3.update();

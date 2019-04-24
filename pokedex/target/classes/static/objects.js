@@ -180,6 +180,32 @@ function State(name, background, father) {
 	this.father = father;
 }
 
+//para gestionar el sonido de la aplicacion
+function Sound(src) {
+    this.sound = document.createElement("audio");
+    this.sound.src = src;
+    this.sound.setAttribute("preload", "auto");
+    this.sound.setAttribute("controls", "none");
+    this.sound.style.display = "none";
+    this.isOn = false;
+    document.body.appendChild(this.sound);
+
+    this.play = function () {
+        this.sound.play();
+        this.isOn = true;
+    }
+    this.stop = function () {
+        this.sound.pause();
+        this.isOn = false;
+    }
+    this.getVolume = function () {
+        return this.sound.volume;
+    }
+    this.setVolume = function (v) {
+        this.sound.volume = v;
+    }
+}
+
 //clase Pokemon para guardar pokemon nuevos en la bd
 function Pokemon(){
 	
@@ -207,7 +233,7 @@ function Pokemon(){
 	this.base_happiness = 1;
 	this.base_total = 1;
 	this.capture_rate = 1;
-	this.classfication;
+	this.classfication="";
 	this.defense;
 	this.experience_growth = 1;
 	this.height_m;
@@ -222,7 +248,7 @@ function Pokemon(){
 	this.type1;
 	this.type2;
 	this.weight_kg;
-	this.generation = 1;
-	this.is_legendary = "0";
+	this.generation;
+	this.is_legendary;
 	this.photos = [];
 }
