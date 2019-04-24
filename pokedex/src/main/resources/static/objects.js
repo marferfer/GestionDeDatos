@@ -138,13 +138,13 @@ function ArrowButton(x, y, normalImage, hoverImage, width, height, group) {
         else {
         	this.img = normalImage;
         }
-        if (nextPokeState.name != "mainMenu" && alpha > 0.0) {
+        if (nextPokeState.name != "mainMenu" && nextPokeState.name != "backgroundMenu" && alpha > 0.0) {
             alpha -= 0.01;
             if (alpha < 0.01) {
             	alpha = 0;
             }
         }
-        else if (nextPokeState.name === "mainMenu" && alpha < 1.0) {
+        else if ((nextPokeState.name === "mainMenu" || nextPokeState.name === "backgroundMenu") && alpha < 1.0) {
         	alpha += 0.01;
         }
         ctx.globalAlpha = alpha;
@@ -153,7 +153,7 @@ function ArrowButton(x, y, normalImage, hoverImage, width, height, group) {
     }
 }
 
-function dbButton(x, y, normalImage, hoverImage, selectedImage, width, height, group, isSelected) {
+function selectButton(x, y, normalImage, hoverImage, selectedImage, width, height, group, isSelected) {
 	Button.call(this, x, y, normalImage, hoverImage, width, height, group);
 	this.selected = selectedImage;
 	this.isSelected = isSelected;
@@ -178,6 +178,32 @@ function State(name, background, father) {
 	this.name = name;
 	this.background = background;
 	this.father = father;
+}
+
+//para gestionar el sonido de la aplicacion
+function Sound(src) {
+    this.sound = document.createElement("audio");
+    this.sound.src = src;
+    this.sound.setAttribute("preload", "auto");
+    this.sound.setAttribute("controls", "none");
+    this.sound.style.display = "none";
+    this.isOn = false;
+    document.body.appendChild(this.sound);
+
+    this.play = function () {
+        this.sound.play();
+        this.isOn = true;
+    }
+    this.stop = function () {
+        this.sound.pause();
+        this.isOn = false;
+    }
+    this.getVolume = function () {
+        return this.sound.volume;
+    }
+    this.setVolume = function (v) {
+        this.sound.volume = v;
+    }
 }
 
 //clase Pokemon para guardar pokemon nuevos en la bd
@@ -207,7 +233,7 @@ function Pokemon(){
 	this.base_happiness = 1;
 	this.base_total = 1;
 	this.capture_rate = 1;
-	this.classfication;
+	this.classfication="";
 	this.defense;
 	this.experience_growth = 1;
 	this.height_m;
@@ -222,7 +248,7 @@ function Pokemon(){
 	this.type1;
 	this.type2;
 	this.weight_kg;
-	this.generation = 1;
-	this.is_legendary = "0";
+	this.generation;
+	this.is_legendary;
 	this.photos = [];
 }

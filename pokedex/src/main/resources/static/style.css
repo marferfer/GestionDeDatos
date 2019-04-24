@@ -341,10 +341,19 @@ input:focus::-webkit-input-placeholder {
     height: 21px;
 }
 
-#lectorNaturalezaP {
+#lectorGeneracionP {
 	
-	top: 641px;
-    left: 718px;
+	top: 652px;
+    left: 622px;
+    width: 279px;
+    height: 21px;
+
+}
+
+#lectorLegendarioP {
+	
+	top: 652px;
+    left: 780px;
     width: 279px;
     height: 21px;
 }
