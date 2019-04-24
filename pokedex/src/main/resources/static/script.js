@@ -472,6 +472,11 @@ var pokedex = {
                             		}else{
                             			document.getElementById("mov4P").innerHTML = '';
                             		}
+                            		if(p.classfication != null){
+                            			document.getElementById("itemP").innerHTML = p.classfication;
+                            		}else{
+                            			document.getElementById("itemP").innerHTML = '';
+                            		}
                             		var foto = p.photos[imgCont].split("/");
                             		var num = foto[2].split(".");
                             		
@@ -489,6 +494,7 @@ var pokedex = {
                             		document.getElementById("defP").innerHTML = "Def: "+p.defense;
                             		document.getElementById("defEP").innerHTML = "Def.E: "+p.sp_defense;
                             		document.getElementById("alturaP").innerHTML = "Alt: "+p.height_m;
+                            		document.getElementById("itemP").innerHTML = "Class: "+p.classfication;
                             		
                             	});
                         		pokeball_izq.cycleDone = false;
@@ -996,7 +1002,7 @@ function updatePokedex() {
             btnCamposDefEsp.update();
             btnCamposVel.update();
             btnCamposHP.update();
-            //btnCamposItem.update();
+            btnCamposItem.update();
             btnCamposMov1.update();
             btnCamposMov2.update();
             btnCamposMov3.update();
