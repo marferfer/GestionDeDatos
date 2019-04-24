@@ -194,7 +194,9 @@ function startPokedex() {
     pokeball_der.cycleDone = false;
     inAnimation = true;
     pokegroup_izq.x = 398;
-    pokegroup_der.x = 692;
+    pokegroup_der.x = 692;    
+    
+    
     
 }
 
@@ -236,10 +238,10 @@ var pokedex = {
                         	for (var p in pokemons) {
                         		$('#listaPokemon').append(
                         				'<div id="' + pokemons[p].split("-")[0] + '" class="imgLista">' +
-                        				  '<img class="marcador" src="img/pokeListMark.gif"/>' +
+                        				  '<img class="marcador" style="cursor:pointer" src="img/pokeListMark.gif"/>' +
                         				  '<span class="under">' + pokemons[p].split("-")[1] + '</span>' +
                         				'</div>' + 
-                      				  '<div style="float:right;" id="'+ pokemons[p].split("-")[0] + ' "class = "imgListaBorrador"><img class="borrador" src="img/pokeListDelete.png"/>');
+                      				  '<div style="float:right;cursor:pointer;" id="'+ pokemons[p].split("-")[0] + ' "class = "imgListaBorrador"><img class="borrador" src="img/pokeListDelete.png"/>');
                         	}
                         	
                         	//Borrado del pokemon en la lista de pokemons
