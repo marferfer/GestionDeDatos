@@ -211,6 +211,12 @@
 	
 }
 
+.natu {
+	top: 570px;
+	left: 720px;
+	font-size: 17px;
+	width: auto;
+}
 /*///////////////////////////////////////////////////////////////////////*/
 /*///FORMULARIOS DE AÑADIR POKEMON///////////////////////////////////////*/
 /*///////////////////////////////////////////////////////////////////////*/
@@ -451,8 +457,9 @@ input:focus::-webkit-input-placeholder {
 .ordenLista select {
 	color: white;
 	font-family: 'Sniglet';
+	width: 178px;
 	padding: 10px;
-	background: rgba(0, 77, 77, 0.5);
+	background: rgba(0, 77, 77, 0.75);
 	border-color: transparent;
 }
 

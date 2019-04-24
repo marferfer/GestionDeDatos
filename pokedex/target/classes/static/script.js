@@ -228,8 +228,8 @@ function startPokedex() {
     btnFoto = new Button(415, 300, images[44], images[45], 182, 182, globalGroup);
     btnTipos = new Button(365, 500, images[36], images[37], 132, 60, globalGroup);
     btnTipos1 = new Button(500, 500, images[36], images[37], 132, 60, globalGroup);
-    btnSearch = new Button(800, 370, images[42], images[43], 50, 50, globalGroup);
-    btnGuardarPokemon = new Button(670, 688, images[46], images[47], 100, 60, globalGroup);
+    btnSearch = new Button(855, 372, images[42], images[43], 217, 40, globalGroup);
+    btnGuardarPokemon = new Button(615, 686, images[46], images[47], 160, 55, globalGroup);
     
     temaClasico = new selectButton(470, 300, images[48], images[49], images[50], 443, 197, globalGroup, true);
     temaLucario = new selectButton(470, 520, images[51], images[52], images[53], 443, 197, globalGroup, false);
@@ -492,6 +492,11 @@ var pokedex = {
                             		}else{
                             			document.getElementById("mov4P").innerHTML = '';
                             		}
+                            		if(p.classfication != null){
+                            			document.getElementById("itemP").innerHTML = p.classfication;
+                            		}else{
+                            			document.getElementById("itemP").innerHTML = '';
+                            		}
                             		var foto = p.photos[imgCont].split("/");
                             		var num = foto[2].split(".");
                             		
@@ -509,6 +514,7 @@ var pokedex = {
                             		document.getElementById("defP").innerHTML = "Def: "+p.defense;
                             		document.getElementById("defEP").innerHTML = "Def.E: "+p.sp_defense;
                             		document.getElementById("alturaP").innerHTML = "Alt: "+p.height_m;
+                            		document.getElementById("itemP").innerHTML = "Class: "+p.classfication;
                             		
                             	});
                         		pokeball_izq.cycleDone = false;
@@ -1017,7 +1023,7 @@ function updatePokedex() {
             btnCamposDefEsp.update();
             btnCamposVel.update();
             btnCamposHP.update();
-            //btnCamposItem.update();
+            btnCamposItem.update();
             btnCamposMov1.update();
             btnCamposMov2.update();
             btnCamposMov3.update();
