@@ -168,45 +168,47 @@
 }
 
 .vida {
-	top: 445px;
-	left: 730px;
+	top: 325px;
+	left: 700px;	
 }
 
 .vel {
-	top: 445px;
-	left: 890px;
+	top: 325px;
+	left: 845px;
+	
 }
 
 .peso {
 	top: 505px;
-	left: 730px;
+	left: 700px;
 }
 
-.natu {
-	top: 570px;
-	left: 720px;
-	font-size: 17px;
-	width: auto;
-}
 
 .ata {
-	top: 325px;
-	left: 730px;
+	top: 385px;
+	left: 700px;
 }
 
 .ataE {
-	top: 385px;
-	left: 730px;
+	top: 445px;
+	left: 700px;
 }
 
 .def {
-	top: 325px;
-	left: 890px;
+	top: 385px;
+	left: 845px;
 }
 
 .defE {
-	top: 385px;
-	left: 890px;
+	top: 445px;
+	left: 845px;
+	
+}
+
+.altE {
+	top: 505px;
+	left: 845px;
+	
 }
 
 /*///////////////////////////////////////////////////////////////////////*/
@@ -218,6 +220,7 @@
 	background: transparent;
     border: none;
     outline: none;
+    font-family: 'Sniglet';
 }
 
 input {
@@ -378,7 +381,7 @@ input:focus::-webkit-input-placeholder {
     width: 100%;
     background: rgba(0, 77, 77, 0.85);
     border: none;
-    font-family: 'Arial';
+    font-family: 'Sniglet';
 	font-size: 15px;
 	color: white;
 	letter-spacing: 1px;
@@ -408,7 +411,7 @@ input:focus::-webkit-input-placeholder {
 #checkboxes.hide {display:none;}
 
 #checkboxes span {
-	font-family: 'Arial';
+	font-family: 'Sniglet';
 	color: mediumaquamarine;
 	font-size: 20px;
 	padding: 10px;
@@ -416,7 +419,7 @@ input:focus::-webkit-input-placeholder {
 
 #checkboxes label {
     display: block;
-    font-family: 'Arial';
+    font-family: 'Sniglet';
     color:white;
 }
 
@@ -447,7 +450,7 @@ input:focus::-webkit-input-placeholder {
 
 .ordenLista select {
 	color: white;
-	font-family: 'Arial';
+	font-family: 'Sniglet';
 	padding: 10px;
 	background: rgba(0, 77, 77, 0.5);
 	border-color: transparent;
@@ -466,7 +469,7 @@ input:focus::-webkit-input-placeholder {
 	top: 400px;
 	left:455px;
     background-color: rgba(0, 77, 77, 0.83);
-    font-family: Arial;
+    font-family: Sniglet;
 }
 
 .swal-title {

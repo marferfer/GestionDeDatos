@@ -444,51 +444,51 @@ var pokedex = {
                             		if(p.type1 != null){
                             			document.getElementById("tipoP").innerHTML = p.type1;
                             		}else{
-                            			document.getElementById("tipoP").innerHTML = '--------';
+                            			document.getElementById("tipoP").innerHTML = '';
                             		}
                             		
                             		if(p.type2 != null){
                             			document.getElementById("tipo1P").innerHTML = p.type2;
                             		}else{
-                            			document.getElementById("tipo1P").innerHTML = '--------';
+                            			document.getElementById("tipo1P").innerHTML = '';
                             		}
                             		if(p.abilities[0] != null){
                             			document.getElementById("mov1P").innerHTML = p.abilities[0];
                             		}else{
-                            			document.getElementById("mov1P").innerHTML = '---------';
+                            			document.getElementById("mov1P").innerHTML = '';
                             		}
                             		if(p.abilities[1] != null){
                             			document.getElementById("mov2P").innerHTML = p.abilities[1];
                             		}else{
-                            			document.getElementById("mov2P").innerHTML = '---------';
+                            			document.getElementById("mov2P").innerHTML = '';
                             		}
                             		if(p.abilities[2] != null){
                             			document.getElementById("mov3P").innerHTML = p.abilities[2];
                             		}else{
-                            			document.getElementById("mov3P").innerHTML = '---------';
+                            			document.getElementById("mov3P").innerHTML = '';
                             		}
                             		if(p.abilities[3] != null){
                             			document.getElementById("mov4P").innerHTML = p.abilities[3];
                             		}else{
-                            			document.getElementById("mov4P").innerHTML = '---------';
+                            			document.getElementById("mov4P").innerHTML = '';
                             		}
                             		var foto = p.photos[imgCont].split("/");
                             		var num = foto[2].split(".");
-                            		console.log(num[0]);
+                            		
                             		if(parseInt(num[0]) < 721){
-                            			console.log("hola");
+                            			
                             			document.getElementById("photosP").src = p.photos[imgCont];
                             		}else{
                             			document.getElementById("photosP").src = "img/pokeball_mini.png";
                             		}
-                            		document.getElementById("vidaP").innerHTML = p.hp;
-                            		document.getElementById("velP").innerHTML = p.speed;
-                            		document.getElementById("pesoP").innerHTML = p.weight_kg;
-                            		document.getElementById("natuP").innerHTML = p.classfication;
-                            		document.getElementById("ataP").innerHTML = p.attack;
-                            		document.getElementById("ataEP").innerHTML = p.sp_attack;
-                            		document.getElementById("defP").innerHTML = p.defense;
-                            		document.getElementById("defEP").innerHTML = p.sp_defense;
+                            		document.getElementById("vidaP").innerHTML = "PS: "+p.hp;
+                            		document.getElementById("velP").innerHTML = "Sp: "+p.speed;
+                            		document.getElementById("pesoP").innerHTML = "Kg: "+p.weight_kg;
+                            		document.getElementById("ataP").innerHTML = "At: "+p.attack;
+                            		document.getElementById("ataEP").innerHTML = "At.E: "+p.sp_attack;
+                            		document.getElementById("defP").innerHTML = "Def: "+p.defense;
+                            		document.getElementById("defEP").innerHTML = "Def.E: "+p.sp_defense;
+                            		document.getElementById("alturaP").innerHTML = "Alt: "+p.height_m;
                             		
                             	});
                         		pokeball_izq.cycleDone = false;
@@ -996,7 +996,7 @@ function updatePokedex() {
             btnCamposDefEsp.update();
             btnCamposVel.update();
             btnCamposHP.update();
-            btnCamposItem.update();
+            //btnCamposItem.update();
             btnCamposMov1.update();
             btnCamposMov2.update();
             btnCamposMov3.update();

@@ -247,15 +247,8 @@ function startPokedex() {
     btnArrowL = new Button(360, 365, images[12], images[13], 49, 50, globalGroup);
 
     btnAnyadir = new Button(630, 680, images[36], images[37], 132, 60, globalGroup);
-<<<<<<< HEAD
-    
-    mongodb = new dbButton(440, 340, images[28], images[29], images[30], 231, 346, globalGroup, false);
-    sqlite = new dbButton(740, 340, images[31], images[32], images[33], 231, 346, globalGroup, true);
-    
-=======
     theme = new Button(440, 400, images[28], images[29], 235, 251, globalGroup);
     backgroundBtn = new Button(740, 400, images[31], images[32], 231, 251, globalGroup);
->>>>>>> master
     creditosTexto = new Decoration(400, 230, images[24], globalGroup);
     
     sonido_abrirDesplegable = new Sound("/sounds/sonido_abrirDesplegable.wav");
@@ -273,12 +266,8 @@ function startPokedex() {
     configMenu = new State("configMenu", images[3], mainMenu);
     creditsMenu = new State("creditsMenu", images[3], mainMenu);
     showPokemon = new State("showPokemon", images[3], mainMenu);
-<<<<<<< HEAD
-    
-=======
     themeMenu = new State("themeMenu", images[3], configMenu);
     backgroundMenu = new State("backgroundMenu", images[3], configMenu);
->>>>>>> master
     pokeState = mainMenu;
     nextPokeState = mainMenu;
     pokedex.start();
@@ -403,14 +392,9 @@ var pokedex = {
                         pokeball_izq.cycleDone = false;
                         pokeball_der.cycleDone = false;
                         inAnimation = true;
-<<<<<<< HEAD
-                        nextPokeState = bddMenu;
-                        
-                      //sonido
-                        sonido_presionarBoton.play();
-=======
                         nextPokeState = configMenu;
->>>>>>> master
+                        sonido_presionarBoton.play();
+                      //sonido
                     }
                     //Creditos onClick
                     if (pokedex.clickX > creditos.x + creditos.group.x && pokedex.clickX < creditos.x + creditos.group.x + creditos.width && pokedex.clickY > creditos.y + creditos.group.y && pokedex.clickY < creditos.y + creditos.group.y + creditos.height) {
@@ -460,51 +444,51 @@ var pokedex = {
                             		if(p.type1 != null){
                             			document.getElementById("tipoP").innerHTML = p.type1;
                             		}else{
-                            			document.getElementById("tipoP").innerHTML = '--------';
+                            			document.getElementById("tipoP").innerHTML = '';
                             		}
                             		
                             		if(p.type2 != null){
                             			document.getElementById("tipo1P").innerHTML = p.type2;
                             		}else{
-                            			document.getElementById("tipo1P").innerHTML = '--------';
+                            			document.getElementById("tipo1P").innerHTML = '';
                             		}
                             		if(p.abilities[0] != null){
                             			document.getElementById("mov1P").innerHTML = p.abilities[0];
                             		}else{
-                            			document.getElementById("mov1P").innerHTML = '---------';
+                            			document.getElementById("mov1P").innerHTML = '';
                             		}
                             		if(p.abilities[1] != null){
                             			document.getElementById("mov2P").innerHTML = p.abilities[1];
                             		}else{
-                            			document.getElementById("mov2P").innerHTML = '---------';
+                            			document.getElementById("mov2P").innerHTML = '';
                             		}
                             		if(p.abilities[2] != null){
                             			document.getElementById("mov3P").innerHTML = p.abilities[2];
                             		}else{
-                            			document.getElementById("mov3P").innerHTML = '---------';
+                            			document.getElementById("mov3P").innerHTML = '';
                             		}
                             		if(p.abilities[3] != null){
                             			document.getElementById("mov4P").innerHTML = p.abilities[3];
                             		}else{
-                            			document.getElementById("mov4P").innerHTML = '---------';
+                            			document.getElementById("mov4P").innerHTML = '';
                             		}
                             		var foto = p.photos[imgCont].split("/");
                             		var num = foto[2].split(".");
-                            		console.log(num[0]);
+                            		
                             		if(parseInt(num[0]) < 721){
-                            			console.log("hola");
+                            			
                             			document.getElementById("photosP").src = p.photos[imgCont];
                             		}else{
                             			document.getElementById("photosP").src = "img/pokeball_mini.png";
                             		}
-                            		document.getElementById("vidaP").innerHTML = p.hp;
-                            		document.getElementById("velP").innerHTML = p.speed;
-                            		document.getElementById("pesoP").innerHTML = p.weight_kg;
-                            		document.getElementById("natuP").innerHTML = p.classfication;
-                            		document.getElementById("ataP").innerHTML = p.attack;
-                            		document.getElementById("ataEP").innerHTML = p.sp_attack;
-                            		document.getElementById("defP").innerHTML = p.defense;
-                            		document.getElementById("defEP").innerHTML = p.sp_defense;
+                            		document.getElementById("vidaP").innerHTML = "PS: "+p.hp;
+                            		document.getElementById("velP").innerHTML = "Sp: "+p.speed;
+                            		document.getElementById("pesoP").innerHTML = "Kg: "+p.weight_kg;
+                            		document.getElementById("ataP").innerHTML = "At: "+p.attack;
+                            		document.getElementById("ataEP").innerHTML = "At.E: "+p.sp_attack;
+                            		document.getElementById("defP").innerHTML = "Def: "+p.defense;
+                            		document.getElementById("defEP").innerHTML = "Def.E: "+p.sp_defense;
+                            		document.getElementById("alturaP").innerHTML = "Alt: "+p.height_m;
                             		
                             	});
                         		pokeball_izq.cycleDone = false;
@@ -840,23 +824,6 @@ var pokedex = {
                             }  */    
                             break;
                             
-<<<<<<< HEAD
-                        case "bddMenu":  
-                            if (pokedex.clickX > mongodb.x + mongodb.group.x && pokedex.clickX < mongodb.x + mongodb.group.x + mongodb.width && pokedex.clickY > mongodb.y + mongodb.group.y && pokedex.clickY < mongodb.y + mongodb.group.y + mongodb.height) {
-                                mongodb.isSelected = true;
-                                sqlite.isSelected = false;
-                                dbSelected = 'mongodb'; 
-                            }   
-                            else if (pokedex.clickX > sqlite.x + sqlite.group.x && pokedex.clickX < sqlite.x + sqlite.group.x + sqlite.width && pokedex.clickY > sqlite.y + sqlite.group.y && pokedex.clickY < sqlite.y + sqlite.group.y + sqlite.height) {
-                                sqlite.isSelected = true;
-                                mongodb.isSelected = false;
-                                dbSelected = 'sqlite';
-                            }    
-                            
-                            //sonido
-                            sonido_presionarBoton.play();
-                            
-=======
                         case "configMenu":  
                         	var clicked = theme;
                         	if (pokedex.clickX > clicked.x + clicked.group.x && pokedex.clickX < clicked.x + clicked.group.x + clicked.width && pokedex.clickY > clicked.y + clicked.group.y && pokedex.clickY < clicked.y + clicked.group.y + clicked.height) {
@@ -884,7 +851,6 @@ var pokedex = {
                         		temaClasico.isSelected = false;
                         		temaLucario.isSelected = true;
                             }
->>>>>>> master
                             break;
                         case "showPokemon":
                         	
@@ -1030,7 +996,7 @@ function updatePokedex() {
             btnCamposDefEsp.update();
             btnCamposVel.update();
             btnCamposHP.update();
-            btnCamposItem.update();
+            //btnCamposItem.update();
             btnCamposMov1.update();
             btnCamposMov2.update();
             btnCamposMov3.update();
