@@ -1,5 +1,25 @@
 var images = new Array();
-// Se cargan todas las imagenes antes de crear el canvas
+
+//Allow for vendor prefixes.
+window.requestFileSystem = window.requestFileSystem || window.webkitRequestFileSystem;
+
+//Check for support.
+if (window.requestFileSystem) {
+	//console.log("Si lo permite");
+	// FileSystem Supported
+} else {
+	//console.log("No lo permite");
+  // FileSystem Not Supported
+}
+
+//Start the app by requesting a FileSystem (if the browser supports the API)
+if (window.requestFileSystem) {
+  initFileSystem();
+} else {
+  alert('Sorry! Your browser doesn\'t support the FileSystem API :(');
+}
+
+//Se cargan todas las imagenes antes de crear el canvas
 function preload() {
     var latch = preload.arguments.length
     for (i = 0; i < preload.arguments.length; i++) {
@@ -228,8 +248,8 @@ function startPokedex() {
     btnFoto = new Button(415, 300, images[44], images[45], 182, 182, globalGroup);
     btnTipos = new Button(365, 500, images[36], images[37], 132, 60, globalGroup);
     btnTipos1 = new Button(500, 500, images[36], images[37], 132, 60, globalGroup);
-    btnSearch = new Button(800, 370, images[42], images[43], 50, 50, globalGroup);
-    btnGuardarPokemon = new Button(670, 688, images[46], images[47], 100, 60, globalGroup);
+    btnSearch = new Button(855, 372, images[42], images[43], 217, 40, globalGroup);
+    btnGuardarPokemon = new Button(615, 686, images[46], images[47], 160, 55, globalGroup);
     
     temaClasico = new selectButton(470, 300, images[48], images[49], images[50], 443, 197, globalGroup, true);
     temaLucario = new selectButton(470, 520, images[51], images[52], images[53], 443, 197, globalGroup, false);
@@ -600,43 +620,63 @@ var pokedex = {
                             		if(p.type1 != null){
                             			document.getElementById("tipoP").innerHTML = p.type1;
                             		}else{
-                            			document.getElementById("tipoP").innerHTML = '--------';
+                            			document.getElementById("tipoP").innerHTML = '';
                             		}
                             		
                             		if(p.type2 != null){
                             			document.getElementById("tipo1P").innerHTML = p.type2;
                             		}else{
-                            			document.getElementById("tipo1P").innerHTML = '--------';
+                            			document.getElementById("tipo1P").innerHTML = '';
                             		}
                             		if(p.abilities[0] != null){
                             			document.getElementById("mov1P").innerHTML = p.abilities[0];
                             		}else{
-                            			document.getElementById("mov1P").innerHTML = '---------';
+                            			document.getElementById("mov1P").innerHTML = '';
                             		}
                             		if(p.abilities[1] != null){
                             			document.getElementById("mov2P").innerHTML = p.abilities[1];
                             		}else{
-                            			document.getElementById("mov2P").innerHTML = '---------';
+                            			document.getElementById("mov2P").innerHTML = '';
                             		}
                             		if(p.abilities[2] != null){
                             			document.getElementById("mov3P").innerHTML = p.abilities[2];
                             		}else{
-                            			document.getElementById("mov3P").innerHTML = '---------';
+                            			document.getElementById("mov3P").innerHTML = '';
                             		}
                             		if(p.abilities[3] != null){
                             			document.getElementById("mov4P").innerHTML = p.abilities[3];
                             		}else{
-                            			document.getElementById("mov4P").innerHTML = '---------';
+                            			document.getElementById("mov4P").innerHTML = '';
                             		}
-                            		document.getElementById("photosP").src = p.photos[imgCont];
-                            		document.getElementById("vidaP").innerHTML = p.hp;
-                            		document.getElementById("velP").innerHTML = p.speed;
-                            		document.getElementById("pesoP").innerHTML = p.weight_kg;
-                            		document.getElementById("natuP").innerHTML = p.classfication;
-                            		document.getElementById("ataP").innerHTML = p.attack;
-                            		document.getElementById("ataEP").innerHTML = p.sp_attack;
-                            		document.getElementById("defP").innerHTML = p.defense;
-                            		document.getElementById("defEP").innerHTML = p.sp_defense;
+                            		if(p.classfication != null){
+                            			document.getElementById("itemP").innerHTML = p.classfication;
+                            		}else{
+                            			document.getElementById("itemP").innerHTML = '';
+                            		}
+                            		
+                            		if(p.photos[imgCont] != undefined){
+	                            		var foto = p.photos[imgCont].split("/");
+	                            		var num = foto[2].split(".");
+	                            		
+	                            		if(parseInt(num[0]) < 721){
+	                            			
+	                            			document.getElementById("photosP").src = p.photos[imgCont];
+	                            		}else{
+	                            			document.getElementById("photosP").src = "img/pokeball_mini.png";
+	                            		}
+                            		}else{
+                    	    			document.getElementById("photosP").src = "img/pokeball_mini.png";
+                    	    		}
+                            		
+                            		document.getElementById("vidaP").innerHTML = "PS: "+p.hp;
+                            		document.getElementById("velP").innerHTML = "Sp: "+p.speed;
+                            		document.getElementById("pesoP").innerHTML = "Kg: "+p.weight_kg;
+                            		document.getElementById("ataP").innerHTML = "At: "+p.attack;
+                            		document.getElementById("ataEP").innerHTML = "At.E: "+p.sp_attack;
+                            		document.getElementById("defP").innerHTML = "Def: "+p.defense;
+                            		document.getElementById("defEP").innerHTML = "Def.E: "+p.sp_defense;
+                            		document.getElementById("alturaP").innerHTML = "Alt: "+p.height_m;
+                            		document.getElementById("itemP").innerHTML = "Class: "+p.classfication;
                             		
                             	});
                         		pokeball_izq.cycleDone = false;
@@ -798,7 +838,8 @@ var pokedex = {
                         		defensaEsp = parseInt(defensaEsp);
                         		peso = parseFloat(peso);
                         		altura = parseFloat(altura);
-                        		generacion = parseInt(generacion);
+                        		generacion = parseInt(generacion);                       		
+                        		name = name.charAt(0).toUpperCase() + name.slice(1);	//ponemos la inicial del pokemon en mayusculas
                         		
                         		// sonido
                         		sonido_popup.play();
@@ -892,10 +933,9 @@ var pokedex = {
                                     		document.getElementById("lectorAlturaP").value="";
                                     		document.getElementById("lectorLegendarioP").value="";
                                     		document.getElementById("lectorGeneracionP").value="";
-
                                     		
-                                    		// guardar el pokemon en la base de
-											// datos
+                                    		
+                                    		//guardar el pokemon en la base de datos
                                     		
                                     		let pokemon = new Pokemon();
                                     	                                                                     		
@@ -916,7 +956,15 @@ var pokedex = {
                                     		pokemon.type1 = tipo;
                                     		pokemon.type2 = tipo1;
                                     		pokemon.weight_kg = peso;                                   		
-                                    		pokemon.photos = [];
+                                    		
+                                    		var cont = 0;
+                                    		while(pokemon.photos[cont] != null){
+                                    			cont++;
+                                    		}
+                                    		if(file != undefined){
+                                    			pokemon.photos[cont] = "img/pokemon/" + file.name;
+                                    			saveFile(file);
+                                    		}
                                     		
                                     		switch(legendario){
                                     			case "no":

@@ -127,15 +127,15 @@
 		<span id="mov3P" class="atrib mov3"></span>
 		<span id="mov4P" class="atrib mov4"></span> 
 		<span id="photoP" class="atrib photo"></span>
-		<span id="itemP" class="atrib item"></span>
+		<span id="itemP" class="atrib natu"></span>
 		<span id="vidaP" class="atrib vida"></span> 
 		<span id="velP" class="atrib vel"></span> 
 		<span id="pesoP" class="atrib peso"></span>
-		<span id="natuP" class="atrib natu"></span>
 		<span id="ataP" class="atrib ata"></span> 
 		<span id="ataEP" class="atrib ataE"></span>
 		<span id="defP" class="atrib def"></span> 
-		<span id="defEP" class="atrib defE"></span> 
+		<span id="defEP" class="atrib defE"></span>
+		<span id="alturaP" class="atrib altE"></span>
 		<img id="photosP" src="" class="photos">
 	</div>
 	
@@ -171,65 +171,11 @@
 		<img src="img/Anyadir/anyadirImg.png">
 		<img src="img/Anyadir/anyadirImgHover.png" class="img-top" alt="Card Front">
 	</div> -->
-	
 	<div id="imgAdd" class="addimage" style="visibility:hidden">
 		<input type="file" id="file1" name="image" accept="image/*" capture style="display:none"/>
 		<img src="img/Anyadir/anyadirImg.png"   />
 		<img src="img/Anyadir/anyadirImgHover.png" id="upfile1" style="cursor:pointer" class="img-top" alt="Card Front">
-		<script>
-
-		var input = document.querySelector('input[type=file]'); // see Example 4
-	
-		input.onchange = function () {
-		  var file = input.files[0];
-			console.log(file);
-		  //drawOnCanvas(file);   // see Example 6
-		  //displayAsImage(file); // see Example 7
-		};
-	
-		function drawOnCanvas(file) {
-		  var reader = new FileReader();
-	
-		  reader.onload = function (e) {
-		    var dataURL = e.target.result,
-		        c = document.querySelector('canvas'), // see Example 4
-		        ctx = c.getContext('2d'),
-		        img = new Image();
-	
-		    img.onload = function() {
-		      c.width = img.width;
-		      c.height = img.height;
-		      ctx.drawImage(img, 0, 0);
-		    };
-	
-		    img.src = dataURL;
-		  };
-	
-		  reader.readAsDataURL(file);
-		}
-	
-		function displayAsImage(file) {
-		  var imgURL = URL.createObjectURL(file),
-		      img = document.createElement('img');
-	
-		  img.onload = function() {
-		    URL.revokeObjectURL(imgURL);
-		  };
-	
-		  img.src = imgURL;
-		  document.body.appendChild(img);
-		}
-	
-		$("#upfile1").click(function () {
-		    $("#file1").trigger('click');
-		});
-		$("#upfile2").click(function () {
-		    $("#file2").trigger('click');
-		});
-		$("#upfile3").click(function () {
-		    $("#file3").trigger('click');
-		});
-	</script>
+		<script src="loadPhoto.js"></script>
 	</div>
 	
 	<script src="script.js"></script>
