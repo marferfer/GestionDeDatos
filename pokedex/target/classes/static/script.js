@@ -208,8 +208,8 @@ function startPokedex() {
     btnFoto = new Button(415, 300, images[44], images[45], 182, 182, globalGroup);
     btnTipos = new Button(365, 500, images[36], images[37], 132, 60, globalGroup);
     btnTipos1 = new Button(500, 500, images[36], images[37], 132, 60, globalGroup);
-    btnSearch = new Button(800, 370, images[42], images[43], 50, 50, globalGroup);
-    btnGuardarPokemon = new Button(670, 688, images[46], images[47], 100, 60, globalGroup);
+    btnSearch = new Button(855, 372, images[42], images[43], 217, 40, globalGroup);
+    btnGuardarPokemon = new Button(615, 686, images[46], images[47], 160, 55, globalGroup);
     
     temaClasico = new selectButton(470, 300, images[48], images[49], images[50], 443, 197, globalGroup, true);
     temaLucario = new selectButton(470, 520, images[51], images[52], images[53], 443, 197, globalGroup, false);
