@@ -315,6 +315,7 @@ var pokedex = {
                         canShowList = false;
                         
                         document.getElementById("lectorAtributos").style.visibility = 'hidden';
+                        
                         canShowLector = false;
                     }
                     switch (pokeState.name) {
@@ -455,6 +456,8 @@ var pokedex = {
                     		let naturalezaCorrecta;
                     		let sePuedeGuardar;
                     		let mensajeError;
+                    		
+                    		document.getElementById("imgAdd").style.visibility = "visible";
 
                         	//click btnGuardarPokemon
                         	if (pokedex.clickX > btnGuardarPokemon.x + btnGuardarPokemon.group.x && pokedex.clickX < btnGuardarPokemon.x + btnGuardarPokemon.group.x + btnGuardarPokemon.width && pokedex.clickY > btnGuardarPokemon.y + btnGuardarPokemon.group.y && pokedex.clickY < btnGuardarPokemon.y + btnGuardarPokemon.group.y + btnGuardarPokemon.height) {
@@ -620,9 +623,13 @@ var pokedex = {
                       	    	   }
                       	    	  });
                         	}
+                        	if (pokedex.clickX > btnAtras.x + btnAtras.group.x && pokedex.clickX < btnAtras.x + btnAtras.group.x + btnAtras.width && pokedex.clickY > btnAtras.y + btnAtras.group.y && pokedex.clickY < btnAtras.y + btnAtras.group.y + btnAtras.height) {
+                        		
+                        		document.getElementById("imgAdd").style.visibility = 'hidden';
+                        	}
 
                         	
-                        	if (pokedex.clickX > btnAddFoto.x + btnAddFoto.group.x && pokedex.clickX < btnAddFoto.x + btnAddFoto.group.x + btnAddFoto.width && pokedex.clickY > btnAddFoto.y + btnAddFoto.group.y && pokedex.clickY < btnAddFoto.y + btnAddFoto.group.y + btnAddFoto.height) {
+                        	/*if (pokedex.clickX > btnAddFoto.x + btnAddFoto.group.x && pokedex.clickX < btnAddFoto.x + btnAddFoto.group.x + btnAddFoto.width && pokedex.clickY > btnAddFoto.y + btnAddFoto.group.y && pokedex.clickY < btnAddFoto.y + btnAddFoto.group.y + btnAddFoto.height) {
                             	
                                var preview = document.querySelector('img'); //selects the query named img
                                var file    = document.querySelector('input[type=file]').files[0]; //sames as here
@@ -637,7 +644,7 @@ var pokedex = {
                                } else {
                                    preview.src = "";
                                }
-                            }      
+                            }  */    
                             break;
                             
                         case "bddMenu":  
