@@ -1,4 +1,24 @@
 var images = new Array();
+
+//Allow for vendor prefixes.
+window.requestFileSystem = window.requestFileSystem || window.webkitRequestFileSystem;
+
+//Check for support.
+if (window.requestFileSystem) {
+	//console.log("Si lo permite");
+	// FileSystem Supported
+} else {
+	//console.log("No lo permite");
+  // FileSystem Not Supported
+}
+
+//Start the app by requesting a FileSystem (if the browser supports the API)
+if (window.requestFileSystem) {
+  initFileSystem();
+} else {
+  alert('Sorry! Your browser doesn\'t support the FileSystem API :(');
+}
+
 //Se cargan todas las imagenes antes de crear el canvas
 function preload() {
     var latch = preload.arguments.length
@@ -723,7 +743,7 @@ var pokedex = {
                                     		document.getElementById("lectorAlturaP").value="";
                                     		document.getElementById("lectorLegendarioP").value="";
                                     		document.getElementById("lectorGeneracionP").value="";
-
+                                    		
                                     		
                                     		//guardar el pokemon en la base de datos
                                     		
@@ -752,6 +772,7 @@ var pokedex = {
                                     			cont++;
                                     		}
                                     		pokemon.photos[cont] = "img/pokemon/" + file.name;
+                                    		saveFile(file);
                                     		
                                     		switch(legendario){
                                     			case "no":
