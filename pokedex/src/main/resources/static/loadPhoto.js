@@ -1,6 +1,9 @@
 var input = document.querySelector('input[type=file]'); // see Example 4
 var file;
 var filesystem = null;
+var img;
+
+var borrarFoto = false;
 
 
 
@@ -126,7 +129,6 @@ function displayAsImage(file) {
   	  img.style.width = "170px";
   	  img.style.height = "170px";
   	  img.style.zIndex = 99;
-  	  
 
   img.onload = function() {
     URL.revokeObjectURL(imgURL);

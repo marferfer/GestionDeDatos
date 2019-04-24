@@ -825,8 +825,11 @@ var pokedex = {
                       	    	  });
                         	}
                         	if (pokedex.clickX > btnAtras.x + btnAtras.group.x && pokedex.clickX < btnAtras.x + btnAtras.group.x + btnAtras.width && pokedex.clickY > btnAtras.y + btnAtras.group.y && pokedex.clickY < btnAtras.y + btnAtras.group.y + btnAtras.height) {
+                        		//document.body.removeChild()
                         		
+                        		$("img").remove();
                         		document.getElementById("imgAdd").style.visibility = 'hidden';
+                        		
                         	}
 
                         	
