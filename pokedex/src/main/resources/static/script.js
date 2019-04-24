@@ -655,18 +655,23 @@ var pokedex = {
                             		}
                             		
                             		if(p.photos[imgCont] != undefined){
-	                            		var foto = p.photos[imgCont].split("/");
-	                            		var num = foto[2].split(".");
-	                            		
-	                            		if(parseInt(num[0]) < 721){
-	                            			
-	                            			document.getElementById("photosP").src = p.photos[imgCont];
-	                            		}else{
-	                            			document.getElementById("photosP").src = "img/pokeball_mini.png";
-	                            		}
+                            			
+		                            	var foto = p.photos[imgCont].split("/");
+		                            	var num = foto[2].split(".");
+		                            		
+		                            	if(parseInt(num[0]) < 721){
+		                            			
+		                            			document.getElementById("photosP").src = p.photos[imgCont];
+		                            	}else{
+		                            			
+		                            			document.getElementById("photosP").src = "img/pokeball_mini.png";
+		                            	}
+                            		}else if(document.getElementById("photosP") != null){
+                            			document.getElementById("photosP").src = "img/pokeball_mini.png";
                             		}else{
-                    	    			document.getElementById("photosP").src = "img/pokeball_mini.png";
-                    	    		}
+                            			;
+                            		}
+                            	
                             		
                             		document.getElementById("vidaP").innerHTML = "PS: "+p.hp;
                             		document.getElementById("velP").innerHTML = "Sp: "+p.speed;
@@ -957,13 +962,16 @@ var pokedex = {
                                     		pokemon.type2 = tipo1;
                                     		pokemon.weight_kg = peso;                                   		
                                     		
-                                    		var cont = 0;
-                                    		while(pokemon.photos[cont] != null){
-                                    			cont++;
-                                    		}
-                                    		if(file != undefined){
-                                    			pokemon.photos[cont] = "img/pokemon/" + file.name;
-                                    			saveFile(file);
+                                    		
+                                    		if(pokemon.photos != null){
+	                                    		var cont = 0;
+	                                    		while(pokemon.photos[cont] != null){
+	                                    			cont++;
+	                                    		}
+	                                    		if(file != undefined){
+	                                    			pokemon.photos[cont] = "img/pokemon/" + file.name;
+	                                    			saveFile(file);
+	                                    		}
                                     		}
                                     		
                                     		switch(legendario){
@@ -1011,7 +1019,7 @@ var pokedex = {
                         	if (pokedex.clickX > btnAtras.x + btnAtras.group.x && pokedex.clickX < btnAtras.x + btnAtras.group.x + btnAtras.width && pokedex.clickY > btnAtras.y + btnAtras.group.y && pokedex.clickY < btnAtras.y + btnAtras.group.y + btnAtras.height) {
                         		//document.body.removeChild()
                         		
-                        		$("img").remove();
+                        		//$("img").remove();
                         		document.getElementById("imgAdd").style.visibility = 'hidden';
                         		
                         	}
@@ -1305,7 +1313,10 @@ var pokedex = {
                         	if (pokedex.clickX > btnAtras.x + btnAtras.group.x && pokedex.clickX < btnAtras.x + btnAtras.group.x + btnAtras.width && pokedex.clickY > btnAtras.y + btnAtras.group.y && pokedex.clickY < btnAtras.y + btnAtras.group.y + btnAtras.height) {
                         		nextPokeState = listMenu;
                         		canShowPokemon = false;
-                        		document.getElementById("photosP").src = "#";
+                        		
+                        		if(photosP != undefined){
+                        			document.getElementById("photosP").src = "#";
+                        		}
                         		document.getElementById("atributos").style.visibility = 'hidden';
                         		
                         		// sonido
@@ -1423,10 +1434,25 @@ function updatePokedex() {
 	    		}else{
 	    			noFotoIz = false;
 	    		}
-	    		document.getElementById("photosP").src = pokE.photos[imgCont];
+	    		
+	    		if(pokE.photos[imgCont] != undefined){
+		    		var foto = pokE.photos[imgCont].split("/");
+		    		var num = foto[2].split(".");
+		    		
+		    		if(parseInt(num[0]) < 721){
+		    			
+		    			document.getElementById("photosP").src = pokE.photos[imgCont];
+		    		}else{
+		    			document.getElementById("photosP").src = "img/pokeball_mini.png";
+		    		}
+	    		}else{
+	    			document.getElementById("photosP").src = "img/pokeball_mini.png";
+	    		}
+	    		
 	        	if (nextPokeState.name === "showPokemon" && canShowPokemon) {
 	        		document.getElementById("atributos").style.visibility = "visible";
 	        	}
+	        	
 	            btnAtras.update();
 	            btnFoto.update();
 	            btnTipos.update();
