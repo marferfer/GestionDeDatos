@@ -138,13 +138,13 @@ function ArrowButton(x, y, normalImage, hoverImage, width, height, group) {
         else {
         	this.img = normalImage;
         }
-        if (nextPokeState.name != "mainMenu" && alpha > 0.0) {
+        if (nextPokeState.name != "mainMenu" && nextPokeState.name != "backgroundMenu" && alpha > 0.0) {
             alpha -= 0.01;
             if (alpha < 0.01) {
             	alpha = 0;
             }
         }
-        else if (nextPokeState.name === "mainMenu" && alpha < 1.0) {
+        else if ((nextPokeState.name === "mainMenu" || nextPokeState.name === "backgroundMenu") && alpha < 1.0) {
         	alpha += 0.01;
         }
         ctx.globalAlpha = alpha;
@@ -153,7 +153,7 @@ function ArrowButton(x, y, normalImage, hoverImage, width, height, group) {
     }
 }
 
-function dbButton(x, y, normalImage, hoverImage, selectedImage, width, height, group, isSelected) {
+function selectButton(x, y, normalImage, hoverImage, selectedImage, width, height, group, isSelected) {
 	Button.call(this, x, y, normalImage, hoverImage, width, height, group);
 	this.selected = selectedImage;
 	this.isSelected = isSelected;
