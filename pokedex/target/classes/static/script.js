@@ -76,8 +76,8 @@ preload(
     "img/search_hover.png", //_____________________43
     "img/Anyadir/showImg.png", //..................44
     "img/Anyadir/showImgHover.png", //_____________45
-    "img/btnGuardarPokemon.png",//kjashdsajkdhskaj_46
-    "img/btnGuardarPokemon_hover.png"//kjasdsjadas.47
+    "img/btnGuardarPokemon.png" //.................46
+    "img/btnGuardarPokemon_hover.png" //___________47
 )
 
 //Variables globales
