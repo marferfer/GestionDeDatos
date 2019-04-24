@@ -359,7 +359,15 @@ var pokedex = {
                             		}else{
                             			document.getElementById("mov4P").innerHTML = '---------';
                             		}
-                            		document.getElementById("photosP").src = p.photos[imgCont];
+                            		var foto = p.photos[imgCont].split("/");
+                            		var num = foto[2].split(".");
+                            		console.log(num[0]);
+                            		if(parseInt(num[0]) < 721){
+                            			console.log("hola");
+                            			document.getElementById("photosP").src = p.photos[imgCont];
+                            		}else{
+                            			document.getElementById("photosP").src = "img/pokeball_mini.png";
+                            		}
                             		document.getElementById("vidaP").innerHTML = p.hp;
                             		document.getElementById("velP").innerHTML = p.speed;
                             		document.getElementById("pesoP").innerHTML = p.weight_kg;
@@ -601,7 +609,12 @@ var pokedex = {
                                     		pokemon.type1 = tipo;
                                     		pokemon.type2 = tipo1;
                                     		pokemon.weight_kg = peso;                                   		
-                                    		pokemon.photos = [];
+                                    		
+                                    		var cont = 0;
+                                    		while(pokemon.photos[cont] != null){
+                                    			cont++;
+                                    		}
+                                    		pokemon.photos[cont] = "img/pokemon/" + file.name;
                                     		
                                     		createPokemon(pokemon, function(pokemon){});
                       	    	    		
@@ -767,7 +780,15 @@ function updatePokedex() {
     		}else{
     			noFotoIz = false;
     		}
-    		document.getElementById("photosP").src = pokE.photos[imgCont];
+    		var foto = pokE.photos[imgCont].split("/");
+    		var num = foto[2].split(".");
+    		
+    		if(parseInt(num[0]) < 721){
+    			
+    			document.getElementById("photosP").src = pokE.photos[imgCont];
+    		}else{
+    			document.getElementById("photosP").src = "img/pokeball_mini.png";
+    		}
         	if (nextPokeState.name === "showPokemon" && canShowPokemon) {
         		document.getElementById("atributos").style.visibility = "visible";
         	}

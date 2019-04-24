@@ -486,6 +486,17 @@ input:focus::-webkit-input-placeholder {
         position: absolute;
         top: 308px;
     	left: 424px;
+    	z-index: 99;
+        
+}
+
+.imgSelected {
+        width: 130px;
+        height: 195px;
+        position: absolute;
+        top: 308px;
+    	left: 424px;
+    	z-index: 99;
         
 }
 .addimage .img-top {
